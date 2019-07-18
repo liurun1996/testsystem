@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>title</title>
+    <script src="../static/js/jquery-3.3.1.js"></script>
+    <script>
+function selectBypaperId() {
+    var paperId = $("#paperId").val();
+    $.ajax({
+        type:"post",
+        url:"selectByPaperId.action",
+        data:{paperId:paperId},
+
+        success:function (data) {
+            alert(data)
+    /*    if (data!=''){
+              $(data).each(function (index,obj) {
+                  $("#GridView1").append( "<tr style='background-color:#E3EAEB;'>" +
+                      "<td align='center'><input id='' type='checkbox'/>" + "</td>" +
+                      "<td align='center'><span id=''>" + i + "</span></td>" +
+                      "<td align='center'>" + obj.testpaperId + "</td>" +
+                      "<td align='center'>" + paperId + "</td>" +
+                      "<td align='center'>" + obj.score + "</td>" +
+                      "<td align='center'> <input type='button' value='详情' onclick='details(obj.username)'/></td>"
+                      + "</tr>");
+              });
+          }*/
+
+        },
+        error:function () {
+            alert("a");
+        }
+
+    });
+
+}
+
+
+
+    </script>
+</head>
+<body>
+
+
+
+
+    <div>
+        <table width="800" align="center">
+            <tr>
+                <td bgcolor="#FFFFFF">
+                    <div align="center"><img src="../static/Img/examManage.jpg" width="765" height="83"/></div>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#DBD7F9">
+                    <div align="right"><span class="style2">&nbsp;
+                  <a id="HyperLink1" href="Manage.html">返回</a>
+          </span></div>
+                </td>
+            </tr>
+        </table>
+
+        <table width="800" height="450" align="center">
+            <tr>
+                <td width="22%" valign="top" bgcolor="#CCCCCC">
+                    <table width="100%" border="0">
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="78%" valign="top" bgcolor="#FFFFFF">
+                    <table width="100%" height="192" bgcolor="#FFFFFF">
+                        <tr>
+                            <td height="21">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 21px"><span class="style1">请选择试卷号：
+                <select name="paperId" id="paperId" style="width:128px;" onchange="">
+	<option th:value="${paperId}" th:each="paperId:${allPaperId}" th:text="${paperId}">XHG20080305</option>
+</select>
+                                <button  id="Button1" th:onclick="|selectBypaperId()|">查1询</button>
+
+                  </span></td>
+                        </tr>
+                        <tr style="display: none" id="center">
+                            <td height="21" valign="top" class="style2">&nbsp;<div>
+                                <table cellspacing="0" cellpadding="0" border="0" id="GridView1"
+                                       style="color:#333333;width:100%;border-collapse:collapse;">
+                                    <tr style="color:White;background-color:#1C5E55;font-weight:bold;">
+                                        <th align="center" scope="col">&nbsp;</th>
+                                        <th align="center" scope="col">序号</th>
+                                        <th align="center" scope="col">考号</th>
+                                        <th align="center" scope="col">试卷编号</th>
+                                        <th align="center" scope="col">成绩</th>
+                                        <th align="center" scope="col">考生详情</th>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="12" align="left">&nbsp;<input style="display: none" type="button" name="Button2" value="删除"
+                                                                      id="Button2"/></td>
+                        </tr>
+                        <tr>
+                            <td height="12" valign="top" class="style2">&nbsp;
+                                <span id="Label2">考生2008820212718详情如下:</span></td>
+                        </tr>
+                        <tr>
+                            <td height="12" valign="top" class="style2">&nbsp;<div>
+                                <table cellspacing="1" cellpadding="3" border="0" id="GridView2"
+                                       style="background-color:White;border-color:White;border-width:2px;border-style:Ridge;width:100%;">
+                                    <tr style="color:#E7E7FF;background-color:#4A3C8C;font-weight:bold;">
+                                        <th align="center" scope="col">考号</th>
+                                        <th scope="col">姓名</th>
+                                        <th align="center" scope="col">密码</th>
+                                        <th align="center" scope="col">地址</th>
+                                        <th align="center" scope="col">电话</th>
+                                        <th align="center" scope="col">学历</th>
+                                        <th align="center" scope="col">毕业院校</th>
+                                        <th align="center" scope="col">专业</th>
+                                        <th align="center" scope="col">性别</th>
+                                    </tr>
+                                    <tr style="color:Black;background-color:#DEDFDE;">
+                                        <td align="center">2008820212718</td>
+                                        <td align="center">wxl</td>
+                                        <td align="center">35089</td>
+                                        <td align="center">dd</td>
+                                        <td align="center">13477040452</td>
+                                        <td align="center">高中</td>
+                                        <td align="center">df</td>
+                                        <td align="center">fg</td>
+                                        <td align="center">女</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="12" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td height="12" valign="top">&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>title</title>
+    <script src="../static/js/jquery-3.3.1.js" th:src="@{../static/js/jquery-3.3.1.js}"></script>
+
+    <script>
+        function addQuestion() {
+            var subjectid = $("#subType").val()
+            var question = $("#question").val();
+            var answer = $("#answer").val();
+            var question = [];
+            alert(question);
+            question.push("id:0");
+            question.push("subjectid:" + subjectid);
+            question.push("question:" + question);
+            question.push("answer:" + answer);
+            question.push("state:0");
+            var json = JSON.stringify(question);
+            alert(json);
+            $.ajax({
+                type: 'post',
+                url: 'addQuestion.action',
+                sync: false,
+                data: {question: json},
+                success: function (data, status) {
+                    alert(data);
+                    alert(status);
+                },
+                error: function (status) {
+                    alert(status)
+                }
+
+
+            });
+        }
+function subChange(id) {
+    window.location.href="toThemeInsert.action?subjectid="+id;
+}
+
+    </script>
+</head>
+
+<body>
+<form name="form1" method="post" action="addQuestion.action" id="form1">
+    <div>
+        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value=""/>
+        <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value=""/>
+        <input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value=""/>
+        </div>
+
+
+    <div>
+        <table width="800" border="0" align="center">
+            <tr>
+                <td bgcolor="#FFFFFF"><img src="../static/Img/tkgl.jpg" width="485" height="66"/></td>
+            </tr>
+            <tr>
+                <td bgcolor="#CCCCCC">
+                    <div align="right" class="font">
+                        <a id="HyperLink1" href="toMain.action">返回</a>
+                        &nbsp;
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table width="800" height="450" border="1" align="center" bordercolor="#666666" bgcolor="#FFFFFF">
+            <tr>
+                <td valign="top" bordercolor="#FFFFFF">
+                    <table width="100%%" border="0">
+                        <tr bgcolor="#CCFFCC">
+                            <td colspan="2">
+                                <div align="center">添加题目信息</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="42%" height="30">
+                                <div align="right"></div>
+                            </td>
+                            <td width="58%" height="30">&nbsp;</td>
+                        </tr>
+                        <tr class="font">
+                            <td height="30">
+                                <div align="right">
+                                    <span id="Label1">题型编号：</span></div>
+                            </td>
+                            <td height="30">&nbsp;
+                                <select name="subjectid" onchange="javascript:subChange(this.value)" id="subType"
+                                        style="width:82px;">
+
+                                    <option th:each="subType:${allsubjectType}" th:value="${subType.subjectid}"
+                                            name="subTypeId" th:text="${subType.subjecttype}">
+                                    </option>
+
+                                </select>
+                                <span id="Label4" style="color:Blue;" th:text="${remark}">单选题答案只能是ABCD其中一字母</span></td>
+                        </tr>
+                        <tr class="font">
+                            <td height="30" valign="top">
+                                <div align="right">
+                                    <span id="Label2">题　　目：</span></div>
+                            </td>
+                            <td height="30">&nbsp;
+                                <textarea name="question" rows="2" cols="20" id="question"
+                                                            style="height:71px;width:266px;"></textarea>
+                                <span id="RequiredFieldValidator1" style="color:Red;visibility:hidden;">不能为空！</span>
+                            </td>
+                        </tr>
+                        <tr class="font">
+                            <td height="30">
+                                <div align="right">
+                                    <span id="Label3">答　　案：</span></div>
+                            </td>
+                            <td height="30">&nbsp;<input name="answer" type="text" id="answer"/>
+                                <span id="RequiredFieldValidator2" style="color:Red;visibility:hidden;">不能为空！</span>
+                            </td>
+                        </tr>
+                        <tr class="font">
+                            <td style="height: 30px">
+                                <div align="right">
+                                    &nbsp;
+                                </div>
+                            </td>
+                            <td style="height: 30px">&nbsp;</td>
+                        </tr>
+                        <tr class="font">
+                            <td style="height: 30px">
+                                <div align="right"></div>
+                            </td>
+                            <td style="height: 30px">&nbsp;<input type="submit" name="Button1" value="确　定" id="Button1"/>
+                                                                  <!--th:onclick="|addQuestion()|" onclick="addQuestion()"-->
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 30px">
+                                <div align="right"></div>
+                            </td>
+                            <td style="height: 30px">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 30px">
+                                <div align="right"></div>
+                            </td>
+                            <td style="height: 30px">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 30px">
+                                <div align="right"></div>
+                            </td>
+                            <td style="height: 30px">&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div>
+
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="/wEWDAKzl/rUCAKd5I/lCgKSi6WLBgKTi6WLBgKQi6WLBgKRi6WLBgKWi6WLBgKXi6WLBgKFi6WLBgLs0bLrBgLs0fbZDAKM54rGBjlBOJ6GYovh6gySha6NrN4gx/jL"/>
+    </div>
+
+
+</form>
+</body>
+</html>

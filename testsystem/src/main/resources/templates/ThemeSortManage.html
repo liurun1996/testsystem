@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body{
+            background-color:lightseagreen;
+        }
+    </style>
+    <title>title</title>
+ <script type="text/javascript"  src="../static/js/jquery-3.3.1.js" th:src="@{../static/js/jquery-3.3.1.js}"></script>
+    <script type="text/javascript">
+     var arr=[];
+     function add2Arr(id) {
+         var i=arr.indexOf(id);
+         if(i==-1){
+            arr.push(id);
+         }else {
+             arr.splice(i,1);
+         }
+
+     }
+
+
+     function del() {
+         alert(arr);
+        $.ajax({
+            type:"POST",
+            url:"subjectDel.action",
+            data:{arr:arr.toString()},
+            success:function (data) {
+                if (data==1){
+                    alert("删除成功")
+                } else {
+                    alert("删除失败")
+                }
+
+            },
+            error:function () {
+                alert("出错了")
+            }
+        });
+
+
+     }
+function to(id) {
+         window.location.href="toThemeSortUpdate.action?subjectid="+id;
+
+}
+    </script>
+</head>
+<body>
+<form name="form1" method="post" action="ThemeSortManage.aspx" id="form1">
+    <div>
+        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+        <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTg2NDA0MDE4NQ9kFgICAw9kFgICBQ88KwANAQAPFgQeC18hRGF0YUJvdW5kZx4LXyFJdGVtQ291bnQCB2QWAmYPZBYQAgEPZBYKAgEPDxYCHgRUZXh0BQExZGQCAg8PFgIfAgUJ5Y2V6YCJ6aKYZGQCAw8PFgIfAgUBMGRkAgQPDxYCHwIFATRkZAIFDw8WAh8CBRjmnInkuJTlj6rmnInkuIDkuKrpgInpoblkZAICD2QWCgIBDw8WAh8CBQEyZGQCAg8PFgIfAgUJ5aSa6YCJ6aKYZGQCAw8PFgIfAgUBMGRkAgQPDxYCHwIFATZkZAIFDw8WAh8CBSHlpJrpgInjgIHlsJHpgInjgIHkuI3pgInlnYfml6DliIZkZAIDD2QWCgIBDw8WAh8CBQEzZGQCAg8PFgIfAgUJ5Yik5pat6aKYZGQCAw8PFgIfAgUBMGRkAgQPDxYCHwIFATJkZAIFDw8WAh8CBRvlr7nnmoTlhpnlr7nvvIzplJnnmoTlhpnplJlkZAIED2QWCgIBDw8WAh8CBQE0ZGQCAg8PFgIfAgUJ6L6o5p6Q6aKYZGQCAw8PFgIfAgUBMWRkAgQPDxYCHwIFAjEwZGQCBQ8PFgIfAgUh6L+Q55So6Ieq5bex55qE6KeC54K56ZiQ6L+w6Zeu6aKYZGQCBQ9kFgoCAQ8PFgIfAgUBNWRkAgIPDxYCHwIFCeeugOetlOmimGRkAgMPDxYCHwIFATFkZAIEDw8WAh8CBQIxMGRkAgUPDxYCHwIFIei/kOeUqOiHquW3seeahOingueCuemYkOi/sOmXrumimGRkAgYPZBYKAgEPDxYCHwIFATZkZAICDw8WAh8CBQnor7TmmI7pophkZAIDDw8WAh8CBQExZGQCBA8PFgIfAgUCMTBkZAIFDw8WAh8CBRjor7fkuJPkuJrnmoTor7TmmI7pl67pophkZAIHD2QWCgIBDw8WAh8CBQE4ZGQCAg8PFgIfAgUG6Kej6YeKZGQCAw8PFgIfAgUBMWRkAgQPDxYCHwIFAjEwZGQCBQ8PFgIfAgUY55So6Ieq5bex55qE6KeC54K56Kej6YeKZGQCCA8PFgIeB1Zpc2libGVoZGQYAgUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgcFGUdyaWRWaWV3MSRjdGwwMiRDaGVja0JveDEFGUdyaWRWaWV3MSRjdGwwMyRDaGVja0JveDEFGUdyaWRWaWV3MSRjdGwwNCRDaGVja0JveDEFGUdyaWRWaWV3MSRjdGwwNSRDaGVja0JveDEFGUdyaWRWaWV3MSRjdGwwNiRDaGVja0JveDEFGUdyaWRWaWV3MSRjdGwwNyRDaGVja0JveDEFGUdyaWRWaWV3MSRjdGwwOCRDaGVja0JveDEFCUdyaWRWaWV3MQ88KwAJAQgCAWR8n3zs6e8i7QLrJziU0yRuBVaKgA==" />
+    </div>
+
+
+
+
+    <div>
+        <table width="800"  border="0" align="center">
+            <tr>
+                <td bgcolor="#FFFFFF"><img src="../static/Img/txgl.jpg" width="485" height="66" /></td>
+            </tr>
+            <tr>
+                <td bgcolor="#CCCCCC"><div align="right" class="font">
+                    <a id="HyperLink1" href="toMain.action">返回</a>&nbsp;</div></td>
+            </tr>
+        </table>
+
+        <table width="800" height="450"  border="1" align="center" bordercolor="#666666" bgcolor="#FFFFFF">
+            <tr bordercolor="#FFFFFF">
+                <td width="22%" align="center" valign="top" bgcolor="#CCCCCC">&nbsp;</td>
+                <td width="78%" valign="top"><table width="100%%"  border="0">
+                    <tr>
+                        <td bgcolor="#CCFFCC">题型浏览</td>
+                    </tr>
+                    <tr>
+                        <td class="font">
+                            <div align="right">
+                                <span id="Label2" style="display:inline-block;color:Blue;width:243px;">0:代表机器阅卷,1:代表人工阅卷</span>
+                                <div>
+                                    <table cellspacing="0" cellpadding="4" border="0" id="GridView1" style="color:#333333;width:100%;border-collapse:collapse;">
+                                        <tr style="color:White;background-color:#1C5E55;font-weight:bold;">
+                                            <th scope="col">&nbsp;</th><th scope="col">题型ID</th><th scope="col">题型名称</th><th scope="col">阅卷类型</th><th scope="col">分值</th><th scope="col">备注</th><th scope="col">修改</th>
+                                        </tr><!--/*@thymesVar id="allSubject" type="com"*/-->
+                                        <tr style="background-color:#E3EAEB;" th:each="sub:${allSubject}">
+                                        <td>
+                                            <input id="GridView1_ctl02_CheckBox1" th:onclick="|add2Arr(${sub.subjectid})|"  type="checkbox" name="GridView1$ctl02$CheckBox1" />
+                                        </td>
+                                        <td align="center" th:text="${sub.subjectid}">1</td>
+                                        <td align="center"th:text="${sub.subjecttype}">单选题</td>
+                                        <td align="center" th:text="${sub.readtype}">0</td>
+                                        <td align="center"th:text="${sub.score}">4</td>
+                                        <td align="center" th:text="${sub.remark}">有且只有一个选项</td><td align="center">
+
+                                       <input type="button" value="修改" th:onclick="|to(${sub.subjectid})|"/></td>
+                                    </tr>
+                                    </table>
+                                </div>                </div></td>
+                    </tr>
+                    <tr>
+                        <td class="font"><table width="100%%"  border="0">
+                            <tr>
+                                <td width="21%" style="height: 26px"><input type="button" name="Button1" value="删　除" th:onclick="|del()|" id="Button1" /></td>
+                                <td width="79%" style="height: 26px">&nbsp;
+                                    <input type="button" name="Button2" value="添　加" id="Button2" onclick="javascript:window.location.href='toThemeSortInsert.action'" /></td>
+                            </tr>
+                        </table>
+                            <span id="Label1"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="height: 21px"><span class="font">
+              </span></td>
+                    </tr>
+                    <tr>
+                        <td style="height: 20px">&nbsp;</td>
+                    </tr>
+                </table></td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWEQKD3fPgBAKBis6jCAKG7L+ZAgLw3ojiDwKG7LuZAgLD/sCyCAKG7IeZAgKK3bcPAobsg5kCAuWFrkkChuyvmQIC1NrohwgChuyrmQICh6Hb/wUChuy3mQICjOeKxgYCu6uxhghQlmzijUekRh3/5aZkByXNw0bBbA==" />
+    </div></form>
+
+</body>
+</html>

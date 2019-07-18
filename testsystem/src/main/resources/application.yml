@@ -1,0 +1,81 @@
+server:
+  port: 8080
+spring:
+  cache:
+    type: redis
+    redis:
+      time-to-live: 20000
+
+  redis:
+
+#    cluster:
+#      nodes: 192.168.1.4:6379,127.0.0.1:6379
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
+    lettuce:
+      shutdown-timeout: 5000
+      pool:
+        max-idle: 10
+        max-active: 10
+        max-wait: 10
+
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/testsystem?characterEncoding=utf-8
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+    password: Liurun1996
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 11
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+
+
+
+  mvc:
+    prefix: classpath:/templates/
+    suffix: .html
+    pathmatch:
+      use-suffix-pattern: false
+      use-registered-suffix-pattern: true
+    contentnegotiation:
+      favor-path-extension: false
+    static-path-pattern: /static/**
+  thymeleaf:
+    servlet:
+      content-type: text/html
+    cache: false
+    enabled: true
+    encoding: utf-8
+    mode: LEGACYHTML5
+    check-template-location: false
+#  LEGACYHTML5
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.lr.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+########## 分页插件 ##########
+#  pagehelper.helper-dialect=mysql
+#  pagehelper.params=count=countSql
+#  pagehelper.reasonable=false
+#  pagehelper.support-methods-arguments=true
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: false
+  support-methods-arguments: true

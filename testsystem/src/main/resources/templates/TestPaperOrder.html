@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>title</title>
+    <script src="static/js/jquery-3.3.1.js" th:src="@{static/js/jquery-3.3.1.js}"></script>
+    <script>
+        var i = 0;
+
+        function randomPaperId() {
+            if (i == 0) {
+                $.post("randomTestPaperId.action", function (data) {
+                    $("#TextBox2").val(data);
+                })
+                i++;
+            }
+        }
+
+        var keyValue = []
+
+        function subId() {
+            var num = [];
+            var subjectId = [];
+            $("input[class='newSubId']").each(function () {
+                var a = $(this).val();
+                if (a == '' || a == null) {
+                    a = 'a';
+                }
+                num.push(a);
+
+            });
+            $("td[class='subId']").each(
+                function () {
+                    subjectId.push($(this).text());
+                }
+            );
+
+            for (a = 0; a < num.length; a++) {
+                keyValue.push(subjectId[a] + ":" + num[a]);
+            }
+            var paperId = $("#TextBox2").val();
+            $.post("addTestPaper.action", {typeAndNum: keyValue.toString(), paperId: paperId}, function (data) {
+               if(data=="1"){
+                   alert("试卷添加成功！");
+               }else {
+                   alert("试卷添加失败");
+               }
+
+            })
+        }
+    </script>
+</head>
+
+<body>
+<form name="form1" method="post" action="" onsubmit=";" id="form1">
+
+
+    <div>
+        <table width="800" border="0" align="center">
+            <tr>
+                <td bgcolor="#FFFFFF"><img src="../static/Img/xiao001.jpg" width="450" height="66"/></td>
+            </tr>
+            <tr>
+                <td bgcolor="#CCCCCC">
+                    <div align="right" class="font">
+                        <a id="HyperLink1" href="TestPaperManage.html">返回</a>
+                        &nbsp;
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table width="800" height="450" border="1" align="center" bordercolor="#666666" bgcolor="#FFFFFF">
+            <tr bordercolor="#FFFFFF">
+                <td width="22%" align="center" valign="top" bgcolor="#CCCCCC">
+                    <table width="100%" border="0">
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="78%" valign="top">
+                    <table width="100%" border="0">
+                        <tr>
+                            <td bgcolor="#CCFFCC" style="height: 20px">
+                                <div align="left">题型浏览</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div align="right" class="font">
+                                    <span id="Label2" style="font-size:Small;">(0为电脑阅卷,1为人工阅卷.)</span>
+                                    <div>
+                                        <table cellspacing="0" cellpadding="4" border="0" id="GridView1"
+                                               style="color:#333333;width:100%;border-collapse:collapse;">
+                                            <tr style="color:White;background-color:#1C5E55;font-weight:bold;">
+                                                <th align="center" scope="col">序号</th>
+                                                <th align="center" scope="col">ID</th>
+                                                <th align="center" scope="col">名称</th>
+                                                <th align="center" scope="col">阅卷类型</th>
+                                                <th align="center" scope="col">分值</th>
+                                                <th align="center" scope="col">备注</th>
+                                                <th align="center" scope="col">数量</th>
+                                            </tr>
+                                            <tr style="background-color:#E3EAEB;" th:each="subType:${allsubjectType}">
+                                                <td align="center"><span id="GridView1_ctl02_Label1">1</span></td>
+                                                <td align="center" th:text="${subType.subjectType.subjectid}">1</td>
+                                                <td align="center" th:text="${subType.subjectType.subjecttype}">单选题</td>
+                                                <td align="center" th:text="${subType.subjectType.readtype}">0</td>
+                                                <td align="center" th:text="${subType.subjectType.score}">4</td>
+                                                <td align="center" th:text="${subType.subjectType.remark}">有且只有一个选项</td>
+                                                <td align="center" th:text="${subType.subjectNum}">71</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    &nbsp;&nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#CCFFCC">
+                                <span id="Label4" style="display:inline-block;width:558px;">试卷定义(请输入总分为100的试卷且主观题种类数量小于4！)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 22px">
+                                <div align="center" class="font">
+
+                                    <div>
+                                        <table cellspacing="1" cellpadding="3" border="0" id="GridView2"
+                                               style="background-color:White;border-color:White;border-width:2px;border-style:Ridge;width:319px;">
+                                            <tr style="color:#E7E7FF;background-color:#4A3C8C;font-weight:bold;">
+                                                <th align="center" scope="col" style="width:70px;">ID</th>
+                                                <th align="left" scope="col">题目数量</th>
+                                            </tr>
+                                            <tr style="color:Black;background-color:#DEDFDE;"
+                                                th:each="subType:${allsubjectType}">
+                                                <td align="center" style="width:70px;"
+                                                    th:text="${subType.subjectType.subjectid}" class="subId">1
+                                                </td>
+                                                <td align="left">
+                                                    <input name="" class="newSubId" type="text"
+                                                           style="width:64px;"/>&nbsp;
+                                                    <span id="GridView2_ctl02_RangeValidator1"
+                                                          style="color:Red;visibility:hidden;">输入数量不正确！</span>&nbsp;
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 21px">
+                                <div align="center" class="font">
+                                    <input type="button" name="Button1" value="生成试卷编号" onclick="randomPaperId()"
+                                           id="Button1"
+                                           style="width:87px;"/>
+                                    <input name="TextBox2" type="text" readonly="readonly" id="TextBox2"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 21px">
+                                <div align="center">
+                                    <input type="button" name="Button2" value="提交试卷"
+                                           onclick="subId()" id="Button2"
+                                           style="width:68px;"/>
+                                    &nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div align="center">
+                                    &nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        var Page_Validators = new Array(document.getElementById("GridView2_ctl02_RangeValidator1"), document.getElementById("GridView2_ctl03_RangeValidator1"), document.getElementById("GridView2_ctl04_RangeValidator1"), document.getElementById("GridView2_ctl05_RangeValidator1"));
+        //]]>
+    </script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        var GridView2_ctl02_RangeValidator1 = document.all ? document.all["GridView2_ctl02_RangeValidator1"] : document.getElementById("GridView2_ctl02_RangeValidator1");
+        GridView2_ctl02_RangeValidator1.controltovalidate = "GridView2_ctl02_TextBox1";
+        GridView2_ctl02_RangeValidator1.errormessage = "输入数量不正确！";
+        GridView2_ctl02_RangeValidator1.type = "Integer";
+        GridView2_ctl02_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
+        GridView2_ctl02_RangeValidator1.maximumvalue = "71";
+        GridView2_ctl02_RangeValidator1.minimumvalue = "0";
+        var GridView2_ctl03_RangeValidator1 = document.all ? document.all["GridView2_ctl03_RangeValidator1"] : document.getElementById("GridView2_ctl03_RangeValidator1");
+        GridView2_ctl03_RangeValidator1.controltovalidate = "GridView2_ctl03_TextBox1";
+        GridView2_ctl03_RangeValidator1.errormessage = "输入数量不正确！";
+        GridView2_ctl03_RangeValidator1.type = "Integer";
+        GridView2_ctl03_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
+        GridView2_ctl03_RangeValidator1.maximumvalue = "20";
+        GridView2_ctl03_RangeValidator1.minimumvalue = "0";
+        var GridView2_ctl04_RangeValidator1 = document.all ? document.all["GridView2_ctl04_RangeValidator1"] : document.getElementById("GridView2_ctl04_RangeValidator1");
+        GridView2_ctl04_RangeValidator1.controltovalidate = "GridView2_ctl04_TextBox1";
+        GridView2_ctl04_RangeValidator1.errormessage = "输入数量不正确！";
+        GridView2_ctl04_RangeValidator1.type = "Integer";
+        GridView2_ctl04_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
+        GridView2_ctl04_RangeValidator1.maximumvalue = "30";
+        GridView2_ctl04_RangeValidator1.minimumvalue = "0";
+        var GridView2_ctl05_RangeValidator1 = document.all ? document.all["GridView2_ctl05_RangeValidator1"] : document.getElementById("GridView2_ctl05_RangeValidator1");
+        GridView2_ctl05_RangeValidator1.controltovalidate = "GridView2_ctl05_TextBox1";
+        GridView2_ctl05_RangeValidator1.errormessage = "输入数量不正确！";
+        GridView2_ctl05_RangeValidator1.type = "Integer";
+        GridView2_ctl05_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
+        GridView2_ctl05_RangeValidator1.maximumvalue = "10";
+        GridView2_ctl05_RangeValidator1.minimumvalue = "0";
+        //]]>
+    </script>
+
+    <div>
+
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="/wEWCAK1pYWNCALKhd6PCwK1g9XiCAL4wL+mAwKTyLP9DAKM54rGBgLs0fbZDAK7q7GGCICJntsvKtU+fwVbzxVCOAUmMxUW"/>
+    </div>
+
+
+</form>
+</body>
+</html>

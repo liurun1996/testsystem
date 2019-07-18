@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lr.mapper.ExaminationMapper">
+  <resultMap id="BaseResultMap" type="com.lr.pojo.Examination">
+    <result column="examinee_id" jdbcType="VARCHAR" property="examineeId" />
+    <result column="testpaper_id" jdbcType="VARCHAR" property="testpaperId" />
+    <result column="subject_id" jdbcType="BIGINT" property="subjectId" />
+    <result column="question_content" jdbcType="VARCHAR" property="questionContent" />
+    <result column="question_id" jdbcType="BIGINT" property="questionId" />
+    <result column="question_score" jdbcType="INTEGER" property="questionScore" />
+    <result column="correct_answer" jdbcType="VARCHAR" property="correctAnswer" />
+    <result column="examinee_answer" jdbcType="VARCHAR" property="examineeAnswer" />
+    <result column="correct_error" jdbcType="INTEGER" property="correctError" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lr.pojo.Examination">
+    insert into examination (examinee_id, testpaper_id, subject_id, 
+      question_content, question_id, question_score, 
+      correct_answer, examinee_answer, 
+correct_error, 
+      score)
+    values (#{examineeId,jdbcType=VARCHAR}, #{testpaperId,jdbcType=VARCHAR}, #{subjectId,jdbcType=BIGINT}, 
+      #{questionContent,jdbcType=VARCHAR}, #{questionId,jdbcType=BIGINT}, #{questionScore,jdbcType=INTEGER}, 
+      #{correctAnswer,jdbcType=VARCHAR}, #{examineeAnswer,jdbcType=VARCHAR}, #{
+correctError,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lr.pojo.Examination">
+    insert into examination
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="examineeId != null">
+        examinee_id,
+      </if>
+      <if test="testpaperId != null">
+        testpaper_id,
+      </if>
+      <if test="subjectId != null">
+        subject_id,
+      </if>
+      <if test="questionContent != null">
+        question_content,
+      </if>
+      <if test="questionId != null">
+        question_id,
+      </if>
+      <if test="questionScore != null">
+        question_score,
+      </if>
+      <if test="correctAnswer != null">
+        correct_answer,
+      </if>
+      <if test="examineeAnswer != null">
+        examinee_answer,
+      </if>
+      <if test="
+correctError != null">
+        
+correct_error,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="examineeId != null">
+        #{examineeId,jdbcType=VARCHAR},
+      </if>
+      <if test="testpaperId != null">
+        #{testpaperId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null">
+        #{subjectId,jdbcType=BIGINT},
+      </if>
+      <if test="questionContent != null">
+        #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="questionId != null">
+        #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="questionScore != null">
+        #{questionScore,jdbcType=INTEGER},
+      </if>
+      <if test="correctAnswer != null">
+        #{correctAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="examineeAnswer != null">
+        #{examineeAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="
+correctError != null">
+        #{
+correctError,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectBypaperId" parameterType="string" resultMap="BaseResultMap">
+select examinee_id,testpaper_id,subject_id,question_content,question_id,question_score, correct_answer,examinee_answer, sum(score) score from examination WHERE testpaper_id=#{paperId}   GROUP BY examinee_id;
+</select>
+  <select id="getExaminationTestpaperNum" resultType="string">
+    select e.testpaper_id from examination e GROUP BY e.testpaper_id
+  </select>
+</mapper>

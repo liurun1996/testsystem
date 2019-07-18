@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>title</title>
+</head>
+
+<body>
+<form name="form1" method="post" action="TestPaperManage.aspx" id="form1">
+    <div>
+        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+        <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTIxMzYxMDg3NzcPZBYCAgMPZBYGAgUPPCsADQEADxYEHgtfIURhdGFCb3VuZGceC18hSXRlbUNvdW50AgRkFgJmD2QWDAIBD2QWBgIBD2QWAgIBDw8WAh4EVGV4dAUBMWRkAgIPDxYCHwIFEEdYWDIwMDgzMTQyMjIyNTNkZAIDDw8WAh8CBQExZGQCAg9kFgYCAQ9kFgICAQ8PFgIfAgUBMmRkAgIPDxYCHwIFC1hIRzIwMDgwMzA1ZGQCAw8PFgIfAgUBMWRkAgMPZBYGAgEPZBYCAgEPDxYCHwIFATNkZAICDw8WAh8CBQtYSEcyMDA4MDMwNmRkAgMPDxYCHwIFATBkZAIED2QWBgIBD2QWAgIBDw8WAh8CBQE0ZGQCAg8PFgIfAgULWEhHMjAwODAzMDlkZAIDDw8WAh8CBQEwZGQCBQ8PFgIeB1Zpc2libGVoZGQCBg8PFgIfA2hkZAILDw8WBB8CBSvor5XljbfnvJblj7fvvJpHWFgyMDA4MzE0MjIyMjUz6K+m5oOF5aaC5LiLHwNnZGQCDQ88KwANAQAPFgQfAGcfAQIDZBYCZg9kFggCAQ9kFg5mD2QWAgIBDw8WAh8CBQExZGQCAQ8PFgIfAgUQR1hYMjAwODMxNDIyMjI1M2RkAgIPDxYCHwIFATNkZAIDDw8WAh8CBQnliKTmlq3pophkZAIEDw8WAh8CBQEyZGQCBQ8PFgIfAgUBNWRkAgYPDxYCHwIFATFkZAICD2QWDmYPZBYCAgEPDxYCHwIFATJkZAIBDw8WAh8CBRBHWFgyMDA4MzE0MjIyMjUzZGQCAg8PFgIfAgUBNWRkAgMPDxYCHwIFCeeugOetlOmimGRkAgQPDxYCHwIFAjEwZGQCBQ8PFgIfAgUBOGRkAgYPDxYCHwIFATFkZAIDD2QWDmYPZBYCAgEPDxYCHwIFATNkZAIBDw8WAh8CBRBHWFgyMDA4MzE0MjIyMjUzZGQCAg8PFgIfAgUBNmRkAgMPDxYCHwIFCeivtOaYjumimGRkAgQPDxYCHwIFAjEwZGQCBQ8PFgIfAgUBMWRkAgYPDxYCHwIFATFkZAIEDw8WAh8DaGRkGAMFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYEBRlHcmlkVmlldzEkY3RsMDIkQ2hlY2tCb3gxBRlHcmlkVmlldzEkY3RsMDMkQ2hlY2tCb3gxBRlHcmlkVmlldzEkY3RsMDQkQ2hlY2tCb3gxBRlHcmlkVmlldzEkY3RsMDUkQ2hlY2tCb3gxBQlHcmlkVmlldzIPPCsACQEIAgFkBQlHcmlkVmlldzEPPCsACQEIAgFk6QH1SC0FMDq4g4jgCeOyJpla8C0=" />
+    </div>
+
+
+
+    <script src="/Web/WebResource.axd?d=KgmNeAXgwgQAWefBWcNVHw2&amp;t=633539617060000000" type="text/javascript"></script>
+
+    <div>
+        <table width="800" border="0" align="center">
+            <tr>
+                <td bgcolor="#FFFFFF"><div align="left"><img src="../static/Img/xiao08.jpg" width="395" height="62" /></div></td>
+            </tr>
+            <tr>
+                <td bgcolor="#CCCCCC"><div align="right">
+                    <a id="LinkButton1" class="font" href="manage/toMain.action">返回</a>
+                </div></td>
+            </tr>
+        </table>
+        <table width="800" height="450" border="1" align="center" bordercolor="#666666" bgcolor="#FFFFFF">
+            <tr>
+                <td width="22%" valign="top" bordercolor="#FFFFFF" bgcolor="#CCCCCC"><table width="100%" border="0">
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table></td>
+                <td valign="top" bordercolor="#FFFFFF" style="width: 78%"><table width="100%" border="0">
+                    <tr>
+                        <td bgcolor="#CCFFCC">
+                            试卷浏览</td>
+                    </tr>
+                    <tr>
+                        <td style="height: 175px"><div align="right" class="font">
+                            <span id="Label4" style="display:inline-block;color:Blue;width:100%;">0:代表启用,1:代表作废</span>
+                            <div>
+                                <table cellspacing="0" cellpadding="0" border="0" id="GridView1" style="color:#333333;width:100%;border-collapse:collapse;">
+                                    <tr style="color:White;background-color:#1C5E55;font-weight:bold;">
+                                        <th scope="col">&nbsp;</th><th align="center" scope="col">序号</th><th align="center" scope="col">试卷编号</th><th align="center" scope="col">试卷状态</th><th scope="col">&nbsp;</th>
+                                    </tr>
+                                    <tr style="background-color:#E3EAEB;" th:each="paper:${allTestPaper}">
+                                    <td align="center">
+                                        <input id="CheckBox1" th:value="${paper.testpaperId}" type="checkbox" name="GridView1$ctl02$CheckBox1" />
+                                    </td>
+                                    <td align="center">
+                                    <span id="GridView1_ctl02_Label1"th:text="${paper.id}">1</span>
+                                    </td>
+                                    <td align="center" th:text="${paper.testpaperId}">GXX2008314222253</td>
+                                    <td align="center"th:text="${paper.state}">1</td>
+                                    <td><a th:href="@{manage/toTestPaperManage.action(testPaperId=${paper.testpaperId})}" style="color:#333333;">详情</a></td>
+                                </tr>
+                                </table>
+                            </div>
+                            &nbsp; &nbsp;
+                            &nbsp;&nbsp;&nbsp; &nbsp;</div></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF" style="height: 33px"><table width="80%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td style="width: 167px">&nbsp;<input type="button" name="Button1" value="作 废" id="Button1" onclick="" /></td>
+                                <td>&nbsp;<input type="button" name="Button2" value="添 加" id="Button2" onclick="javascript:window.location.href='toTestPaperOrder.action'"/></td>
+                                <td style="width: 113px">&nbsp;</td>
+                            </tr>
+                        </table>                  </td>
+                    </tr>
+
+                    <tr th:if="${testpaperId!=null and testpaperId!=''}">
+                        <td bgcolor="#CCFFCC">&nbsp;<span id="Label2" th:text="'试卷编号：'+${testpaperId}+'详情如下'">试卷编号：GXX2008314222253详情如下</span></td>
+                    </tr>
+                    <tr th:if="${testpaper!=null and testpaper!=''}">
+                        <td><div>
+                            <table cellspacing="0" cellpadding="4" class="font" border="0" id="GridView2" style="color:#333333;width:100%;border-collapse:collapse;">
+                                <tr style="color:White;background-color:#1C5E55;font-weight:bold;">
+                                    <th align="center" scope="col">序号</th><th align="center" scope="col">试卷编号</th><th align="center" scope="col">题型编号</th><th align="center" scope="col">题型名称</th><th align="center" scope="col">单题分值</th><th align="center" scope="col">数量</th><th align="center" scope="col">试卷状态</th>
+                                </tr>
+                                <tr style="background-color:#E3EAEB;" th:each="ttpp:${testpaper}">
+                                <td align="center">
+                                    <span id="GridView2_ctl02_Label3"th:text="${ttpp.id}">1</span>
+                                </td>
+                                    <td align="center" th:text="${ttpp.testpaperId}">GXX2008314222253</td>
+                                    <td align="center" th:text="${ttpp.subjectId}">3</td>
+                                    <td align="center"th:text="${ttpp.subjectName}">判断题</td>
+                                    <td align="center" th:text="${ttpp.sore}">2</td>
+                                    <td align="center"th:text="${ttpp.num}">5</td>
+                                    <td align="center"th:text="${ttpp.state}">1</td>
+                            </tr>
+
+                            </table>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table></td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+    </div>
+
+    <div>
+
+        <input type="hidden" name="__PREVIOUSPAGE" id="__PREVIOUSPAGE" value="9QyVu787e4nv7389DxVk9Lu2_lvxsHef10pCSQJk5g81" />
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWDAKt+8nWDQLM9PumDwKBis6jCAKG7L+ZAgLw3ojiDwKG7LuZAgLD/sCyCAKG7IeZAgKK3bcPAobsg5kCAoznisYGArursYYIq0g6tdRmvj5i82fEITuVTYtrUlI=" />
+    </div></form>
+</body>
+
+</html>

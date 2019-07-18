@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lr.mapper.UtilMapper">
+    <resultMap id="BaseResultMap" type="com.lr.util.subjectUtil">
+        <id column="subjectId" jdbcType="INTEGER" property="subjectType.subjectid"/>
+        <result column="subjectType" jdbcType="VARCHAR" property="subjectType.subjecttype"/>
+        <result column="readType" jdbcType="VARCHAR" property="subjectType.readtype"/>
+        <result column="score" jdbcType="VARCHAR" property="subjectType.score"/>
+        <result column="remark" jdbcType="INTEGER" property="subjectType.remark"/>
+        <result column="subjectNum" jdbcType="INTEGER" property="subjectNum"/>
+    </resultMap>
+    <select id="addTestPaper" resultMap="BaseResultMap">
+select s.subjectId,s.subjectType,s.readType,s.score,s.remark, count(*) subjectNum FROM question q RIGHT JOIN
+subject_type s on q.subjectId=s.subjectId GROUP BY s.subjectId;
+    </select>
+</mapper>

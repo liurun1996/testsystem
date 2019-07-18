@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>title</title>
+</head>
+
+<body>
+<form name="form1" method="post" action="ThemeSortInsert.action" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+    <div>
+        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+        <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJODc1MTY2NTM5D2QWAgIDD2QWAgILDxBkZBYBZmRkDFVjyS1wL5F/h4bMegq4oEAjde0=" />
+    </div>
+
+
+
+
+    <div>
+        <table width="800"  border="0" align="center">
+            <tr>
+                <td bgcolor="#FFFFFF"><img src="../static/Img/txgl.jpg" width="485" height="66" /></td>
+            </tr>
+            <tr>
+                <td bgcolor="#CCCCCC"><div align="right" class="font">
+                    <a id="HyperLink1" href="toMain.action">返回</a>
+                    &nbsp;</div></td>
+            </tr>
+        </table>
+        <input type="hidden" name="subjectid" value="0">
+
+        <table width="800" height="450"  border="1" align="center" bordercolor="#666666">
+            <tr>
+                <td valign="top" bordercolor="#FFFFFF" bgcolor="#FFFFFF"><table width="100%%"  border="0">
+                    <tr bgcolor="#CCFFCC">
+                        <td colspan="2"><div align="center">添加题型信息</div></td>
+                    </tr>
+                    <tr>
+                        <td width="43%" height="30"><div align="right"></div></td>
+                        <td width="57%" height="30">&nbsp;</td>
+                    </tr>
+
+                    <tr class="font">
+
+                        <td height="30"><div align="right">
+                            <span id="Label1">题型名称：</span></div></td>
+                        <td height="30">&nbsp;<input name="subjecttype" type="text" id="TextBox1" />
+                            <span id="RequiredFieldValidator1" style="color:Red;visibility:hidden;">题型名称不能为空！</span></td>
+                    </tr>
+                    <tr class="font">
+                        <td height="30"><div align="right">
+                            <span id="Label2">阅卷类型：</span></div></td>
+                        <td height="30">&nbsp;
+                            <select name="readtype" id="DropDownList1"  style="width:77px;">
+                            <option selected="selected" value="1">1</option>
+                            <option value="0">0</option>
+
+                        </select>
+                            <span id="Label5">0:机器阅卷1:人工阅卷</span></td>
+                    </tr>
+                    <tr class="font">
+                        <td height="30"><div align="right">
+                            <span id="Label3">分　　值：</span></div></td>
+                        <td height="30">&nbsp;<input name="score" type="text" id="TextBox2" />
+                            <span id="RequiredFieldValidator2" style="color:Red;visibility:hidden;">请输入分值！</span>
+                            <span id="RangeValidator1" style="color:Red;visibility:hidden;">输入分值不正确！</span></td>
+                    </tr>
+                    <tr class="font">
+                        <td height="30"><div align="right">
+                            <span id="Label4">备　　注：</span></div></td>
+                        <td height="30">&nbsp;<input name="remark" type="text" id="TextBox3" />
+                            <span id="RequiredFieldValidator3" style="color:Red;visibility:hidden;">不能为空！</span></td>
+                    </tr>
+                    <tr class="font">
+                        <td style="height: 29px"><div align="right"></div></td>
+                        <td style="height: 29px">&nbsp;</td>
+                    </tr>
+                    <tr class="font">
+                        <td style="height: 30px"><div align="right"></div></td>
+                        <td style="height: 30px">&nbsp;<input type="submit" name="Button1" value="确　定" onclick="javascript:window.location.href='ThemeSortInsert.action'"  id="Button1" /></td>
+                    </tr>
+                    <tr>
+                        <td height="30"><div align="right"></div></td>
+                        <td height="30">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="30"><div align="right"></div></td>
+                        <td height="30">&nbsp;</td>
+                    </tr>
+                </table></td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+
+</form>
+</body>
+</html>
