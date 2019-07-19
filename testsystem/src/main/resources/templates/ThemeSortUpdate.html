@@ -48,8 +48,8 @@
                         </div></td>
                         <td height="30">
                             <select name="DropDownList1" id="DropDownList1" disabled="disabled" style="width:40px;">
-                                <option selected="selected" value="0" th:value="${subjectType.readtype}">0</option>
-                                <option value="1">1</option>
+                                <option  th:value="${subjectType.readtype}" th:text="${subjectType.readtype}">0</option>
+
 
                             </select>
                             <input type="hidden" name="readtype" th:value="${subjectType.readtype}">

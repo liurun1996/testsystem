@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td bgcolor="#CCCCCC"><div align="right">
-                    <a id="LinkButton1" class="font" href="manage/toMain.action">返回</a>
+                    <a id="LinkButton1" class="font" href="toMain.action">返回</a>
                 </div></td>
             </tr>
         </table>
@@ -69,7 +69,7 @@
                                     </td>
                                     <td align="center" th:text="${paper.testpaperId}">GXX2008314222253</td>
                                     <td align="center"th:text="${paper.state}">1</td>
-                                    <td><a th:href="@{manage/toTestPaperManage.action(testPaperId=${paper.testpaperId})}" style="color:#333333;">详情</a></td>
+                                    <td><a th:href="@{toTestPaperManage.action(testPaperId=${paper.testpaperId})}" style="color:#333333;">详情</a></td>
                                 </tr>
                                 </table>
                             </div>
