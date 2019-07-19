@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class examinationService {
     @Autowired
-  private ExaminationMapper examinationMapper;
+    public ExaminationMapper examinationMapper;
 
     public List<Examination> selectByPaperId(String paperId){
         return examinationMapper.selectBypaperId(paperId);

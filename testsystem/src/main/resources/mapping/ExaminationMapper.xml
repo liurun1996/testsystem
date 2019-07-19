@@ -10,7 +10,6 @@
     <result column="question_score" jdbcType="INTEGER" property="questionScore" />
     <result column="correct_answer" jdbcType="VARCHAR" property="correctAnswer" />
     <result column="examinee_answer" jdbcType="VARCHAR" property="examineeAnswer" />
-    <result column="correct_error" jdbcType="INTEGER" property="correctError" />
     <result column="score" jdbcType="INTEGER" property="score" />
   </resultMap>
   <insert id="insert" parameterType="com.lr.pojo.Examination">
@@ -97,7 +96,8 @@ correctError,jdbcType=INTEGER},
     </trim>
   </insert>
   <select id="selectBypaperId" parameterType="string" resultMap="BaseResultMap">
-select examinee_id,testpaper_id,subject_id,question_content,question_id,question_score, correct_answer,examinee_answer, sum(score) score from examination WHERE testpaper_id=#{paperId}   GROUP BY examinee_id;
+select examinee_id,testpaper_id,subject_id,question_content,question_id,question_score, correct_answer,examinee_answer,SUM(score) score from examination where testpaper_id=#{paperId} GROUP BY examinee_id;
+
 </select>
   <select id="getExaminationTestpaperNum" resultType="string">
     select e.testpaper_id from examination e GROUP BY e.testpaper_id

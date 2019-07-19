@@ -256,10 +256,10 @@ public class ManagerController {
     public void selectByPaperID(String paperId,HttpServletResponse response) {
         List<Examination> examinations = examinationService.selectByPaperId(paperId);
         JSONArray json = JSONArray.parseArray(JSON.toJSONString(examinations));
+        System.err.println(json.toString());
 
         try {
             response.getWriter().write(json.toString());
-            System.out.println("1");
         } catch (IOException e) {
             e.printStackTrace();
         }

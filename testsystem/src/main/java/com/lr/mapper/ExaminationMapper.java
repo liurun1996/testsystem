@@ -10,7 +10,7 @@ public interface ExaminationMapper {
 
     int insertSelective(Examination record);
 
-    List<Examination> selectBypaperId(@Param("paperId") String paperId);
+    List<Examination> selectBypaperId(String paperId);
 
     List<String> getExaminationTestpaperNum();
 }
