@@ -182,7 +182,6 @@ public class ManagerController {
     @GetMapping("/toTestPaperManage.action")
     public String toTestPaperManage(String testPaperId/*试卷编号*/, HttpServletRequest request) {
         List<TestPaper> allTestPaper = testpaperService.getAllTestPaper();
-        System.out.println(allTestPaper);
         request.setAttribute("allTestPaper", allTestPaper);
         if (!"".equals(testPaperId) && testPaperId != null) {
             List<testPaperUtil> testpaper = utilService.paperMange(testPaperId);
@@ -197,7 +196,6 @@ public class ManagerController {
     @GetMapping("/toTestPaperOrder.action")
     public String toTestPaperOrder(HttpServletRequest request) {
         List<subjectUtil> allsubjectType = utilService.addTestPaper();
-        System.err.println(allsubjectType);
         request.setAttribute("allsubjectType", allsubjectType);
 
         return "TestPaperOrder";
@@ -256,7 +254,6 @@ public class ManagerController {
     public void selectByPaperID(String paperId,HttpServletResponse response) {
         List<Examination> examinations = examinationService.selectByPaperId(paperId);
         JSONArray json = JSONArray.parseArray(JSON.toJSONString(examinations));
-        System.err.println(json.toString());
 
         try {
             response.getWriter().write(json.toString());
