@@ -18,7 +18,7 @@ import java.util.Map;
 @MapperScan ("com.lr.mapper")
 @EnableCaching
 public class app{
-/*
+/*"
     @Bean
     public ServletRegistrationBean servletRegistrationBean(DispatcherServlet dispatcherServlet) {
         ServletRegistrationBean bean = new ServletRegistrationBean(dispatcherServlet);
