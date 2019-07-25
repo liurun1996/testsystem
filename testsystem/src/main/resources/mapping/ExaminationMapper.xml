@@ -13,16 +13,7 @@
     <result column="score" jdbcType="INTEGER" property="score" />
   </resultMap>
   <insert id="insert" parameterType="com.lr.pojo.Examination">
-    insert into examination (examinee_id, testpaper_id, subject_id, 
-      question_content, question_id, question_score, 
-      correct_answer, examinee_answer, 
-correct_error, 
-      score)
-    values (#{examineeId,jdbcType=VARCHAR}, #{testpaperId,jdbcType=VARCHAR}, #{subjectId,jdbcType=BIGINT}, 
-      #{questionContent,jdbcType=VARCHAR}, #{questionId,jdbcType=BIGINT}, #{questionScore,jdbcType=INTEGER}, 
-      #{correctAnswer,jdbcType=VARCHAR}, #{examineeAnswer,jdbcType=VARCHAR}, #{
-correctError,jdbcType=INTEGER}, 
-      #{score,jdbcType=INTEGER})
+    insert into examination values (#{examineeId},#{testpaperId},#{subjectId},#{questionContent},#{questionId},#{questionScore},#{correctAnswer},#{examineeAnswer},#{score})
   </insert>
   <insert id="insertSelective" parameterType="com.lr.pojo.Examination">
     insert into examination
@@ -45,9 +36,7 @@ correctError,jdbcType=INTEGER},
       <if test="questionScore != null">
         question_score,
       </if>
-      <if test="correctAnswer != null">
-        correct_answer,
-      </if>
+
       <if test="examineeAnswer != null">
         examinee_answer,
       </if>
@@ -85,11 +74,7 @@ correct_error,
       <if test="examineeAnswer != null">
         #{examineeAnswer,jdbcType=VARCHAR},
       </if>
-      <if test="
-correctError != null">
-        #{
-correctError,jdbcType=INTEGER},
-      </if>
+
       <if test="score != null">
         #{score,jdbcType=INTEGER},
       </if>

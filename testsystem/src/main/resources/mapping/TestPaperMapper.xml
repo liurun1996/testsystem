@@ -64,4 +64,7 @@
     <select id="getAllPaperId" resultType="string">
         select distinct(testpaper_id) from  testpaper
     </select>
+    <select id="getTestPaperByPaperId" resultMap="BaseResultMap" parameterType="string">
+        select * from testpaper where testpaper_id=#{testPaperId}
+    </select>
 </mapper>
