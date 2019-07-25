@@ -6,18 +6,15 @@ import org.apache.ibatis.annotations.Select;
 
 
 public interface UserMapper {
-    int deleteByPrimaryKey(String username);
 
-    int insert(User record);
 
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(String username);
-
-    @Select("select * from user where username=#{username} and password=#{password}")
-    User login(@Param("username") String username, @Param("password") String password);
+//    @Select("select * from user where username=#{username} and password=#{password}")
+    User login(User user);
 
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    /*@Select("select * from user where username=#{username}")*/
+    User getUserDetailByUsername(@Param("username") String username);
 }

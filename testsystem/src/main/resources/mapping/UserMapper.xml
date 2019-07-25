@@ -1,78 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lr.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.lr.pojo.User">
-    <id column="username" jdbcType="VARCHAR" property="username" />
+  <resultMap id="user" type="com.lr.pojo.User">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="testpaperId" jdbcType="VARCHAR" property="testpaperid" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="speciality" jdbcType="VARCHAR" property="speciality" />
     <result column="state" jdbcType="INTEGER" property="state" />
     <result column="level" jdbcType="INTEGER" property="level" />
   </resultMap>
   <sql id="Base_Column_List">
-    username, password, name, testpaperId, state, level
+    id,username, password, name, testpaperId, state, level
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where username = #{username,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from user
-    where username = #{username,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.lr.pojo.User">
-    insert into user (username, password, name, 
-      testpaperId, state, level
-      )
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{testpaperid,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.lr.pojo.User">
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="username != null">
-        username,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="testpaperid != null">
-        testpaperId,
-      </if>
-      <if test="state != null">
-        state,
-      </if>
-      <if test="level != null">
-        level,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="testpaperid != null">
-        #{testpaperid,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null">
-        #{state,jdbcType=INTEGER},
-      </if>
-      <if test="level != null">
-        #{level,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.lr.pojo.User">
     update user
     <set>
@@ -97,10 +44,22 @@
   <update id="updateByPrimaryKey" parameterType="com.lr.pojo.User">
     update user
     set password = #{password,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       testpaperId = #{testpaperid,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      speciality = #{speciality,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
       level = #{level,jdbcType=INTEGER}
     where username = #{username,jdbcType=VARCHAR}
   </update>
+ <select id="getUserDetailByUsername" parameterType="string" resultType="com.lr.pojo.User">
+ select * from user where username=#{username}
+  </select>
+  <select id="login" parameterType="com.lr.pojo.User" resultMap="user">
+    select * from user where username=#{username} and password=#{password}
+  </select>
 </mapper>

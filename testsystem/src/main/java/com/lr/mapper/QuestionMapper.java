@@ -14,10 +14,11 @@ public interface QuestionMapper {
     List<Question> getQuestion(@Param("subjectId") Integer subjectId);
 
     int addQuestion(Question record);
-void questionInvalid(Integer [] arr);
+    void questionInvalid(Integer [] arr);
     Question selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Question record);
 
     int updateByPrimaryKey(Question record);
+    List<Question> getQuestionByType(Integer type);
 }

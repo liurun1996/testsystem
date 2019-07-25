@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class ManagerController {
+@RequestMapping ("/admin")
+public class ManagerController{
     @Autowired
     private userService userService;
     @Autowired
@@ -37,40 +38,38 @@ public class ManagerController {
     private subjectTypeService subService;
     @Autowired
     examinationService examinationService;
+    @Autowired
+    private adminService adminService;
 
-    @RequestMapping("/index.action")
-    public String test() {
+    @RequestMapping ("/index.action")
+    public String index() {
         return "login";
     }
 
-    @GetMapping("/toMain.action")
+    @GetMapping ("/toMain.action")
     public String toMain() {
         return "Manage";
     }
 
-    @RequestMapping("/login.action")
-    public ModelAndView login(String username, String password, HttpSession session, HttpServletRequest request, ModelAndView mv) {
-        User user = userService.login(username, password);
-        if (user != null) {
-            session.setAttribute("user", user);
-            mv.setViewName("Manage");
-            return mv;
-        } else {
-            request.setAttribute("msg", "请输入正确的账号和密码！");
-            mv.setViewName("login");
-            return mv;
-        }
-
+    @RequestMapping ("/login.action")
+    public String login(HttpSession session) {
+        String  username = (String)session.getAttribute("username");
+        String  password = (String)session.getAttribute("password");
+        session.removeAttribute("username");
+        session.removeAttribute("password");
+        Admin admin = adminService.login(username, password);
+        session.setAttribute("admin", admin);
+        return "Manage";
     }
 
-    @GetMapping("/toThemeSortManage.action")
+    @GetMapping ("/toThemeSortManage.action")
     public String toThemeSortManage(ModelAndView mv, HttpServletRequest request) {
         List<SubjectType> allsubjectType = subjectTypeService.getAllsubjectType();
         request.setAttribute("allSubject", allsubjectType);
         return "ThemeSortManage";
     }
 
-    @RequestMapping("/toThemeSortUpdate.action")
+    @RequestMapping ("/toThemeSortUpdate.action")
     public String toThemeSortUpdate(Integer subjectid, HttpServletRequest request) {
         SubjectType subjectType = subjectTypeService.selectSubjecttypeById(subjectid);
         request.setAttribute("subjectType", subjectType);
@@ -78,26 +77,26 @@ public class ManagerController {
     }
 
 
-    @PostMapping("/doThemeSortUpdate.action")
+    @PostMapping ("/doThemeSortUpdate.action")
     public String doThemeSortUpdate(SubjectType subjectType) {
         subjectTypeService.UpdateSubjcetType(subjectType);
 
-        return "redirect:/toThemeSortManage.action";
+        return "redirect:/admin/toThemeSortManage.action";
     }
 
-    @GetMapping("/toThemeSortInsert.action")
+    @GetMapping ("/toThemeSortInsert.action")
     public String toThemeSortInsert() {
         return "ThemeSortInsert";
     }
 
-    @PostMapping("/ThemeSortInsert.action")
+    @PostMapping ("/ThemeSortInsert.action")
     public String ThemeSortInsert(SubjectType subjectType) {
         subjectTypeService.insertSelective(subjectType);
 
-        return "redirect:/toThemeSortManage.action";
+        return "redirect:/admin/toThemeSortManage.action";
     }
 
-    @RequestMapping("/subjectDel.action")
+    @RequestMapping ("/subjectDel.action")
     public void subjectDel(Integer[] arr, HttpServletResponse response) {
         subjectTypeService.deleteByPrimaryKeys(arr);
         try {
@@ -107,7 +106,7 @@ public class ManagerController {
         }
     }
 
-    @GetMapping("/toThemesManage.action")
+    @GetMapping ("/toThemesManage.action")
     public ModelAndView toThemesManage(ModelAndView mv, Integer subjectTypeId, Integer nowPage) {
         if (nowPage == null) {
             nowPage = 1;
@@ -129,7 +128,7 @@ public class ManagerController {
         return mv;
     }
 
-    @PostMapping("/SubTypeChange.action")
+    @PostMapping ("/SubTypeChange.action")
     public void SubTypeChange(Integer subjectTypeId, HttpServletResponse response, HttpServletRequest request) {
         Integer countQuestions = questionService.getCountQuestions(subjectTypeId);
 //        List<SubjectType> allsubjectType = util.sort(subjectTypeId, subjectTypeService.getAllsubjectType());
@@ -147,7 +146,7 @@ public class ManagerController {
         }
     }
 
-    @GetMapping("/toThemeInsert.action")
+    @GetMapping ("/toThemeInsert.action")
     public ModelAndView toThemeInsert(ModelAndView mv, Integer subjectid) {
         if (subjectid == null) {
             subjectid = 1;
@@ -161,15 +160,15 @@ public class ManagerController {
         return mv;
     }
 
-    @PostMapping("/addQuestion.action")
+    @PostMapping ("/addQuestion.action")
     public String addQuestion(Question question) {
         question.setId(0);
         question.setState(0);
         questionService.addQuestion(question);
-        return "redirect:/toThemeInsert.action?subjectid=" + question.getSubjectid();
+        return "redirect:/admin/toThemeInsert.action?subjectid=" + question.getSubjectid();
     }
 
-    @PostMapping("/toInvalid.action")
+    @PostMapping ("/toInvalid.action")
     public void toInvalid(Integer[] arr, HttpServletResponse response) {
         questionService.questionInvalid(arr);
         try {
@@ -179,7 +178,7 @@ public class ManagerController {
         }
     }
 
-    @GetMapping("/toTestPaperManage.action")
+    @GetMapping ("/toTestPaperManage.action")
     public String toTestPaperManage(String testPaperId/*试卷编号*/, HttpServletRequest request) {
         List<TestPaper> allTestPaper = testpaperService.getAllTestPaper();
         request.setAttribute("allTestPaper", allTestPaper);
@@ -193,7 +192,7 @@ public class ManagerController {
         return "TestPaperManage";
     }
 
-    @GetMapping("/toTestPaperOrder.action")
+    @GetMapping ("/toTestPaperOrder.action")
     public String toTestPaperOrder(HttpServletRequest request) {
         List<subjectUtil> allsubjectType = utilService.addTestPaper();
         request.setAttribute("allsubjectType", allsubjectType);
@@ -201,7 +200,7 @@ public class ManagerController {
         return "TestPaperOrder";
     }
 
-    @PostMapping("/randomTestPaperId.action")
+    @PostMapping ("/randomTestPaperId.action")
     public void randomTestPaperID(HttpServletResponse response) {
         PrintWriter pw = null;
         try {
@@ -221,10 +220,10 @@ public class ManagerController {
     }
 
 
-    @PostMapping("addTestPaper.action")
+    @PostMapping ("addTestPaper.action")
     public void addTestPaper(HttpServletResponse response, String[] typeAndNum, String paperId) {
         List<TestPaper> testPapers = new ArrayList<TestPaper>();
-        for (String str : typeAndNum) {
+        for (String str : typeAndNum){
             String[] split = str.split(":");
             if (!"".equals(split[0]) && !"".equals(split[1]) && !"a".equals(split[0]) && !"b".equals(split[1])) {
                 if (!"0".equals(split[1])) {
@@ -241,17 +240,17 @@ public class ManagerController {
         }
     }
 
-    @RequestMapping("/toExamManage.action")
+    @RequestMapping ("/toExamManage.action")
     public ModelAndView toExamManagePaperIdSelect(ModelAndView mv) {
 
-        List<String> examinationAllTestPaper =examinationService.getExaminationTestpaperNum();
+        List<String> examinationAllTestPaper = examinationService.getExaminationTestpaperNum();
         mv.addObject("allPaperId", examinationAllTestPaper);
         mv.setViewName("ExamManage");
         return mv;
     }
 
-    @PostMapping("/selectByPaperId.action")
-    public void selectByPaperID(String paperId,HttpServletResponse response) {
+    @PostMapping ("/selectByPaperId.action")
+    public void selectByPaperID(String paperId, HttpServletResponse response) {
         List<Examination> examinations = examinationService.selectByPaperId(paperId);
         JSONArray json = JSONArray.parseArray(JSON.toJSONString(examinations));
 
@@ -260,6 +259,14 @@ public class ManagerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @PostMapping ("/userDetail.action")
+    public @ResponseBody
+    User userDetail(String username) {
+        User userDetailById = userService.getUserDetailById(username);
+        System.out.println(userDetailById);
+        return userDetailById;
     }
 
 }

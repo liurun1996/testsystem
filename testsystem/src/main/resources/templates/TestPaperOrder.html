@@ -2,16 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>title</title>
-    <script src="static/js/jquery-3.3.1.js" th:src="@{static/js/jquery-3.3.1.js}"></script>
+    <title>试卷定义</title>
+    <script src="../static/js/jquery-3.3.1.js" th:src="@{../static/js/jquery-3.3.1.js}"></script>
     <script>
         var i = 0;
 
         function randomPaperId() {
             if (i == 0) {
-                $.post("randomTestPaperId.action", function (data) {
-                    $("#TextBox2").val(data);
-                })
+             /*   $.post("/randomTestPaperId.action", function (data) {
+
+                })*/
+                $.ajax({
+                    type:"post",
+                    url:"randomTestPaperId.action",
+                    success: function (data) {
+                        $("#TextBox2").val(data);
+                    },
+                    error:function () {
+                        
+                    }
+                });
                 i++;
             }
         }
@@ -39,7 +49,7 @@
                 keyValue.push(subjectId[a] + ":" + num[a]);
             }
             var paperId = $("#TextBox2").val();
-            $.post("addTestPaper.action", {typeAndNum: keyValue.toString(), paperId: paperId}, function (data) {
+            $.post("/admin/addTestPaper.action", {typeAndNum: keyValue.toString(), paperId: paperId}, function (data) {
                if(data=="1"){
                    alert("试卷添加成功！");
                }else {
@@ -192,53 +202,6 @@
             </tr>
         </table>
     </div>
-
-    <script type="text/javascript">
-        //<![CDATA[
-        var Page_Validators = new Array(document.getElementById("GridView2_ctl02_RangeValidator1"), document.getElementById("GridView2_ctl03_RangeValidator1"), document.getElementById("GridView2_ctl04_RangeValidator1"), document.getElementById("GridView2_ctl05_RangeValidator1"));
-        //]]>
-    </script>
-
-    <script type="text/javascript">
-        //<![CDATA[
-        var GridView2_ctl02_RangeValidator1 = document.all ? document.all["GridView2_ctl02_RangeValidator1"] : document.getElementById("GridView2_ctl02_RangeValidator1");
-        GridView2_ctl02_RangeValidator1.controltovalidate = "GridView2_ctl02_TextBox1";
-        GridView2_ctl02_RangeValidator1.errormessage = "输入数量不正确！";
-        GridView2_ctl02_RangeValidator1.type = "Integer";
-        GridView2_ctl02_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
-        GridView2_ctl02_RangeValidator1.maximumvalue = "71";
-        GridView2_ctl02_RangeValidator1.minimumvalue = "0";
-        var GridView2_ctl03_RangeValidator1 = document.all ? document.all["GridView2_ctl03_RangeValidator1"] : document.getElementById("GridView2_ctl03_RangeValidator1");
-        GridView2_ctl03_RangeValidator1.controltovalidate = "GridView2_ctl03_TextBox1";
-        GridView2_ctl03_RangeValidator1.errormessage = "输入数量不正确！";
-        GridView2_ctl03_RangeValidator1.type = "Integer";
-        GridView2_ctl03_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
-        GridView2_ctl03_RangeValidator1.maximumvalue = "20";
-        GridView2_ctl03_RangeValidator1.minimumvalue = "0";
-        var GridView2_ctl04_RangeValidator1 = document.all ? document.all["GridView2_ctl04_RangeValidator1"] : document.getElementById("GridView2_ctl04_RangeValidator1");
-        GridView2_ctl04_RangeValidator1.controltovalidate = "GridView2_ctl04_TextBox1";
-        GridView2_ctl04_RangeValidator1.errormessage = "输入数量不正确！";
-        GridView2_ctl04_RangeValidator1.type = "Integer";
-        GridView2_ctl04_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
-        GridView2_ctl04_RangeValidator1.maximumvalue = "30";
-        GridView2_ctl04_RangeValidator1.minimumvalue = "0";
-        var GridView2_ctl05_RangeValidator1 = document.all ? document.all["GridView2_ctl05_RangeValidator1"] : document.getElementById("GridView2_ctl05_RangeValidator1");
-        GridView2_ctl05_RangeValidator1.controltovalidate = "GridView2_ctl05_TextBox1";
-        GridView2_ctl05_RangeValidator1.errormessage = "输入数量不正确！";
-        GridView2_ctl05_RangeValidator1.type = "Integer";
-        GridView2_ctl05_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
-        GridView2_ctl05_RangeValidator1.maximumvalue = "10";
-        GridView2_ctl05_RangeValidator1.minimumvalue = "0";
-        //]]>
-    </script>
-
-    <div>
-
-        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
-               value="/wEWCAK1pYWNCALKhd6PCwK1g9XiCAL4wL+mAwKTyLP9DAKM54rGBgLs0fbZDAK7q7GGCICJntsvKtU+fwVbzxVCOAUmMxUW"/>
-    </div>
-
-
 </form>
 </body>
 </html>

@@ -5,26 +5,27 @@
     <title>登录</title>
 </head>
 <style>
-    body{
-        background-image: url("../static/Img/back.jpg");
+    body {
+        background-image: url("/static/Img/back.jpg");
     }
 </style>
-
-<body>
-<p th:text="${msg}"></p>
-<form name="form1" method="post" action="/login.action" id="form1">
+<script>
+   function msg() {
+       var msg = document.getElementById("msg").value;
+       if (msg != '') {
+           alert(msg);
+       }
+   }
+</script>
+<body onload="msg()">
+<input th:type="hidden" id="msg" th:value="${msg}">
+<form name="form1" method="post" action="login.action" id="form1">
     <div>
-        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
-        <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
-        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTYxOTE4NjkyMmRkTHYCYgJQo0Ucow8zDaPS+Q+xSGQ=" />
-    </div>
-
-
-
-    <div>
-        <table width="800" align="center" >
+        <table width="800" align="center">
             <tr>
-                <td bgcolor="#FFFFFF"><div align="center"><img src="static/Img/666.jpg" width="481" height="73" /></div></td>
+                <td bgcolor="#FFFFFF">
+                    <div align="center"><img src="../static/Img/666.jpg" width="481" height="73"/></div>
+                </td>
             </tr>
             <tr>
                 <td bgcolor="#D7D6F8">&nbsp;
@@ -32,115 +33,92 @@
             </tr>
         </table>
 
-        <table width="800" height="450" align="center" >
+        <table width="800" height="450" align="center">
             <tr>
-                <td bgcolor="#CCCCCC"><table width="100%" bgcolor="#FFFFFF" >
-                    <tr>
-                        <td width="60%" height="450" background="../static/Img/login.jpg">&nbsp; &nbsp; &nbsp;
-                            <table width="100%" >
-                                <tr>
-                                    <td style="width: 298px">&nbsp;</td>
-                                    <td width="452">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px"><div align="right"></div></td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px"><div align="right" class="style1">
-                                        <span id="Label2" style="display:inline-block;width:48px;">帐号:</span>&nbsp;</div></td>
-                                    <td>&nbsp;<input name="username" type="text" id="TextBox1" style="width:118px;" />
-                                        <span id="RequiredFieldValidator1" style="color:DodgerBlue;visibility:hidden;">请输入帐号</span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px"><div align="right">
-                                        &nbsp;</div></td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px"><div align="right" class="style1">
-                                        <span id="Label3" style="display:inline-block;width:48px;">密码:</span>&nbsp;</div></td>
-                                    <td>&nbsp;<input name="password" type="password" id="TextBox2" style="width:118px;" />
-                                        <span id="RequiredFieldValidator2" style="color:DodgerBlue;visibility:hidden;">请输入密码</span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px">&nbsp;</td>
-                                    <td>&nbsp;<input type="submit" name="Button1" value="登录" onclick="" id="Button1" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 298px">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table></td>
-                    </tr>
-                </table></td>
+                <td bgcolor="#CCCCCC">
+                    <table width="100%" bgcolor="#FFFFFF">
+                        <tr>
+                            <td width="60%" height="450" background="../static/Img/login.jpg">&nbsp; &nbsp; &nbsp;
+                                <table width="100%">
+                                    <tr>
+                                        <td style="width: 298px">&nbsp;</td>
+                                        <td width="452">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">
+                                            <div align="right"></div>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">
+                                            <div align="right" class="style1">
+                                                <span id="Label2" style="display:inline-block;width:48px;">帐号:</span>&nbsp;
+                                            </div>
+                                        </td>
+                                        <td>&nbsp;<input name="username" type="text" id="TextBox1"
+                                                         style="width:118px;"/>
+                                            <span id="RequiredFieldValidator1"
+                                                  style="color:DodgerBlue;visibility:hidden;">请输入帐号</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">
+                                            <div align="right">
+                                                &nbsp;
+                                            </div>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">
+                                            <div align="right" class="style1">
+                                                <span id="Label3" style="display:inline-block;width:48px;">密码:</span>&nbsp;
+                                            </div>
+                                        </td>
+                                        <td>&nbsp;<input name="password" type="password" id="TextBox2"
+                                                         style="width:118px;"/>
+                                            <span id="RequiredFieldValidator2"
+                                                  style="color:DodgerBlue;visibility:hidden;">请输入密码</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">&nbsp;</td>
+                                        <td>&nbsp;<input type="submit" name="Button1" value="登录" onclick=""
+                                                         id="Button1"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 298px">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
         </table>
     </div>
 
-    <script type="text/javascript">
-        //<![CDATA[
-        var Page_Validators =  new Array(document.getElementById("RequiredFieldValidator1"), document.getElementById("RequiredFieldValidator2"));
-        //]]>
-    </script>
 
-    <script type="text/javascript">
-        //<![CDATA[
-        var RequiredFieldValidator1 = document.all ? document.all["RequiredFieldValidator1"] : document.getElementById("RequiredFieldValidator1");
-        RequiredFieldValidator1.controltovalidate = "TextBox1";
-        RequiredFieldValidator1.errormessage = "请输入帐号";
-        RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-        RequiredFieldValidator1.initialvalue = "";
-        var RequiredFieldValidator2 = document.all ? document.all["RequiredFieldValidator2"] : document.getElementById("RequiredFieldValidator2");
-        RequiredFieldValidator2.controltovalidate = "TextBox2";
-        RequiredFieldValidator2.errormessage = "请输入密码";
-        RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-        RequiredFieldValidator2.initialvalue = "";
-        //]]>
-    </script>
-
-    <div>
-
-        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBALrgPYIAuzRsusGAuzR9tkMAoznisYGh7vHkGfT0WPt77ftwpSTeDATCqQ=" />
-    </div>
-
-    <script type="text/javascript">
-        <!--
-        var Page_ValidationActive = false;
-        if (typeof(ValidatorOnLoad) == "function") {
-            ValidatorOnLoad();
-        }
-
-        function ValidatorOnSubmit() {
-            if (Page_ValidationActive) {
-                return ValidatorCommonOnSubmit();
-            }
-            else {
-                return true;
-            }
-        }
-        // -->
-    </script>
 </form>
 </body>
 </html>

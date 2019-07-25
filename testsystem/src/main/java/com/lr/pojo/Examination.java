@@ -5,11 +5,11 @@ public class Examination {
 
     private String testpaperId;
 
-    private Long subjectId;
+    private Integer subjectId;
 
     private String questionContent;
 
-    private Long questionId;
+    private Integer questionId;
 
     private Integer questionScore;
 
@@ -21,6 +21,18 @@ public class Examination {
     private Integer score;
 
     public Examination() {
+    }
+
+    public Examination(String examineeId, String testpaperId, Integer subjectId, String questionContent, Integer questionId, Integer questionScore, String correctAnswer, String examineeAnswer, Integer score) {
+        this.examineeId = examineeId;
+        this.testpaperId = testpaperId;
+        this.subjectId = subjectId;
+        this.questionContent = questionContent;
+        this.questionId = questionId;
+        this.questionScore = questionScore;
+        this.correctAnswer = correctAnswer;
+        this.examineeAnswer = examineeAnswer;
+        this.score = score;
     }
 
     public String getExamineeId() {
@@ -39,11 +51,11 @@ public class Examination {
         this.testpaperId = testpaperId;
     }
 
-    public Long getSubjectId() {
+    public Integer getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(Long subjectId) {
+    public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
     }
 
@@ -55,11 +67,11 @@ public class Examination {
         this.questionContent = questionContent;
     }
 
-    public Long getQuestionId() {
+    public Integer getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(Long questionId) {
+    public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
     }
 

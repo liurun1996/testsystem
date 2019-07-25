@@ -6,7 +6,7 @@
 <generatorConfiguration>
 
     <classPathEntry
-            location="D:\maven-repository\mysql\mysql-connector-java\5.1.43\mysql-connector-java-5.1.43.jar"/>
+            location=""/>
     <context id="mybatisGenerator" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->

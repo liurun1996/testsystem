@@ -40,4 +40,12 @@ public class questionService {
     public void questionInvalid(Integer[] arr) {
         questionMapper.questionInvalid(arr);
     }
+
+    public List<Question>    getQuestionByType(Integer type){
+        return questionMapper.getQuestionByType(type);
+}
+
+    public List<Question> getPaperAllBysubId(Integer testPaperId) {
+        return questionMapper.getQuestion(testPaperId);
+    }
 }

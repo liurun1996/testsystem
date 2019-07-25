@@ -7,14 +7,25 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class userService {
+public class userService{
     @Autowired
     private UserMapper userMapper;
 
 
-    @Cacheable(value = "user#1000#10")
+    @Cacheable (value = "user#1000#10")
     public User login(String username, String password) {
-        return userMapper.login(username, password);
+        User u = new User();
+        u.setUsername(username);
+        u.setPassword(password);
+        return userMapper.login(u);
 
+    }
+
+    public User getUserDetailById(String username) {
+        return userMapper.getUserDetailByUsername(username);
+    }
+
+    public void updateByPrimaryKey(User user) {
+        userMapper.updateByPrimaryKey(user);
     }
 }

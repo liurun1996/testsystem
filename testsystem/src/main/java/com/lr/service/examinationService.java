@@ -8,14 +8,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class examinationService {
+public class examinationService{
     @Autowired
     public ExaminationMapper examinationMapper;
 
-    public List<Examination> selectByPaperId(String paperId){
+    public List<Examination> selectByPaperId(String paperId) {
         return examinationMapper.selectBypaperId(paperId);
     }
-    public List<String> getExaminationTestpaperNum(){
+
+    public List<String> getExaminationTestpaperNum() {
         return examinationMapper.getExaminationTestpaperNum();
+    }
+
+    public void insert(Examination e) {
+        examinationMapper.insert(e);
+
     }
 }

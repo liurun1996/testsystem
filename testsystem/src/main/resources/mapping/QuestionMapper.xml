@@ -99,4 +99,8 @@
         #{arr}
       </foreach>
     </update>
+  <select id="getQuestionByType" parameterType="integer" resultMap="BaseResultMap">
+
+    select * from question where subjectId=#{type}
+  </select>
 </mapper>
