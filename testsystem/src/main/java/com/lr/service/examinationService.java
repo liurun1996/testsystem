@@ -3,6 +3,7 @@ package com.lr.service;
 import com.lr.mapper.ExaminationMapper;
 import com.lr.pojo.Examination;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

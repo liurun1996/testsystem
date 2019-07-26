@@ -2,7 +2,7 @@ package com.lr.pojo;
 
 import java.io.Serializable;
 
-public class SubjectType implements Serializable {
+public class SubjectType {
     private static final long serialVersionUID = -3558783123234905129L;
     private Integer subjectid;
 

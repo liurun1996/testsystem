@@ -1,5 +1,6 @@
 package com.lr;
 
+import com.lr.mapper.QuestionMapper;
 import com.lr.mapper.UserMapper;
 import com.lr.pojo.Question;
 import com.lr.util.RandomQuestionUtil;
@@ -17,13 +18,11 @@ public class TestsystemApplicationTests{
     @Autowired
     UserMapper userMapper;
 @Autowired
-RandomQuestionUtil rqu;
+    QuestionMapper qq;
 
     @Test
     public void contextLoads() {
-        List<Question> x100086 = rqu.getQuestion("x100086");
-        for (Question question : x100086){
-            System.out.println(question);
-        }
+        List<Question> questions = qq.testgetALL();
+        System.out.println(questions);
     }
 }

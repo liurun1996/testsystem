@@ -5,17 +5,20 @@ import com.github.pagehelper.PageInfo;
 import com.lr.mapper.QuestionMapper;
 import com.lr.pojo.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@CacheConfig(cacheNames = "questions")
 public class questionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    @Cacheable(value = "fy")
+    @Cacheable(value = "question")
     public List<Question> getQuestion(Integer subjectid, Integer nowPage) {
 
         PageHelper.startPage(nowPage, 5);
@@ -41,11 +44,18 @@ public class questionService {
         questionMapper.questionInvalid(arr);
     }
 
-    public List<Question>    getQuestionByType(Integer type){
+    public List<Question> getQuestionByType(Integer type) {
         return questionMapper.getQuestionByType(type);
-}
+    }
 
     public List<Question> getPaperAllBysubId(Integer testPaperId) {
+
         return questionMapper.getQuestion(testPaperId);
+    }
+
+//    @CachePut(value = "test", key = "#id")
+    public List<Question> testgetALL(Integer id) {
+        System.out.println("z");
+        return questionMapper.testgetALL();
     }
 }

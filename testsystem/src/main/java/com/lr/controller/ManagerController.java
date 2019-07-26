@@ -64,7 +64,7 @@ public class ManagerController{
 
     @GetMapping ("/toThemeSortManage.action")
     public String toThemeSortManage(ModelAndView mv, HttpServletRequest request) {
-        List<SubjectType> allsubjectType = subjectTypeService.getAllsubjectType();
+        List<SubjectType> allsubjectType = subjectTypeService.getAllsubjectType("ThemeSortManage");
         request.setAttribute("allSubject", allsubjectType);
         return "ThemeSortManage";
     }
@@ -117,7 +117,7 @@ public class ManagerController{
 
         Integer countQuestions = questionService.getCountQuestions(subjectTypeId);
         List<Question> question = questionService.getQuestion(subjectTypeId, nowPage);
-        List<SubjectType> allsubjectType = util.sort(subjectTypeId, subjectTypeService.getAllsubjectType());
+        List<SubjectType> allsubjectType = util.sort(subjectTypeId, subjectTypeService.getAllsubjectType("ThemeSortManage"));
         Integer nowSubjectTypeId = subjectTypeId;
         mv.addObject("nowSubjectTypeId", nowSubjectTypeId);
         mv.addObject("allsubjectType", allsubjectType);
@@ -152,7 +152,7 @@ public class ManagerController{
             subjectid = 1;
         }
 
-        List<SubjectType> allsubjectType = util.sort(subjectid, subjectTypeService.getAllsubjectType());
+        List<SubjectType> allsubjectType = util.sort(subjectid, subjectTypeService.getAllsubjectType("ThemeInsert"));
         String remark = allsubjectType.get(0).getRemark();
         mv.addObject("remark", remark);
         mv.addObject("allsubjectType", allsubjectType);

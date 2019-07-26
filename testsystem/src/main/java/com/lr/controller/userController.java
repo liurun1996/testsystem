@@ -57,7 +57,7 @@ public class userController{
 
             List<Question> question = rqu.getQuestion(user.getTestpaperid().trim());
             for (Question q : question){
-                examinationService.insert(new Examination(user.getUsername(), user.getTestpaperid(), q.getSubjectid(), q.getAnswer(), q.getId(), subjectTypeService.selectSubjecttypeById(q.getSubjectid()).getScore(), q.getAnswer(), null, 0));
+                examinationService.insert(new Examination(user.getUsername(), user.getTestpaperid(), q.getSubjectid(), q.getQuestion(), q.getId(), subjectTypeService.selectSubjecttypeById(q.getSubjectid()).getScore(), q.getAnswer(), null, 0));
 
             }
         }

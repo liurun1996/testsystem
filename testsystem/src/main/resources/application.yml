@@ -3,8 +3,8 @@ server:
 spring:
   cache:
     type: redis
-    redis:
-      time-to-live: 20000
+#    redis:
+#      time-to-live: 20000
 
   redis:
 
@@ -13,8 +13,8 @@ spring:
     host: 127.0.0.1
     port: 6379
     timeout: 5000
-    lettuce:
-      shutdown-timeout: 5000
+    jedis:
+#      shutdown-timeout: 5000
       pool:
         max-idle: 10
         max-active: 10
@@ -26,7 +26,7 @@ spring:
     url: jdbc:mysql://localhost:3306/testsystem?characterEncoding=utf-8
     username: root
     driver-class-name: com.mysql.jdbc.Driver
-    password: 123456
+    password: Liurun1996
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
     maxActive: 20

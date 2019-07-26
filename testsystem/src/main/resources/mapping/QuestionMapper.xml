@@ -103,4 +103,7 @@
 
     select * from question where subjectId=#{type}
   </select>
+  <select id="testgetALL" resultType="list" resultMap="BaseResultMap">
+    select * from question
+  </select>
 </mapper>

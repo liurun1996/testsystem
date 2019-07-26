@@ -2,7 +2,7 @@ package com.lr.pojo;
 
 import java.io.Serializable;
 
-public class Admin implements Serializable{
+public class Admin{
     private static final long serialVersionUID = 352373434284905129L;
 
     private Integer id;

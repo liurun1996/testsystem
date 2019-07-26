@@ -1,21 +1,22 @@
 package com.lr.controller;
 
+import com.lr.mapper.QuestionMapper;
 import com.lr.pojo.Admin;
+import com.lr.pojo.Question;
 import com.lr.pojo.User;
 import com.lr.service.adminService;
+import com.lr.service.questionService;
 import com.lr.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 @Controller
 public class indexController{
@@ -24,8 +25,10 @@ public class indexController{
     @Autowired
     private adminService adminService;
 
+
     @RequestMapping (value = "/index.action")
     public String index(HttpServletRequest request, String msg) {
+        System.out.println("111");
         request.setAttribute("msg", msg);
         return "login";
     }
@@ -43,7 +46,8 @@ public class indexController{
             session.setAttribute("password", password);
             return "redirect:/user/login.action";
         } else {
-         return "index.action?msg=账号或密码错误";
+         return "redirect:/index.action?msg=账号或密码错误";
         }
     }
+
 }
