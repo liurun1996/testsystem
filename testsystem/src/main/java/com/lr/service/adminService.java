@@ -15,7 +15,7 @@ public class adminService {
     private adminMapper adminMapper;
 
 
-    @Cacheable(value = "admin")
+    @Cacheable(value = "admin",key = "#username")
     public Admin login(String username, String password) {
         return adminMapper.login(new Admin(null, username, password));
     }

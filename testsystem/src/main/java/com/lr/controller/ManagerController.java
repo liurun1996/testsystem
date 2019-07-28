@@ -117,7 +117,7 @@ public class ManagerController{
 
         Integer countQuestions = questionService.getCountQuestions(subjectTypeId);
         List<Question> question = questionService.getQuestion(subjectTypeId, nowPage);
-        List<SubjectType> allsubjectType = util.sort(subjectTypeId, subjectTypeService.getAllsubjectType("ThemeSortManage"));
+        List<SubjectType> allsubjectType = util.sort(subjectTypeId, subjectTypeService.getAllsubjectType("ThemesManage"));
         Integer nowSubjectTypeId = subjectTypeId;
         mv.addObject("nowSubjectTypeId", nowSubjectTypeId);
         mv.addObject("allsubjectType", allsubjectType);

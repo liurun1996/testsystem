@@ -28,7 +28,7 @@ public class subjectTypeService {
         return sub.selectSubjecttypeById(id);
     }
 
-    @CachePut(value = "allSubject")
+    @CachePut(value = "allSubject",key = "#subjectType.subjectid")
     public int UpdateSubjcetType(SubjectType subjectType) {
         return sub.UpdateSubjcetType(subjectType);
     }

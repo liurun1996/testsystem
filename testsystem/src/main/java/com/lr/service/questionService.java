@@ -53,9 +53,8 @@ public class questionService {
         return questionMapper.getQuestion(testPaperId);
     }
 
-//    @CachePut(value = "test", key = "#id")
+    @CachePut(value = "test", key = "#id")
     public List<Question> testgetALL(Integer id) {
-        System.out.println("z");
         return questionMapper.testgetALL();
     }
 }
