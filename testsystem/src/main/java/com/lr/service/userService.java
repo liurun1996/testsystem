@@ -15,7 +15,7 @@ public class userService{
     private UserMapper userMapper;
 
 
-    @Cacheable(value = "user",key = "#p0")
+//    @Cacheable(value = "user",key = "#p0")
     public User login(String username, String password) {
         User u = new User();
         u.setUsername(username);

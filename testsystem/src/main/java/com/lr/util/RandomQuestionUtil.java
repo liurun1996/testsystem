@@ -65,7 +65,6 @@ public class RandomQuestionUtil{
             List<Question> randomGetQuestions = RandomQuestion(paperAllBysubId, testPaper.get(i).getSubjectNum());
             for (int j=0;j<randomGetQuestions.size();j++){
                 questions.add(randomGetQuestions.get(j));
-        System.out.println(questions.size());
             }
         }
         return questions;

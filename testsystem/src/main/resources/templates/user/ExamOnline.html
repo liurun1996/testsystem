@@ -1,160 +1,358 @@
-﻿
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>开始考试
+</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        body {
+            background-image: url("/static/Img/back.jpg");
+        }
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head><title>
-	无标题页
-</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><style type="text/css">
+        .style1 {
+            font-size: 13px
+        }
 
-body {
-	background-image: url("/static/Img/back.jpg");
-}
-.style1 {font-size: 13px}
-.style2 {color: #FF0000;
-	font-size: 13px;
-}
-.style4 {color: #00FF00;
-	font-size: 13px;
-}
-.style7 {color: #0000FF; font-size: 13px; }
-.style8 {color: #FF00FF; font-size: 13px; }
-.style5 {color: #0000FF}
-.style6 {color: #FF00FF}
-.style10 {font-size: 9px}
+        .style2 {
+            color: #FF0000;
+            font-size: 13px;
+        }
 
-</style></head>
+        .style4 {
+            color: #00FF00;
+            font-size: 13px;
+        }
+
+        .style7 {
+            color: #0000FF;
+            font-size: 13px;
+        }
+
+        .style8 {
+            color: #FF00FF;
+            font-size: 13px;
+        }
+
+        .style5 {
+            color: #0000FF
+        }
+
+        .style6 {
+            color: #FF00FF
+        }
+
+        .style10 {
+            font-size: 9px
+        }
+
+    </style>
+</head>
 <body>
-    <form name="form1" method="post" action="ExamOnline.aspx" id="form1">
+<form name="form1" method="post" action="ExamOnline.aspx" id="form1">
 
     <div>
-      <table width="800" align="center" >
-        <tr>
-          <td bgcolor="#FFFFFF"><div align="center">
-            <table width="100%" >
-              <tr>
-                <td height="75"><div align="center"><img src="/static/Img/x.jpg" width="760" height="71" /></div></td>
-              </tr>
-              <tr>
-                <td height="21">&nbsp;</td>
-              </tr>
-            </table>
-          </div></td>
-        </tr>
-        <tr>
-          <td bgcolor="#DAD6F8"><span class="style1">&nbsp;
+        <table width="800" align="center">
+            <tr>
+                <td bgcolor="#FFFFFF">
+                    <div align="center">
+                        <table width="100%">
+                            <tr>
+                                <td height="75">
+                                    <div align="center"><img src="/static/Img/x.jpg" width="760" height="71"/></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="21">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#DAD6F8"><span class="style1">&nbsp;
             <a id="HyperLink1" href="Default.html">返回</a>
-          </span>            </td>
-        </tr>
-      </table>
-    
-    <table width="800" height="450" align="center" >
-        <tr>
-          <td bgcolor="#CCCCCC"><table width="100%" bgcolor="#FFFFFF" >
-            <tr>
-              <td width="9%">&nbsp;</td>
-              <td width="20%">&nbsp;</td>
-              <td width="4%">&nbsp;</td>
-              <td width="67%">&nbsp;</td>
+          </span></td>
             </tr>
-            <tr>
-              <td colspan="2"><div align="center" class="style2">
-                  <div align="center">请选择指定的试卷号</div>
-              </div></td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><div align="right" class="style1">试卷号：</div></td>
-              <td><select name="DropDownList1" id="DropDownList1" style="width:119px;">
-	<option value="XHG20080306">XHG20080306</option>
-	<option value="XHG20080309">XHG20080309</option>
+        </table>
 
-</select></td>
-              <td>&nbsp;</td>
-              <td><span class="style1"><span class="style2">考</span><span class="style7">生</span><span class="style4">须</span><span class="style8">知</span>：</span></td>
-            </tr>
+        <table width="800" height="450" align="center">
             <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
+                <td bgcolor="#CCCCCC">
+                    <table width="100%" bgcolor="#FFFFFF">
+                        <tr>
+                            <td width="9%">&nbsp;</td>
+                            <td width="20%">&nbsp;</td>
+                            <td width="4%">&nbsp;</td>
+                            <td width="67%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div align="center" class="style2">
+                                    <div align="center">请选择指定的试卷号</div>
+                                </div>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div align="right" class="style1">试卷号：</div>
+                            </td>
+                            <td>
+                                <select name="DropDownList1" id="DropDownList1" style="width:119px;">
+                                    <option value="XHG20080306" th:text="${testpaperid}">XHG20080306</option>
+
+                                </select></td>
+                            <td>&nbsp;</td>
+                            <td><span class="style1"><span class="style2">考</span><span class="style7">生</span><span
+                                    class="style4">须</span><span class="style8">知</span>：</span></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 24px">&nbsp;</td>
+                            <td style="height: 24px">&nbsp;<input type="button" name="Button1" value="考试" id="Button1"
+                                                                  onclick="javascript:window.location.href='toTestPage.action'"/>
+                            </td>
+                            <td style="height: 24px">&nbsp;</td>
+                            <td style="height: 24px"><span class="style1">1.待系统确认后进入<span
+                                    class="style5">考试页面 </span></span></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><span class="style1">2.考生在规定时间内<span class="style5">完成试题</span></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" rowspan="10">&nbsp;<table id="Calendar1" cellspacing="0" cellpadding="2"
+                                                                      title="日历" border="0"
+                                                                      style="border-width:1px;border-style:solid;height:196px;width:218px;border-collapse:collapse;">
+                                <tr>
+                                    <td colspan="7" style="background-color:Silver;">
+                                        <table cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+                                            <tr>
+                                                <td style="width:15%;"><a
+                                                        href="javascript:__doPostBack('Calendar1','V3104')"
+                                                        style="color:Black" title="转到上一个月">&lt;</a></td>
+                                                <td align="center" style="width:70%;">2019年8月</td>
+                                                <td align="right" style="width:15%;"><a
+                                                        href="javascript:__doPostBack('Calendar1','V3166')"
+                                                        style="color:Black" title="转到下一个月">&gt;</a></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th align="center" abbr="星期日" scope="col">日</th>
+                                    <th align="center" abbr="星期一" scope="col">一</th>
+                                    <th align="center" abbr="星期二" scope="col">二</th>
+                                    <th align="center" abbr="星期三" scope="col">三</th>
+                                    <th align="center" abbr="星期四" scope="col">四</th>
+                                    <th align="center" abbr="星期五" scope="col">五</th>
+                                    <th align="center" abbr="星期六" scope="col">六</th>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3130')" style="color:Black"
+                                            title="7月27日">27</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3131')" style="color:Black"
+                                            title="7月28日">28</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3132')" style="color:Black"
+                                            title="7月29日">29</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3133')" style="color:Black"
+                                            title="7月30日">30</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3134')" style="color:Black"
+                                            title="7月31日">31</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3135')" style="color:Black"
+                                            title="8月1日">1</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3136')" style="color:Black"
+                                            title="8月2日">2</a></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3137')" style="color:Black"
+                                            title="8月3日">3</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3138')" style="color:Black"
+                                            title="8月4日">4</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3139')" style="color:Black"
+                                            title="8月5日">5</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3140')" style="color:Black"
+                                            title="8月6日">6</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3141')" style="color:Black"
+                                            title="8月7日">7</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3142')" style="color:Black"
+                                            title="8月8日">8</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3143')" style="color:Black"
+                                            title="8月9日">9</a></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3144')" style="color:Black"
+                                            title="8月10日">10</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3145')" style="color:Black"
+                                            title="8月11日">11</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3146')" style="color:Black"
+                                            title="8月12日">12</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3147')" style="color:Black"
+                                            title="8月13日">13</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3148')" style="color:Black"
+                                            title="8月14日">14</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3149')" style="color:Black"
+                                            title="8月15日">15</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3150')" style="color:Black"
+                                            title="8月16日">16</a></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3151')" style="color:Black"
+                                            title="8月17日">17</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3152')" style="color:Black"
+                                            title="8月18日">18</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3153')" style="color:Black"
+                                            title="8月19日">19</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3154')" style="color:Black"
+                                            title="8月20日">20</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3155')" style="color:Black"
+                                            title="8月21日">21</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3156')" style="color:Black"
+                                            title="8月22日">22</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3157')" style="color:Black"
+                                            title="8月23日">23</a></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3158')" style="color:Black"
+                                            title="8月24日">24</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3159')" style="color:Black"
+                                            title="8月25日">25</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3160')" style="color:Black"
+                                            title="8月26日">26</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3161')" style="color:Black"
+                                            title="8月27日">27</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3162')" style="color:Black"
+                                            title="8月28日">28</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3163')" style="color:Black"
+                                            title="8月29日">29</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3164')" style="color:Black"
+                                            title="8月30日">30</a></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3165')" style="color:Black"
+                                            title="8月31日">31</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3166')" style="color:Black"
+                                            title="9月1日">1</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3167')" style="color:Black"
+                                            title="9月2日">2</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3168')" style="color:Black"
+                                            title="9月3日">3</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3169')" style="color:Black"
+                                            title="9月4日">4</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3170')" style="color:Black"
+                                            title="9月5日">5</a></td>
+                                    <td align="center" style="width:14%;"><a
+                                            href="javascript:__doPostBack('Calendar1','3171')" style="color:Black"
+                                            title="9月6日">6</a></td>
+                                </tr>
+                            </table>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td><span class="style1">3.进入考场后请考生选择在线考试,<span class="style5">系统将随机出题.</span> </span></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><span class="style1">5.考试完毕后必须填好<span class="style5">个人信息</span></span></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><span class="style1"><img src="Img/line.jpg" width="385" height="4"/></span></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><span class="style1">预祝您顺利通过考试并<span class="style6">取得优良成绩</span>！</span></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><img src="/static/Img/white.JPG" width="757" height="12"/></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
-            <tr>
-              <td style="height: 24px">&nbsp;</td>
-              <td style="height: 24px">&nbsp;<input type="button" name="Button1" value="考试" id="Button1" onclick="javascript:window.location.href='CreateTheme.html'"  /></td>
-              <td style="height: 24px">&nbsp;</td>
-              <td style="height: 24px"><span class="style1">1.待系统确认后进入<span class="style5">考试页面 </span></span></td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td><span class="style1">2.考生在规定时间内<span class="style5">完成试题</span></span></td>
-            </tr>
-            <tr>
-              <td colspan="2" rowspan="10">&nbsp;<table id="Calendar1" cellspacing="0" cellpadding="2" title="日历" border="0" style="border-width:1px;border-style:solid;height:196px;width:218px;border-collapse:collapse;">
-	<tr><td colspan="7" style="background-color:Silver;"><table cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
-		<tr><td style="width:15%;"><a href="javascript:__doPostBack('Calendar1','V3104')" style="color:Black" title="转到上一个月">&lt;</a></td><td align="center" style="width:70%;">2008年8月</td><td align="right" style="width:15%;"><a href="javascript:__doPostBack('Calendar1','V3166')" style="color:Black" title="转到下一个月">&gt;</a></td></tr>
-	</table></td></tr><tr><th align="center" abbr="星期日" scope="col">日</th><th align="center" abbr="星期一" scope="col">一</th><th align="center" abbr="星期二" scope="col">二</th><th align="center" abbr="星期三" scope="col">三</th><th align="center" abbr="星期四" scope="col">四</th><th align="center" abbr="星期五" scope="col">五</th><th align="center" abbr="星期六" scope="col">六</th></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3130')" style="color:Black" title="7月27日">27</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3131')" style="color:Black" title="7月28日">28</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3132')" style="color:Black" title="7月29日">29</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3133')" style="color:Black" title="7月30日">30</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3134')" style="color:Black" title="7月31日">31</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3135')" style="color:Black" title="8月1日">1</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3136')" style="color:Black" title="8月2日">2</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3137')" style="color:Black" title="8月3日">3</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3138')" style="color:Black" title="8月4日">4</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3139')" style="color:Black" title="8月5日">5</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3140')" style="color:Black" title="8月6日">6</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3141')" style="color:Black" title="8月7日">7</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3142')" style="color:Black" title="8月8日">8</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3143')" style="color:Black" title="8月9日">9</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3144')" style="color:Black" title="8月10日">10</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3145')" style="color:Black" title="8月11日">11</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3146')" style="color:Black" title="8月12日">12</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3147')" style="color:Black" title="8月13日">13</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3148')" style="color:Black" title="8月14日">14</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3149')" style="color:Black" title="8月15日">15</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3150')" style="color:Black" title="8月16日">16</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3151')" style="color:Black" title="8月17日">17</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3152')" style="color:Black" title="8月18日">18</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3153')" style="color:Black" title="8月19日">19</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3154')" style="color:Black" title="8月20日">20</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3155')" style="color:Black" title="8月21日">21</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3156')" style="color:Black" title="8月22日">22</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3157')" style="color:Black" title="8月23日">23</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3158')" style="color:Black" title="8月24日">24</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3159')" style="color:Black" title="8月25日">25</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3160')" style="color:Black" title="8月26日">26</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3161')" style="color:Black" title="8月27日">27</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3162')" style="color:Black" title="8月28日">28</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3163')" style="color:Black" title="8月29日">29</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3164')" style="color:Black" title="8月30日">30</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3165')" style="color:Black" title="8月31日">31</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3166')" style="color:Black" title="9月1日">1</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3167')" style="color:Black" title="9月2日">2</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3168')" style="color:Black" title="9月3日">3</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3169')" style="color:Black" title="9月4日">4</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3170')" style="color:Black" title="9月5日">5</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','3171')" style="color:Black" title="9月6日">6</a></td></tr>
-</table>
-              </td>
-              <td>&nbsp;</td>
-              <td><span class="style1">3.进入考场后请考生选择在线考试,<span class="style5">系统将随机出题.</span> </span></td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td><span class="style1">5.考试完毕后必须填好<span class="style5">个人信息</span></span></td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td><span class="style1"><img src="Img/line.jpg" width="385" height="4" /></span></td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td><span class="style1">预祝您顺利通过考试并<span class="style6">取得优良成绩</span>！</span></td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td colspan="4"><img src="/static/Img/white.JPG" width="757" height="12" /></td>
-            </tr>
-          </table></td>
-        </tr>
-      </table>
+        </table>
     </div>
-    </form>
+</form>
 </body>
 </html>

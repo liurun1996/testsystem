@@ -28,7 +28,6 @@ public class indexController{
 
     @RequestMapping (value = "/index.action")
     public String index(HttpServletRequest request, String msg) {
-        System.out.println("111");
         request.setAttribute("msg", msg);
         return "login";
     }

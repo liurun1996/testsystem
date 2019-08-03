@@ -1,6 +1,7 @@
 package com.lr.mapper;
 
 import com.lr.pojo.Examination;
+import com.lr.pojo.Question;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface ExaminationMapper {
     List<Examination> selectBypaperId(String paperId);
 
     List<String> getExaminationTestpaperNum();
+
+    List<Examination> getTestspaperByUsername(@Param("userName") String  userName);
 
 }

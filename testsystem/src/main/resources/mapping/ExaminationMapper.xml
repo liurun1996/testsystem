@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lr.mapper.ExaminationMapper">
-  <resultMap id="BaseResultMap" type="com.lr.pojo.Examination">
-    <result column="examinee_id" jdbcType="VARCHAR" property="examineeId" />
+  <resultMap id="Examination" type="com.lr.pojo.Examination">
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="testpaper_id" jdbcType="VARCHAR" property="testpaperId" />
     <result column="subject_id" jdbcType="BIGINT" property="subjectId" />
     <result column="question_content" jdbcType="VARCHAR" property="questionContent" />
     <result column="question_id" jdbcType="BIGINT" property="questionId" />
     <result column="question_score" jdbcType="INTEGER" property="questionScore" />
     <result column="correct_answer" jdbcType="VARCHAR" property="correctAnswer" />
-    <result column="examinee_answer" jdbcType="VARCHAR" property="examineeAnswer" />
+    <result column="user_answer" jdbcType="VARCHAR" property="userAnswer" />
     <result column="score" jdbcType="INTEGER" property="score" />
   </resultMap>
   <insert id="insert" parameterType="com.lr.pojo.Examination">
-    insert into examination values (#{examineeId},#{testpaperId},#{subjectId},#{questionContent},#{questionId},#{questionScore},#{correctAnswer},#{examineeAnswer},#{score})
+    insert into examination values (#{userName},#{testpaperId},#{subjectId},#{questionContent},#{questionId},#{questionScore},#{correctAnswer},#{userAnswer},#{score})
   </insert>
   <insert id="insertSelective" parameterType="com.lr.pojo.Examination">
     insert into examination
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="examineeId != null">
-        examinee_id,
+      <if test="username != null">
+        user_name,
       </if>
       <if test="testpaperId != null">
         testpaper_id,
@@ -37,8 +37,8 @@
         question_score,
       </if>
 
-      <if test="examineeAnswer != null">
-        examinee_answer,
+      <if test="userAnswer != null">
+        user_answer,
       </if>
       <if test="
 correctError != null">
@@ -50,8 +50,8 @@ correct_error,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="examineeId != null">
-        #{examineeId,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="testpaperId != null">
         #{testpaperId,jdbcType=VARCHAR},
@@ -71,8 +71,8 @@ correct_error,
       <if test="correctAnswer != null">
         #{correctAnswer,jdbcType=VARCHAR},
       </if>
-      <if test="examineeAnswer != null">
-        #{examineeAnswer,jdbcType=VARCHAR},
+      <if test="userAnswer != null">
+        #{userAnswer,jdbcType=VARCHAR},
       </if>
 
       <if test="score != null">
@@ -80,11 +80,14 @@ correct_error,
       </if>
     </trim>
   </insert>
-  <select id="selectBypaperId" parameterType="string" resultMap="BaseResultMap">
-select examinee_id,testpaper_id,subject_id,question_content,question_id,question_score, correct_answer,examinee_answer,SUM(score) score from examination where testpaper_id=#{paperId} GROUP BY examinee_id;
+  <select id="selectBypaperId" parameterType="string" resultMap="Examination">
+select user_name,testpaper_id,subject_id,question_content,question_id,question_score, correct_answer,user_answer,SUM(score) score from examination where testpaper_id=#{paperId} GROUP BY examinee_id;
 
 </select>
   <select id="getExaminationTestpaperNum" resultType="string">
     select e.testpaper_id from examination e GROUP BY e.testpaper_id
+  </select>
+  <select id="getTestspaperByUsername"  parameterType="string" resultMap="Examination">
+    select * from examination where user_name=#{userName}
   </select>
 </mapper>

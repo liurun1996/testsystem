@@ -1,7 +1,7 @@
 package com.lr.pojo;
 
 public class Examination {
-    private String examineeId;
+    private String userName;
 
     private String testpaperId;
 
@@ -15,7 +15,7 @@ public class Examination {
 
     private String correctAnswer;
 
-    private String examineeAnswer;
+    private String userAnswer;
 
 
     private Integer score;
@@ -23,24 +23,24 @@ public class Examination {
     public Examination() {
     }
 
-    public Examination(String examineeId, String testpaperId, Integer subjectId, String questionContent, Integer questionId, Integer questionScore, String correctAnswer, String examineeAnswer, Integer score) {
-        this.examineeId = examineeId;
+    public Examination(String userName, String testpaperId, Integer subjectId, String questionContent, Integer questionId, Integer questionScore, String correctAnswer, String userAnswer, Integer score) {
+        this.userName = userName;
         this.testpaperId = testpaperId;
         this.subjectId = subjectId;
         this.questionContent = questionContent;
         this.questionId = questionId;
         this.questionScore = questionScore;
         this.correctAnswer = correctAnswer;
-        this.examineeAnswer = examineeAnswer;
+        this.userAnswer = userAnswer;
         this.score = score;
     }
 
-    public String getExamineeId() {
-        return examineeId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setExamineeId(String examineeId) {
-        this.examineeId = examineeId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getTestpaperId() {
@@ -91,12 +91,12 @@ public class Examination {
         this.correctAnswer = correctAnswer;
     }
 
-    public String getExamineeAnswer() {
-        return examineeAnswer;
+    public String getUserAnswer() {
+        return userAnswer;
     }
 
-    public void setExamineeAnswer(String examineeAnswer) {
-        this.examineeAnswer = examineeAnswer;
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
     }
 
     public Integer getScore() {
@@ -110,14 +110,14 @@ public class Examination {
     @Override
     public String toString() {
         return "Examination{" +
-                "examineeId='" + examineeId + '\'' +
+                "userName='" + userName + '\'' +
                 ", testpaperId='" + testpaperId + '\'' +
                 ", subjectId=" + subjectId +
                 ", questionContent='" + questionContent + '\'' +
                 ", questionId=" + questionId +
                 ", questionScore=" + questionScore +
                 ", correctAnswer='" + correctAnswer + '\'' +
-                ", examineeAnswer='" + examineeAnswer + '\'' +
+                ", userAnswer='" + userAnswer + '\'' +
                 ", score=" + score +
                 '}';
     }
