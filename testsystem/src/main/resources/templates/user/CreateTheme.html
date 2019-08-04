@@ -22,6 +22,18 @@
             background: #E3EAEB;
         }
     </style>
+    <script type="text/javascript" src="../static/js/jquery-3.3.1.js" th:src="@{../static/js/jquery-3.3.1.js}"></script>
+    <script>
+        function commit() {
+            var danxuanList=new Array();
+            var danxuan = $('input[name="danxuan"]:checked').each(function () {
+                danxuanList.push($(this).val());
+            });
+            alert(danxuanList);
+        }
+
+    </script>
+
 </head>
 <body>
 <form name="form1" method="post" action="" id="form1">
@@ -59,50 +71,53 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 800px">
-                                                <input id="GridView1_ctl05_RadioButton1" type="radio"
-                                                       name="GridView1$ctl05$g1" value="RadioButton1"/><label
-                                                    for="GridView1_ctl05_RadioButton1">A</label>
-                                                <input id="GridView1_ctl05_RadioButton2" type="radio"
-                                                       name="GridView1$ctl05$g1" value="RadioButton2"/><label
-                                                    for="GridView1_ctl05_RadioButton2">B</label>
-                                                <input id="GridView1_ctl05_RadioButton3" type="radio"
-                                                       name="GridView1$ctl05$g1" value="RadioButton3"/><label
-                                                    for="GridView1_ctl05_RadioButton3">C</label>
-                                                <input id="GridView1_ctl05_RadioButton4" type="radio"
-                                                       name="GridView1$ctl05$g1" value="RadioButton4"/><label
-                                                    for="GridView1_ctl05_RadioButton4">D</label></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
+                                                <form>
+                                                    <input id="GridView1_ctl05_RadioButton1" type="radio"
+                                                           name="danxuan" th:value="${dx.questionId}+'.A'"/><label
+                                                        for="GridView1_ctl05_RadioButton1">A</label>
+                                                    <input id="GridView1_ctl05_RadioButton2" type="radio"
+                                                           name="danxuan" th:value="${dx.questionId}+'.B'"/><label
+                                                        for="GridView1_ctl05_RadioButton2">B</label>
+                                                    <input id="GridView1_ctl05_RadioButton3" type="radio"
+                                                           name="danxuan" th:value="${dx.questionId}+'.C'"/><label
+                                                        for="GridView1_ctl05_RadioButton3">C</label>
+                                                    <input id="GridView1_ctl05_RadioButton4" type="radio"
+                                                           name="danxuan" th:value="${dx.questionId}+'.D'"/><label
+                                                        for="GridView1_ctl05_RadioButton4">D</label>
+</form>
+                                            </td>
+</tr>
+</table>
+</td>
+</tr>
 
-                        </table>
-                    </div>
-                </td>
-            </tr>
+</table>
+</div>
+</td>
+</tr>
 
 
-            <tr>
-                <td align="center" style="width: 100%">
-                    <span id="Label26" class="font">请考生提交后,填写完整考生信息,并记住准考证号,查询成绩(只有纯客观题试卷提交见成绩)</span></td>
-            </tr>
-            <tr>
-                <td align="center" style="width:100%; height: 1px">
-                    <input type="button" name="Button1" value="提交" id="Button1"
-                           onclick="javascript:window.location.href='Student.html'"/></td>
-            </tr>
-            <tr>
-                <td style="width: 583px; height: 16px;">
-                </td>
-            </tr>
-        </table>
-    </div>
+<tr>
+    <td align="center" style="width: 100%">
+        <span id="Label26" class="font">请考生提交后,填写完整考生信息,并记住准考证号,查询成绩(只有纯客观题试卷提交见成绩)</span></td>
+</tr>
+<tr>
+    <td align="center" style="width:100%; height: 1px">
+        <input type="button" name="Button1" value="提交" id="Button1"
+               onclick="commit()"/></td>
+</tr>
+<tr>
+    <td style="width: 583px; height: 16px;">
+    </td>
+</tr>
+</table>
+</div>
 
-    <div>
+<div>
 
-        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
-               value="/wEWMAKsxZOLCQLwxqTRAgLwxtD1CwLwxvyYAwLwxujDDAKb8MbKBAKb8LLuDQKb8J6DBQKb8IrYCgLe0enRDwLe0Z31BgLe0bGYDgLe0aXDAQL5+IvLAQL5+P/vCAL5+NMCAvn4x9kPAuTjrfwLAuTj2dgCAuTj9bUKAuTj4e4FAoqPlOYFAoqPgIkNArW29v0DArW24pILAuiX2eYIAuiXzQkCk4G7/AYCk4Gvkw4CvqidywwCvqiJpAQC2dP+pgoC2dPqyQICnLPOywMCnLPapAsCh9qjoQkCh9q3zgECxPrcMALE+sjfCALv5b6ODgLv5arhBgKljvTqAwKQjOu9AQLTydWBDALu0MnYBQKJ4p3/BQKk8/GlBgKM54rGBq9DzQ2ryBBgmEZ59+i+8BE0HzN8"/>
-    </div>
+    <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+           value="/wEWMAKsxZOLCQLwxqTRAgLwxtD1CwLwxvyYAwLwxujDDAKb8MbKBAKb8LLuDQKb8J6DBQKb8IrYCgLe0enRDwLe0Z31BgLe0bGYDgLe0aXDAQL5+IvLAQL5+P/vCAL5+NMCAvn4x9kPAuTjrfwLAuTj2dgCAuTj9bUKAuTj4e4FAoqPlOYFAoqPgIkNArW29v0DArW24pILAuiX2eYIAuiXzQkCk4G7/AYCk4Gvkw4CvqidywwCvqiJpAQC2dP+pgoC2dPqyQICnLPOywMCnLPapAsCh9qjoQkCh9q3zgECxPrcMALE+sjfCALv5b6ODgLv5arhBgKljvTqAwKQjOu9AQLTydWBDALu0MnYBQKJ4p3/BQKk8/GlBgKM54rGBq9DzQ2ryBBgmEZ59+i+8BE0HzN8"/>
+</div>
 </form>
 </body>
 </html>
