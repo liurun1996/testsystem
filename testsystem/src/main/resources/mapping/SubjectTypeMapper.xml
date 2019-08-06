@@ -91,4 +91,7 @@
         #{arr}
     </foreach>
 </delete>
+    <select id="getScoreByType" parameterType="integer" resultType="integer">
+        select score from  subject_type where subjectId=#{type}
+    </select>
 </mapper>

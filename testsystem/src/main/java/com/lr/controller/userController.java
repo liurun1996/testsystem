@@ -8,15 +8,19 @@ import com.lr.service.examinationService;
 import com.lr.service.subjectTypeService;
 import com.lr.service.userService;
 import com.lr.util.RandomQuestionUtil;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,5 +102,29 @@ public class userController{
         mv.addObject("BCT",BCT);
         mv.setViewName("user/CreateTheme");
         return mv;
+    }
+    @PostMapping("/commitTestPaper.action")
+    public void  commitTestPaper(String [] answer , HttpServletResponse response,HttpSession session){
+        User user=(User) session.getAttribute("user");
+   for (String s:answer){
+       String[] split = s.split("\\.");
+       Examination exa = examinationService.getExaByUsernameAndQuestionId(user.getUsername(), split[0]);
+       exa.setUserAnswer(split[1]);
+//      if (exa.getSubjectId().equals(3)){
+          if (exa.getCorrectAnswer().equals(split[1])){
+          exa.setScore(subjectTypeService.getScoreByType(exa.getSubjectId()));
+          }
+          examinationService.commitTestPaper(exa);
+//      }
+
+   }
+
+
+
+        try {
+            response.getWriter().println(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

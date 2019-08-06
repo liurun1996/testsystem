@@ -32,4 +32,11 @@ public class examinationService{
     public List<Examination> getTestspaperByUsername(String userName){
         return examinationMapper.getTestspaperByUsername(userName);
     }
+
+    public Examination getExaByUsernameAndQuestionId(String username,String questionId){
+        return examinationMapper.getExaByUsernameAndQuestionId(username, questionId);
+    }
+    public void commitTestPaper(Examination examination){
+        examinationMapper.commitTestPaper(examination);
+    }
 }

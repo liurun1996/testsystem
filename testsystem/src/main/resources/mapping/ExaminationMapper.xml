@@ -90,4 +90,11 @@ select user_name,testpaper_id,subject_id,question_content,question_id,question_s
   <select id="getTestspaperByUsername"  parameterType="string" resultMap="Examination">
     select * from examination where user_name=#{userName}
   </select>
+  <select id="getExaByUsernameAndQuestionId" parameterType="string" resultMap="Examination">
+    select * from examination where user_name=#{username} and question_id=#{questionId}
+  </select>
+  <update id="commitTestPaper" parameterType="com.lr.pojo.Examination">
+    update examination set user_answer =#{userAnswer},score=#{score} where user_name=#{userName} and question_id=#{questionId}
+
+  </update>
 </mapper>

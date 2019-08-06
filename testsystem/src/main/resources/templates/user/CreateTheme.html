@@ -24,14 +24,30 @@
     </style>
     <script type="text/javascript" src="../static/js/jquery-3.3.1.js" th:src="@{../static/js/jquery-3.3.1.js}"></script>
     <script>
-        function commit() {
-            var danxuanList=new Array();
+        function answer() {
+            var danxuanList =[];
             var danxuan = $('input[name="danxuan"]:checked').each(function () {
                 danxuanList.push($(this).val());
             });
-            alert(danxuanList);
+            var panduan = $('input[name="panduan"]:checked').each(function () {
+                danxuanList.push($(this).val());
+            });
+            var jianda = $('textarea[name="jianda"]').each(function () {
+                var questionId=$(this).attr("questionId");
+                danxuanList.push(questionId+"."+$(this).val());
+            });
+            return danxuanList;
         }
 
+        function commit() {
+            $.post("commitTestPaper.action",{answer: answer().toString()},function (data) {
+               if (data==1){
+                   alert("提交成功");
+               } else {
+                   alert("提交失败");
+               }
+            });
+        }
     </script>
 
 </head>
@@ -84,40 +100,127 @@
                                                     <input id="GridView1_ctl05_RadioButton4" type="radio"
                                                            name="danxuan" th:value="${dx.questionId}+'.D'"/><label
                                                         for="GridView1_ctl05_RadioButton4">D</label>
-</form>
+                                                </form>
                                             </td>
-</tr>
-</table>
-</td>
-</tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
 
-</table>
-</div>
-</td>
-</tr>
+                            <tr>
+                                <td class="font" style="width: 100%">&nbsp;
+                                    <div th:if="${TrueOrFalse} ne null and ${TrueOrFalse} ne ''">
+                                        <table cellspacing="0" cellpadding="4" border="0" id="GridView3"
+                                               style="color:#333333;width:100%;border-collapse:collapse;">
+                                            <tr style="color:White;background-color:#507CD1;font-weight:bold;">
+                                                <th scope="col">
+                                                    <span id="GridView3_ctl01_Label11">判断题(每题</span>
+                                                    <span id="GridView3_ctl01_Label35">2</span>
+                                                    <span id="GridView3_ctl01_Label36">分)</span>
+                                                </th>
+                                            </tr>
+                                            <tr style="background-color:White;" th:each="pd:${TrueOrFalse}">
+                                                <td>
+                                                    <table th:class="${pdStat.index+1}%2==0? 'white':'blue'">
+                                                        <tr>
+                                                            <td style="width: 800px; height: 40px;">
+                                                                <span id="GridView3_ctl11_Label12"
+                                                                      th:text="${pdStat.index+1}">10</span>
+                                                                <span id="GridView3_ctl11_Label13"
+                                                                      th:text="${pd.questionContent}">、windows98中鼠标、键盘均可用。</span>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 800px">
+                                                                <form>
+                                                                    <input id="GridView3_ctl11_RadioButton5"
+                                                                           type="radio" name="panduan"
+                                                                           th:value="${pd.questionId}+'.1'"/><label
+                                                                        for="GridView3_ctl11_RadioButton5">对</label>
+                                                                    <input id="GridView3_ctl11_RadioButton6"
+                                                                           type="radio" name="panduan"
+                                                                           th:value="${pd.questionId}+'.0'"/><label
+                                                                        for="GridView3_ctl11_RadioButton6">错</label>
+                                                                </form>
+                                                            </td>
 
 
-<tr>
-    <td align="center" style="width: 100%">
-        <span id="Label26" class="font">请考生提交后,填写完整考生信息,并记住准考证号,查询成绩(只有纯客观题试卷提交见成绩)</span></td>
-</tr>
-<tr>
-    <td align="center" style="width:100%; height: 1px">
-        <input type="button" name="Button1" value="提交" id="Button1"
-               onclick="commit()"/></td>
-</tr>
-<tr>
-    <td style="width: 583px; height: 16px;">
-    </td>
-</tr>
-</table>
-</div>
+                                                        </tr>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
 
-<div>
 
-    <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
-           value="/wEWMAKsxZOLCQLwxqTRAgLwxtD1CwLwxvyYAwLwxujDDAKb8MbKBAKb8LLuDQKb8J6DBQKb8IrYCgLe0enRDwLe0Z31BgLe0bGYDgLe0aXDAQL5+IvLAQL5+P/vCAL5+NMCAvn4x9kPAuTjrfwLAuTj2dgCAuTj9bUKAuTj4e4FAoqPlOYFAoqPgIkNArW29v0DArW24pILAuiX2eYIAuiXzQkCk4G7/AYCk4Gvkw4CvqidywwCvqiJpAQC2dP+pgoC2dPqyQICnLPOywMCnLPapAsCh9qjoQkCh9q3zgECxPrcMALE+sjfCALv5b6ODgLv5arhBgKljvTqAwKQjOu9AQLTydWBDALu0MnYBQKJ4p3/BQKk8/GlBgKM54rGBq9DzQ2ryBBgmEZ59+i+8BE0HzN8"/>
-</div>
+
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+<!--简答题-->
+
+
+                            <tr>
+                                <td class="font" style="width: 100%">&nbsp;
+                                    <div th:if="${shortAnswer} ne null and ${shortAnswer} ne ''">
+                                    <table cellspacing="0" cellpadding="3" rules="cols" border="1" id="GridView5" style="background-color:White;border-color:#999999;border-width:1px;border-style:None;width:100%;border-collapse:collapse;">
+                                        <tr style="color:White;background-color:#000084;font-weight:bold;">
+                                            <th scope="col">
+                                                <span id="GridView5_ctl01_Label21">简答题(每题</span>
+                                                <span id="GridView5_ctl01_Label31">10</span>
+                                                <span id="GridView5_ctl01_Label34">分)</span>
+                                            </th>
+                                        </tr>
+                                        <tr style="color:Black;background-color:Gainsboro;" th:each="jd:${shortAnswer}">
+                                        <td>
+                                            <table style="width: 100%" th:class="${jdStat.index+1}%2==0? 'white':'blue'">
+                                                <tr>
+                                                    <td style="width: 100%; height: 10px;">
+                                                        <span id="GridView5_ctl07_Label22" th:text="${jdStat.index+1}">1</span>
+                                                        <span id="GridView5_ctl07_Label23" th:text="${jd.questionContent}">、物理层的含义、作用？</span>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 100%; height: 10px">
+                                                        <span id="GridView5_ctl07_Label24" style="color:RoyalBlue;">"请将自己的见解写到下面的文本框"</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 100%; height: 47px">
+                                                        <textarea name="jianda" rows="2" cols="20" th:questionId="${jd.questionId}" th:id="${jd.questionId}" style="height:70px;width:100%;"></textarea></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </div>
+                                </td>
+                            </tr>
+
+                            <!--简答题-->
+
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td align="center" style="width: 100%">
+                    <span id="Label26" class="font">请考生提交后,填写完整考生信息,并记住准考证号,查询成绩(只有纯客观题试卷提交见成绩)</span></td>
+            </tr>
+            <tr>
+                <td align="center" style="width:100%; height: 1px">
+                    <input type="button" name="Button1" value="提交" id="Button1"
+                           onclick="commit()"/></td>
+            </tr>
+            <tr>
+                <td style="width: 583px; height: 16px;">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
 </form>
 </body>
 </html>

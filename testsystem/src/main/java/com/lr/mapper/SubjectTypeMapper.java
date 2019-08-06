@@ -7,14 +7,14 @@ import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
-public interface SubjectTypeMapper {
+public interface SubjectTypeMapper{
     int deleteByPrimaryKey(Integer subjectid);
 
-    @Select("select * from subject_type")
+    @Select ("select * from subject_type")
     List<SubjectType> getAllsubjectType();
 
-    @Select("select * from subject_type where subjectId=#{id} ")
-    SubjectType selectSubjecttypeById(@Param("id") Integer id);
+    @Select ("select * from subject_type where subjectId=#{id} ")
+    SubjectType selectSubjecttypeById(@Param ("id") Integer id);
 
     int insert(SubjectType record);
 
@@ -27,5 +27,7 @@ public interface SubjectTypeMapper {
     int UpdateSubjcetType(SubjectType subjectType);
 
     int deleteByPrimaryKeys(Integer[] arr);
+
+    Integer getScoreByType(@Param("type") Integer type);
 
 }

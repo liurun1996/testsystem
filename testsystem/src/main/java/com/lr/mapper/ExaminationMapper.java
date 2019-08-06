@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface ExaminationMapper {
+public interface ExaminationMapper{
     int insert(Examination record);
 
     int insertSelective(Examination record);
@@ -15,6 +15,8 @@ public interface ExaminationMapper {
 
     List<String> getExaminationTestpaperNum();
 
-    List<Examination> getTestspaperByUsername(@Param("userName") String  userName);
+    List<Examination> getTestspaperByUsername(@Param ("userName") String userName);
 
+    Examination getExaByUsernameAndQuestionId(@Param ("username") String username, @Param ("questionId") String questionId);
+    void commitTestPaper(Examination examination);
 }

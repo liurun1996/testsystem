@@ -2,6 +2,7 @@ package com.lr.service;
 
 import com.lr.mapper.SubjectTypeMapper;
 import com.lr.pojo.SubjectType;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -41,6 +42,10 @@ public class subjectTypeService {
     @CacheEvict(key = "#arr")
     public int deleteByPrimaryKeys(Integer[] arr) {
         return sub.deleteByPrimaryKeys(arr);
+    }
+
+    public Integer getScoreByType(Integer type) {
+        return sub.getScoreByType(type);
     }
 
 }
