@@ -28,13 +28,13 @@ public class examinationService{
         examinationMapper.insert(e);
 
     }
-    @Cacheable(value = "testPaper",key = "#p0")
+//    @Cacheable(value = "testPaper",key = "#p0")
     public List<Examination> getTestspaperByUsername(String userName){
         return examinationMapper.getTestspaperByUsername(userName);
     }
 
-    public Examination getExaByUsernameAndQuestionId(String username,String questionId){
-        return examinationMapper.getExaByUsernameAndQuestionId(username, questionId);
+    public Examination getExaByUsernameAndQuestionId(String username,Integer questionId){
+        return examinationMapper.getExaByUsernameAndQuestionId(username, String.valueOf(questionId));
     }
     public void commitTestPaper(Examination examination){
         examinationMapper.commitTestPaper(examination);

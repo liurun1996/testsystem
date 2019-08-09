@@ -1,65 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lr.mapper.UserMapper">
-  <resultMap id="user" type="com.lr.pojo.User">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="gender" jdbcType="VARCHAR" property="gender" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="testpaperId" jdbcType="VARCHAR" property="testpaperid" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="tel" jdbcType="VARCHAR" property="tel" />
-    <result column="education" jdbcType="VARCHAR" property="education" />
-    <result column="school" jdbcType="VARCHAR" property="school" />
-    <result column="speciality" jdbcType="VARCHAR" property="speciality" />
-    <result column="state" jdbcType="INTEGER" property="state" />
-    <result column="level" jdbcType="INTEGER" property="level" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="user" type="com.lr.pojo.User">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="testpaperId" jdbcType="VARCHAR" property="testpaperid"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="education" jdbcType="VARCHAR" property="education"/>
+        <result column="school" jdbcType="VARCHAR" property="school"/>
+        <result column="speciality" jdbcType="VARCHAR" property="speciality"/>
+        <result column="state" jdbcType="INTEGER" property="state"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id,username, password, name, testpaperId, state, level
   </sql>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.lr.pojo.User">
-    update user
-    <set>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="testpaperid != null">
-        testpaperId = #{testpaperid,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null">
-        state = #{state,jdbcType=INTEGER},
-      </if>
-      <if test="level != null">
-        level = #{level,jdbcType=INTEGER},
-      </if>
-    </set>
-    where username = #{username,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lr.pojo.User">
-    update user
-    set password = #{password,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      testpaperId = #{testpaperid,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=VARCHAR},
-      education = #{education,jdbcType=VARCHAR},
-      school = #{school,jdbcType=VARCHAR},
-      speciality = #{speciality,jdbcType=VARCHAR},
-      state = #{state,jdbcType=INTEGER},
-      level = #{level,jdbcType=INTEGER}
-    where username = #{username,jdbcType=VARCHAR}
-  </update>
- <select id="getUserDetailByUsername" parameterType="string" resultType="com.lr.pojo.User">
+    <update id="updateByPrimaryKeySelective" parameterType="com.lr.pojo.User">
+        update user
+        <set>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="testpaperid != null">
+                testpaperId = #{testpaperid,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
+            </if>
+        </set>
+        where username = #{username,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lr.pojo.User">
+        update user
+        set password = #{password,jdbcType=VARCHAR}
+        <if test="gender!='' and gender !=null">
+            ,gender = #{gender,jdbcType=VARCHAR}
+        </if>
+        <if test="name!='' and name !=null">
+            ,name = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="testpaperid!='' and testpaperid !=null">
+            ,testpaperId = #{testpaperid,jdbcType=VARCHAR}
+        </if>
+        <if test="address!='' and address !=null">
+            , address = #{address,jdbcType=VARCHAR}
+        </if>
+        <if test="tel!='' and tel !=null">
+            , tel = #{tel,jdbcType=VARCHAR}
+        </if>
+        <if test="education!='' and education !=null">
+            , education = #{education,jdbcType=VARCHAR}
+        </if>
+        <if test="school!='' and school !=null">
+            ,school = #{school,jdbcType=VARCHAR}
+        </if>
+        <if test="speciality!='' and speciality !=null">
+            ,speciality = #{speciality,jdbcType=VARCHAR}
+        </if>
+
+        <if test="state!='' and state !=null">
+            ,state = #{state,jdbcType=INTEGER}
+        </if>
+
+        <if test="level!='' and level !=null">
+            , level = #{level,jdbcType=INTEGER}
+        </if>
+
+
+        where username = #{username,jdbcType=VARCHAR};
+
+    </update>
+    <select id="getUserDetailByUsername" parameterType="string" resultType="com.lr.pojo.User">
  select * from user where username=#{username}
   </select>
-  <select id="login" parameterType="com.lr.pojo.User" resultMap="user">
+    <select id="login" parameterType="com.lr.pojo.User" resultMap="user">
     select * from user where username=#{username} and password=#{password}
   </select>
 </mapper>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>
+    无标题页
+</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        .font {
+            font-size: 13px;
+        }
+
+
+        body {
+            background-image: url("/static/Img/back.jpg");
+            /*background: #00FFFF;*/
+        }
+
+        .white {
+            background: white;
+        }
+
+        .blue {
+            background: #E3EAEB;
+        }
+    </style>
+</head>
+<body>
+<form name="form1" method="post" action="CreateTheme.aspx?id=XHG20080306" id="form1">
+    <div>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="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muivnei/nuaOpeWSjOS8oOi+k+i/nuaOpeeahOWFs+ezuw0KZGQCBQ8PFgIfAgUDMTI5ZGQCBQ9kFgJmD2QWBgIBDw8WAh8CBQE1ZGQCAw8PFgIfAgU744CBT1NJ5Li65LuA5LmI6KaB5a6a5LmJ5aSa56eN57G75Z6L55qE5Lyg6L6T5bGC5Y2P6K6u77yfDQpkZAIFDw8WAh8CBQMxMjRkZAIGD2QWAmYPZBYGAgEPDxYCHwIFATZkZAIDDw8WAh8CBSPjgIHniannkIblsYLnmoTlkKvkuYnjgIHkvZznlKjvvJ8NCmRkAgUPDxYCHwIFAzEyMmRkAgcPDxYCHwNoZGQCCw88KwANAGQYBwUJR3JpZFZpZXc2D2dkBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WUAUcR3JpZFZpZXcxJGN0bDAyJFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDAyJFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDAyJFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDAyJFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDAyJFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDAyJFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDAyJFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDAyJFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDAzJFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDAzJFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDAzJFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDAzJFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDAzJFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDAzJFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDAzJFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDAzJFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDA0JFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDA0JFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDA0JFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDA0JFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDA0JFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDA0JFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDA0JFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDA0JFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDA1JFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDA1JFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDA1JFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDA1JFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDA1JFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDA1JFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDA1JFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDA1JFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDA2JFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDA2JFJhZGlvQnV0dG9uMQUcR3JpZFZpZXcxJGN0bDA2JFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDA2JFJhZGlvQnV0dG9uMgUcR3JpZFZpZXcxJGN0bDA2JFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDA2JFJhZGlvQnV0dG9uMwUcR3JpZFZpZXcxJGN0bDA2JFJhZGlvQnV0dG9uNAUcR3JpZFZpZXcxJGN0bDA2JFJhZGlvQnV0dG9uNAUcR3JpZFZpZXczJGN0bDAyJFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDAyJFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDAyJFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDAyJFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDAzJFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDAzJFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDAzJFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDAzJFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA0JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA0JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA0JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA0JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA1JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA1JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA1JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA1JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA2JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA2JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA2JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA2JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA3JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA3JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA3JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA3JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA4JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA4JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA4JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA4JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA5JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA5JFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDA5JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDA5JFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDEwJFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDEwJFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDEwJFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDEwJFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDExJFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDExJFJhZGlvQnV0dG9uNQUcR3JpZFZpZXczJGN0bDExJFJhZGlvQnV0dG9uNgUcR3JpZFZpZXczJGN0bDExJFJhZGlvQnV0dG9uNgUJR3JpZFZpZXc0D2dkBQlHcmlkVmlldzUPPCsACQEIAgFkBQlHcmlkVmlldzIPZ2QFCUdyaWRWaWV3Mw88KwAJAQgCAWQFCUdyaWRWaWV3MQ88KwAJAQgCAWR779XtnhL3QNtGIlODANO5MfDiXA=="/>
+    </div>
+
+    <div>
+        <table width="800" border="0" align="center" bgcolor="#FFFFFF">
+            <tr>
+                <td style="width: 100%">
+                    <div align="center"><img src="/static/Img/zxks.jpg" width="481" height="73"/></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="font" style="height: 21px; width: 100%;">&nbsp;<div>
+                    <table cellspacing="0" cellpadding="4" border="0" id="GridView1"
+                           style="color:#333333;width:100%;border-collapse:collapse;">
+                        <div class="danxuan" th:if="${AchoiceQuestion} ne null and ${AchoiceQuestion} ne ''">
+                            <tr style="color:White;background-color:#1C5E55;font-weight:bold;">
+                                <th scope="col">
+                                    <span >单项选择(每题</span>
+                                    <span th:text="${AchoiceQuestion.get(0).questionScore}">4</span>
+                                    <span>分)</span>
+                                </th>
+                            </tr>
+                            <tr style="background-color:White;" th:each="dx:${AchoiceQuestion}"
+                                th:class="${dxStat.index+1}%2==0? 'white':'blue'">
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td style="width: 100%">
+                                                <span id="GridView1_ctl06_Label1" th:text="${dxStat.index+1}">5</span>
+                                                <span th:text="${dx.questionContent}"></span>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 800px">
+                                                <form>
+                                                    <input id="GridView1_ctl05_RadioButton1" type="radio"
+                                                           name="danxuan" th:value="${dx.questionId}+'.A'"/><label
+                                                        for="GridView1_ctl05_RadioButton1">A</label>
+                                                    <input id="GridView1_ctl05_RadioButton2" type="radio"
+                                                           name="danxuan" th:value="${dx.questionId}+'.B'"/><label
+                                                        for="GridView1_ctl05_RadioButton2">B</label>
+                                                    <input id="GridView1_ctl05_RadioButton3" type="radio"
+                                                           name="danxuan" th:value="${dx.questionId}+'.C'"/><label
+                                                        for="GridView1_ctl05_RadioButton3">C</label>
+                                                    <input id="GridView1_ctl05_RadioButton4" type="radio"
+                                                           name="danxuan" th:value="${dx.questionId}+'.D'"/><label
+                                                        for="GridView1_ctl05_RadioButton4">D</label>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </div>
+                    </table>
+                </div>
+                </td>
+            </tr>
+<!--
+
+            多选
+            <div class="danxuan" th:if="${DchoiceQuestion} ne null and ${DchoiceQuestion} ne ''">
+                <tr>
+                    <td class="font" style="height: 21px; width: 100%;">&nbsp;
+                        <div>
+                        <table cellspacing="0" cellpadding="4" border="0" id="GridView1"
+                               style="color:#333333;width:100%;border-collapse:collapse;">
+                            <tr style="color:White;background-color:#1C5E55;font-weight:bold;">
+                                <th scope="col">
+                                    <span>多项选择(每题</span>
+                                    <span th:text="${DchoiceQuestion.get(0).questionScore}">4</span>
+                                    <span>分)</span>
+                                </th>
+                            </tr>
+                            <tr style="background-color:White;" th:each="duoxuan:${AchoiceQuestion}"
+                                th:class="${duoxuanStat.index+1}%2==0? 'white':'blue'">
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td style="width: 100%">
+                                                <span th:text="${duoxuanStat.index+1}">5</span>
+                                                <span th:text="${duoxuan.questionContent}"></span>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 800px">
+                                                <form>
+                                                    <input type="checkbox"
+                                                           name="dduoxuan" th:value="${duoxuan.questionId}+'.A'"/><label
+                                                        for="GridView1_ctl05_RadioButton1">A</label>
+                                                    <input type="checkbox"
+                                                           name="dduoxuan" th:value="${duoxuan.questionId}+'.B'"/><label
+                                                        for="GridView1_ctl05_RadioButton2">B</label>
+                                                    <input type="checkbox"
+                                                           name="duoxuan" th:value="${duoxuan.questionId}+'.C'"/><label
+                                                        for="GridView1_ctl05_RadioButton3">C</label>
+                                                    <input type="checkbox"
+                                                           name="duoxuan" th:value="${duoxuan.questionId}+'.D'"/><label
+                                                        for="GridView1_ctl05_RadioButton4">D</label>
+                                                </form>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    </td>
+                </tr>
+            </div>
+
+
+            多选end
+-->
+
+            <tr>
+                <td class="font" style="width: 100%">&nbsp;<div>
+
+                </div>
+                </td>
+            </tr>
+            <tr >
+                <td class="font" style="width: 100%">&nbsp;
+                    <div>
+                        <table cellspacing="0" cellpadding="4" border="0" id="GridView3"
+                               style="color:#333333;width:100%;border-collapse:collapse;">
+
+                            <div id="panduan">
+                                <tr style="color:White;background-color:#507CD1;font-weight:bold;">
+                                    <th scope="col">
+                                        <span id="GridView3_ctl01_Label11">判断题(每题</span>
+                                        <span id="GridView3_ctl01_Label35">2</span>
+                                        <span id="GridView3_ctl01_Label36">分)</span>
+                                    </th>
+                                </tr>
+
+
+                                <tr style="background-color:#EFF3FB;">
+                                    <td>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 800px; height: 40px;">
+                                                    <span id="GridView3_ctl08_Label12">7</span>
+                                                    <span id="GridView3_ctl08_Label13">、E-mail地址中用户名与主机域名间用“@”分隔。</span>
+                                                    <span id="GridView3_ctl08_Label14">对</span>
+                                                    <span id="GridView3_ctl08_Label15">79</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 800px">
+                                                    <input id="GridView3_ctl08_RadioButton5" type="radio"
+                                                           name="GridView3$ctl08$g3" value="RadioButton5"/><label
+                                                        for="GridView3_ctl08_RadioButton5">对</label>
+                                                    <input id="GridView3_ctl08_RadioButton6" type="radio"
+                                                           name="GridView3$ctl08$g3" value="RadioButton6"/><label
+                                                        for="GridView3_ctl08_RadioButton6">错</label></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr style="background-color:White;">
+                                    <td>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 800px; height: 40px;">
+                                                    <span id="GridView3_ctl09_Label12">8</span>
+                                                    <span id="GridView3_ctl09_Label13">、计算机“病毒”，就是计算机感染了病菌。</span>
+                                                    <span id="GridView3_ctl09_Label14">错</span>
+                                                    <span id="GridView3_ctl09_Label15">90</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 800px">
+                                                    <input id="GridView3_ctl09_RadioButton5" type="radio"
+                                                           name="GridView3$ctl09$g3" value="RadioButton5"/><label
+                                                        for="GridView3_ctl09_RadioButton5">对</label>
+                                                    <input id="GridView3_ctl09_RadioButton6" type="radio"
+                                                           name="GridView3$ctl09$g3" value="RadioButton6"/><label
+                                                        for="GridView3_ctl09_RadioButton6">错</label></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr style="background-color:#EFF3FB;">
+                                    <td>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 800px; height: 40px;">
+                                                    <span id="GridView3_ctl10_Label12">9</span>
+                                                    <span id="GridView3_ctl10_Label13">、显示器的一项重要性能指标“点距”是指显示器屏幕上两个相邻光点之间的距离。</span>
+                                                    <span id="GridView3_ctl10_Label14">对</span>
+                                                    <span id="GridView3_ctl10_Label15">100</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 800px">
+                                                    <input id="GridView3_ctl10_RadioButton5" type="radio"
+                                                           name="GridView3$ctl10$g3" value="RadioButton5"/><label
+                                                        for="GridView3_ctl10_RadioButton5">对</label>
+                                                    <input id="GridView3_ctl10_RadioButton6" type="radio"
+                                                           name="GridView3$ctl10$g3" value="RadioButton6"/><label
+                                                        for="GridView3_ctl10_RadioButton6">错</label></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr style="background-color:White;">
+                                    <td>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 800px; height: 40px;">
+                                                    <span id="GridView3_ctl11_Label12">10</span>
+                                                    <span id="GridView3_ctl11_Label13">、windows98中鼠标、键盘均可用。</span>
+                                                    <span id="GridView3_ctl11_Label14">对</span>
+                                                    <span id="GridView3_ctl11_Label15">93</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 800px">
+                                                    <input id="GridView3_ctl11_RadioButton5" type="radio"
+                                                           name="GridView3$ctl11$g3" value="RadioButton5"/><label
+                                                        for="GridView3_ctl11_RadioButton5">对</label>
+                                                    <input id="GridView3_ctl11_RadioButton6" type="radio"
+                                                           name="GridView3$ctl11$g3" value="RadioButton6"/><label
+                                                        for="GridView3_ctl11_RadioButton6">错</label></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="font" style="width: 100%">&nbsp;<div>
+
+                </div>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td class="font" style="width: 100%">&nbsp;<div>
+                    <table cellspacing="0" cellpadding="3" rules="cols" border="1" id="GridView5"
+                           style="background-color:White;border-color:#999999;border-width:1px;border-style:None;width:100%;border-collapse:collapse;">
+                        <tr style="color:White;background-color:#000084;font-weight:bold;">
+                            <th scope="col">
+                                <span id="GridView5_ctl01_Label21">简答题(每题</span>
+                                <span id="GridView5_ctl01_Label31">10</span>
+                                <span id="GridView5_ctl01_Label34">分)</span>
+                            </th>
+                        </tr>
+                        <tr style="color:Black;background-color:#EEEEEE;">
+                            <td>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td style="width: 100%; height: 10px;">
+                                            <span id="GridView5_ctl02_Label22">1</span>
+                                            <span id="GridView5_ctl02_Label23">、传输层的协议级别，每个级别的功能
+</span>
+                                            <span id="GridView5_ctl02_Label25">128</span>&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 10px">
+                                            <span id="GridView5_ctl02_Label24" style="color:RoyalBlue;">"请将自己的见解写到下面的文本框"</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 47px">
+                                            <textarea name="GridView5$ctl02$TextBox2" rows="2" cols="20"
+                                                      id="GridView5_ctl02_TextBox2"
+                                                      style="height:70px;width:100%;"></textarea></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr style="color:Black;background-color:Gainsboro;">
+                            <td>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td style="width: 100%; height: 10px;">
+                                            <span id="GridView5_ctl03_Label22">2</span>
+                                            <span id="GridView5_ctl03_Label23">、传输服务质量的描述、参数
+</span>
+                                            <span id="GridView5_ctl03_Label25">127</span>&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 10px">
+                                            <span id="GridView5_ctl03_Label24" style="color:RoyalBlue;">"请将自己的见解写到下面的文本框"</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 47px">
+                                            <textarea name="GridView5$ctl03$TextBox2" rows="2" cols="20"
+                                                      id="GridView5_ctl03_TextBox2"
+                                                      style="height:70px;width:100%;"></textarea></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr style="color:Black;background-color:#EEEEEE;">
+                            <td>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td style="width: 100%; height: 10px;">
+                                            <span id="GridView5_ctl04_Label22">3</span>
+                                            <span id="GridView5_ctl04_Label23">、会话协议没有捎带，是否低效
+</span>
+                                            <span id="GridView5_ctl04_Label25">130</span>&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 10px">
+                                            <span id="GridView5_ctl04_Label24" style="color:RoyalBlue;">"请将自己的见解写到下面的文本框"</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 47px">
+                                            <textarea name="GridView5$ctl04$TextBox2" rows="2" cols="20"
+                                                      id="GridView5_ctl04_TextBox2"
+                                                      style="height:70px;width:100%;"></textarea></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr style="color:Black;background-color:Gainsboro;">
+                            <td>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td style="width: 100%; height: 10px;">
+                                            <span id="GridView5_ctl05_Label22">4</span>
+                                            <span id="GridView5_ctl05_Label23">、会话连接和传输连接的关系
+</span>
+                                            <span id="GridView5_ctl05_Label25">129</span>&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 10px">
+                                            <span id="GridView5_ctl05_Label24" style="color:RoyalBlue;">"请将自己的见解写到下面的文本框"</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 47px">
+                                            <textarea name="GridView5$ctl05$TextBox2" rows="2" cols="20"
+                                                      id="GridView5_ctl05_TextBox2"
+                                                      style="height:70px;width:100%;"></textarea></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr style="color:Black;background-color:#EEEEEE;">
+                            <td>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td style="width: 100%; height: 10px;">
+                                            <span id="GridView5_ctl06_Label22">5</span>
+                                            <span id="GridView5_ctl06_Label23">、OSI为什么要定义多种类型的传输层协议？
+</span>
+                                            <span id="GridView5_ctl06_Label25">124</span>&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 10px">
+                                            <span id="GridView5_ctl06_Label24" style="color:RoyalBlue;">"请将自己的见解写到下面的文本框"</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 47px">
+                                            <textarea name="GridView5$ctl06$TextBox2" rows="2" cols="20"
+                                                      id="GridView5_ctl06_TextBox2"
+                                                      style="height:70px;width:100%;"></textarea></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr style="color:Black;background-color:Gainsboro;">
+                            <td>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td style="width: 100%; height: 10px;">
+                                            <span id="GridView5_ctl07_Label22">6</span>
+                                            <span id="GridView5_ctl07_Label23">、物理层的含义、作用？
+</span>
+                                            <span id="GridView5_ctl07_Label25">122</span>&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 10px">
+                                            <span id="GridView5_ctl07_Label24" style="color:RoyalBlue;">"请将自己的见解写到下面的文本框"</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100%; height: 47px">
+                                            <textarea name="GridView5$ctl07$TextBox2" rows="2" cols="20"
+                                                      id="GridView5_ctl07_TextBox2"
+                                                      style="height:70px;width:100%;"></textarea></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" class="font" style="width: 100%;">
+                    <div>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="width: 100%">
+                    <span id="Label26" class="font">请考生提交后,填写完整考生信息,并记住准考证号,查询成绩(只有纯客观题试卷提交见成绩)</span></td>
+            </tr>
+            <tr>
+                <td align="center" style="width:100%; height: 1px">
+                    <input type="button" name="Button1" value="提交" id="Button1"
+                           onclick="javascript:window.location.href='Student.html'"/></td>
+            </tr>
+            <tr>
+                <td style="width: 583px; height: 16px;">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="/wEWMAKsxZOLCQLwxqTRAgLwxtD1CwLwxvyYAwLwxujDDAKb8MbKBAKb8LLuDQKb8J6DBQKb8IrYCgLe0enRDwLe0Z31BgLe0bGYDgLe0aXDAQL5+IvLAQL5+P/vCAL5+NMCAvn4x9kPAuTjrfwLAuTj2dgCAuTj9bUKAuTj4e4FAoqPlOYFAoqPgIkNArW29v0DArW24pILAuiX2eYIAuiXzQkCk4G7/AYCk4Gvkw4CvqidywwCvqiJpAQC2dP+pgoC2dPqyQICnLPOywMCnLPapAsCh9qjoQkCh9q3zgECxPrcMALE+sjfCALv5b6ODgLv5arhBgKljvTqAwKQjOu9AQLTydWBDALu0MnYBQKJ4p3/BQKk8/GlBgKM54rGBq9DzQ2ryBBgmEZ59+i+8BE0HzN8"/>
+    </div>
+</form>
+</body>
+</html>

@@ -3,7 +3,6 @@ package com.lr.pojo;
 import java.io.Serializable;
 
 public class User {
-    private static final long serialVersionUID = 3558783123784905129L;
     private Integer id;
     private String username;
     private String password;
@@ -37,9 +36,6 @@ public class User {
         this.speciality = speciality;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public Integer getId() {
         return id;

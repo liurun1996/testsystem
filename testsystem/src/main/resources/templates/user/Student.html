@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>
+	个人信息录入
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><style type="text/css">
+.font{font-size:13px;}
+
+body {
+    background-image: url("/static/Img/back.jpg");
+}
+
+</style></head>
+<body>
+    <form name="form1" method="post" action="personalDetails.action" id="form1">
+
+    <div>
+      <table width="800" border="0" align="center">
+        <tr>
+          <td bgcolor="#FFFFFF"><div align="center"><img src="/static/Img/xiao05.jpg" width="467" height="85" /></div></td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCCCCC"><div align="right" class="font">
+              <a id="HyperLink1" href="ExamOnline.aspx">返回</a>&nbsp;</div></td>
+        </tr>
+      </table>
+      <table width="800" height="450" border="1" align="center" bordercolor="#666666" bgcolor="#FFFFFF">
+        <tr>
+          <td colspan="2" bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="50%" height="30" align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF">请填写完整的信息,以便通知面试;</td>
+          <td height="30" bordercolor="#FFFFFF" bgcolor="#FFFFFF">请牢记帐号和密码,以便查询成绩</td>
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF">查询帐号：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;
+          <span id="Label1" style="color:DodgerBlue;"th:text="${session.user.username}">2008820213115</span>
+          <input type="hidden" th:value="${session.user.username}" name="username">
+          </td>
+
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF">密码：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;
+          <span id="Label2" style="color:DodgerBlue;"th:text="${session.user.password}">95750</span>
+          <input type="hidden" th:value="${session.user.password}" name="password">
+          </td>
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF">姓名：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;
+            <input name="name" type="text" id="TextBox1" />
+          <span id="RequiredFieldValidator1" style="color:Red;visibility:hidden;">姓名不能为空</span></td>
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF" style="height: 26px">地址：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF" style="height: 26px">&nbsp;
+            <input name="address" type="text" id="TextBox2" />
+          <span id="RequiredFieldValidator2" style="color:Red;visibility:hidden;">地址不能为空</span></td>
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF" style="height: 27px">电话：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF" style="height: 27px">&nbsp;
+            <input name="tel" type="text" id="TextBox3" />
+          <span id="RegularExpressionValidator1" style="color:Red;visibility:hidden;">请输入有效的电话号码</span></td>
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF">学历：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;
+            <select name="education" id="DropDownList2">
+	<option value="高中">高中</option>
+	<option value="专科">专科</option>
+	<option value="本科">本科</option>
+	<option value="研究生">研究生</option>
+	<option value="博士">博士</option>
+
+</select></td>
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF">学校：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;
+            <input name="school" type="text" id="TextBox5" />
+          <span id="RequiredFieldValidator3" style="color:Red;visibility:hidden;">学校不能为空</span></td>
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF" style="height: 28px">专业：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF" style="height: 28px">&nbsp;
+            <input name="speciality" type="text" id="TextBox6" />
+          <span id="RequiredFieldValidator4" style="color:Red;visibility:hidden;">专业不能为空</span></td>
+        </tr>
+        <tr class="font">
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF">性别：</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;
+            <select name="gender" id="DropDownList1" style="width:41px;">
+	<option value="男">男</option>
+	<option value="女">女</option>
+
+</select></td>
+        </tr>
+        <tr>
+          <td align="right" bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;</td>
+        </tr>
+        <tr>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;
+          <input type="submit" name="Button1" value="确定" id="Button1" /></td>
+        </tr>
+        <tr>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;</td>
+        </tr>
+        <tr>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;</td>
+          <td bordercolor="#FFFFFF" bgcolor="#FFFFFF">&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+
+
+
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWDgKrmcbWAQLs0bLrBgLs0fbZDALs0Yq1BQLmhrv4CwKzn+jBBAKazejBBALVmJ1aAui1sM4KAuzRgtgJAuzRxsYPApThpIsGAtC5pIsGAoznisYGyCtXlb4D0iasCfuVVQNhFjdYyWA=" />
+</div>
+
+
+        </form>
+</body>
+</html>

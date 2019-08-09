@@ -3,15 +3,19 @@ package com.lr.controller;
 import com.lr.mapper.ExaminationMapper;
 import com.lr.pojo.Examination;
 import com.lr.pojo.Question;
+import com.lr.pojo.SubjectType;
 import com.lr.pojo.User;
 import com.lr.service.examinationService;
 import com.lr.service.subjectTypeService;
 import com.lr.service.userService;
 import com.lr.util.RandomQuestionUtil;
+import com.lr.util.util;
 import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping ("/user")
@@ -80,7 +83,7 @@ public class userController{
         List<Examination> DchoiceQuestion = new ArrayList<>();//多选题
         List<Examination> TrueOrFalse = new ArrayList<>();//判断题
         List<Examination> shortAnswer = new ArrayList<>();//简答题题
-        List<Examination> BCT = new ArrayList<>();//简答题题
+        List<Examination> BCT = new ArrayList<>();//编程题
 
         for (Examination e : testPaper){
             if (e.getSubjectId().equals(1)) {
@@ -95,36 +98,64 @@ public class userController{
                 BCT.add(e);
             }
         }
-        mv.addObject("AchoiceQuestion",AchoiceQuestion);
-        mv.addObject("DchoiceQuestion",DchoiceQuestion);
-        mv.addObject("TrueOrFalse",TrueOrFalse);
-        mv.addObject("shortAnswer",shortAnswer);
-        mv.addObject("BCT",BCT);
-        mv.setViewName("user/CreateTheme");
+        mv.addObject("AchoiceQuestion", AchoiceQuestion);
+        mv.addObject("DchoiceQuestion", DchoiceQuestion);
+        mv.addObject("TrueOrFalse", TrueOrFalse);
+        mv.addObject("shortAnswer", shortAnswer);
+        mv.addObject("BCT", BCT);
+        mv.setViewName("user/CreateTheme" +
+                "");
         return mv;
     }
-    @PostMapping("/commitTestPaper.action")
-    public void  commitTestPaper(String [] answer , HttpServletResponse response,HttpSession session){
-        User user=(User) session.getAttribute("user");
-   for (String s:answer){
-       String[] split = s.split("\\.");
-       Examination exa = examinationService.getExaByUsernameAndQuestionId(user.getUsername(), split[0]);
-       exa.setUserAnswer(split[1]);
-//      if (exa.getSubjectId().equals(3)){
-          if (exa.getCorrectAnswer().equals(split[1])){
-          exa.setScore(subjectTypeService.getScoreByType(exa.getSubjectId()));
-          }
-          examinationService.commitTestPaper(exa);
-//      }
 
-   }
-
-
+    @PostMapping ("/commitTestPaper.action")
+//    @Transactional (propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void commitTestPaper(String[] answer, HttpServletResponse response, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        HashMap<Integer, String> answerMap = util.commitTestPaperSort(answer);
+        Set<Integer> keys = answerMap.keySet();
+        Iterator<Integer> iterator = keys.iterator();
+        while (iterator.hasNext()) {
+            Integer key = iterator.next();
+            Examination exa = examinationService.getExaByUsernameAndQuestionId(user.getUsername(), key);
+            SubjectType subjectType = subjectTypeService.selectSubjecttypeById(exa.getSubjectId());
+            String userAnswe = answerMap.get(key);
+            if (subjectType.getReadtype().equals(0)) {
+                if (exa.getCorrectAnswer().equals(userAnswe)) {
+                    exa.setScore(subjectType.getScore());
+                }
+            }
+            exa.setUserAnswer(userAnswe);
+            examinationService.commitTestPaper(exa);
+        }
 
         try {
-            response.getWriter().println(1);
+            response.getWriter().println("1");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @RequestMapping ("/toStudent.action")
+    public String toStudent() {
+        return "user/Student";
+    }
+
+    @PostMapping ("/personalDetails.action")
+    public ModelAndView personalDetails(User user,HttpSession session,ModelAndView mv) {
+        user.setState(3);
+        userService.updateByPrimaryKey(user);
+        User user1 = (User) session.getAttribute("user");
+        List<Examination> testspaperByUsername = examinationService.getTestspaperByUsername(user.getUsername());
+        Integer score=0;
+        System.err.println(testspaperByUsername);
+        for (Examination examination : testspaperByUsername){
+            score+=examination.getScore();
+        }
+
+        mv.addObject("score", score);
+        mv.setViewName("user/Succeed");
+        return mv;
     }
 }

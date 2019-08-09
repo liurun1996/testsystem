@@ -7,26 +7,19 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.*;
+import java.net.*;
 import java.util.ArrayList;
 
-public class test1 {
-    public static void main(String[] args) {
+public class test1{
+    public static void main(String[] args) throws URISyntaxException, IOException {
 
-        ArrayList<Thread> arr = new ArrayList<>();
-
-        for (int i = 0; i < 1000; i++) {
-            arr.add(new Thread(new myRunnable()));
+        File f = new File(String.valueOf(new URL("http://localhost:8080/user/toTestPage.action")));
+        FileInputStream fis = new FileInputStream(f);
+        int len;
+        while ((len=fis.read())!=-1){
+            System.out.println(len);
         }
-        for (Thread t : arr) {
-            t.start();
-
-        }
-
     }
 
 

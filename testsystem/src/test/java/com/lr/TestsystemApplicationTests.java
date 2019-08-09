@@ -2,7 +2,9 @@ package com.lr;
 
 import com.lr.mapper.QuestionMapper;
 import com.lr.mapper.UserMapper;
+import com.lr.pojo.Examination;
 import com.lr.pojo.Question;
+import com.lr.service.examinationService;
 import com.lr.util.RandomQuestionUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,13 +18,17 @@ import java.util.List;
 @SpringBootTest
 public class TestsystemApplicationTests{
     @Autowired
-    UserMapper userMapper;
+    examinationService userMapper;
 @Autowired
     QuestionMapper qq;
 
     @Test
     public void contextLoads() {
-        List<Question> questions = qq.testgetALL();
-        System.out.println(questions);
+        List<Examination> testspaperByUsername = userMapper.getTestspaperByUsername("10001");
+        int i=0;
+        for (Examination examination : testspaperByUsername){
+            i+=examination.getScore();
+        }
+        System.out.println(i);
     }
 }
