@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@CacheConfig(cacheNames = "examination")
+@CacheConfig (cacheNames = "examination")
 public class examinationService{
     @Autowired
     public ExaminationMapper examinationMapper;
@@ -28,15 +28,21 @@ public class examinationService{
         examinationMapper.insert(e);
 
     }
-//    @Cacheable(value = "testPaper",key = "#p0")
-    public List<Examination> getTestspaperByUsername(String userName){
+
+    //    @Cacheable(value = "testPaper",key = "#p0")
+    public List<Examination> getTestspaperByUsername(String userName) {
         return examinationMapper.getTestspaperByUsername(userName);
     }
 
-    public Examination getExaByUsernameAndQuestionId(String username,Integer questionId){
+    public Examination getExaByUsernameAndQuestionId(String username, Integer questionId) {
         return examinationMapper.getExaByUsernameAndQuestionId(username, String.valueOf(questionId));
     }
-    public void commitTestPaper(Examination examination){
+
+    public void commitTestPaper(Examination examination) {
         examinationMapper.commitTestPaper(examination);
+    }
+
+    public List<Examination> getAllPaper() {
+        return examinationMapper.getAllPaper();
     }
 }

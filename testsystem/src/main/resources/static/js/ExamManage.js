@@ -3,7 +3,6 @@ var arr = [];
 
 function selectBypaperId() {
     var paperId = $("#paperId").val();
-
     $.ajax({
         type: "post",
         url: "selectByPaperId.action",
@@ -11,19 +10,19 @@ function selectBypaperId() {
         dataType: 'JSON',
         success: function (data) {
             $("#center").show();
-            $("#Button2").show();
             for (j = 0; j < arr.length; j++) {
                 $("#t" + arr[j]).remove();
             }
             var i = 1;
             $(data).each(function (index, obj) {
+                $("#GridView1").show();
                 $("#GridView1").append(
                     "<tr style='background-color:#E3EAEB;'id='t" + i + "'><td align='center'><input id='' type='checkbox'/></td>" +
                     "<td align='center'><span>" + i + "</span></td>" +
-                    "<td align='center'>" + obj.examineeId + "</td>" +
+                    "<td align='center'>" + obj.userName + "</td>" +
                     "<td align='center'>" + paperId + "</td>" +
                     "<td align='center'>" + obj.score + "</td>" +
-                    "<td align='center'><input type='button' value='详情' onclick='UserDetail(" + obj.examineeId + ")'></td>" +
+                    "<td align='center'><input type='button' value='详情' onclick='detail("+obj.userName+")'></td>" +
                     "</tr>"
                 );
                 arr.push(i);
@@ -32,18 +31,15 @@ function selectBypaperId() {
 
         },
         error: function () {
-            alert("查询失败");
         }
 
     });
 }
-
-function UserDetail(id) {
-
+function detail(username) {
     $.ajax({
         type: "post",
         url: "userDetail.action",
-        data: {username: id},
+        data: {username: username},
         dataType: "json",
         success: function (data) {
             $("#Label2").show().text("考生"+data.username+"详情如下:");
@@ -63,17 +59,18 @@ function UserDetail(id) {
 
         },
         error: function () {
-            alert("a")
+            alert("aaaaa")
             ;
         }
 
 
     });
 
-}
 
+}
 function chan() {
     $("#Label2").hide()
+    $("#GridView1").hide();
     $("#userDetail").hide()
     $("#apende").remove();
 }

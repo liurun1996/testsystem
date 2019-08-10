@@ -42,6 +42,12 @@ public class userController{
     @Autowired
     private RandomQuestionUtil rqu;
 
+    //返回登录也面
+    @GetMapping ("/toLogin.action")
+    public String toLogin() {
+        return "login";
+    }
+
     //如果时第一次登录那么将随机分配一张以存在的试卷，且把状态改为1
     @RequestMapping ("/login.action")
     public String login(HttpSession session) {
@@ -50,7 +56,8 @@ public class userController{
         session.removeAttribute("username");
         session.removeAttribute("password");
         User user = userService.login(username, password);
-        if (user.getState().equals(0)) {
+        Integer i = 0;
+        if (i.equals(user.getState())) {
             user.setState(1);
             user.setTestpaperid(rqu.choiceTest());
             userService.updateByPrimaryKey(user);
@@ -143,19 +150,49 @@ public class userController{
     }
 
     @PostMapping ("/personalDetails.action")
-    public ModelAndView personalDetails(User user,HttpSession session,ModelAndView mv) {
+    public ModelAndView personalDetails(User user, HttpSession session, ModelAndView mv) {
         user.setState(3);
         userService.updateByPrimaryKey(user);
         User user1 = (User) session.getAttribute("user");
         List<Examination> testspaperByUsername = examinationService.getTestspaperByUsername(user.getUsername());
-        Integer score=0;
-        System.err.println(testspaperByUsername);
+        Integer score = 0;
         for (Examination examination : testspaperByUsername){
-            score+=examination.getScore();
+            score += examination.getScore();
         }
 
         mv.addObject("score", score);
         mv.setViewName("user/Succeed");
+        return mv;
+    }
+
+    //成绩查询
+    @GetMapping ("/toFindGrade.action")
+    public String toFindGrade() {
+        return "user/FindGrade";
+    }
+
+    @PostMapping ("/FindGrade.action")
+    public ModelAndView FindGrade(String username, String password, ModelAndView mv) {
+        User user = userService.login(username, password);
+        String msg = null;
+        Integer scoreCount = 0;
+        mv.setViewName("user/GradeOut");
+        if (user != null) {
+            List<Examination> testspaperByUsername = examinationService.getTestspaperByUsername(username);
+            if (testspaperByUsername == null || testspaperByUsername.size() == 0) {
+                msg = "您查询的用户未参加考试";
+                mv.addObject("msg", msg);
+                return mv;
+            }
+            for (Examination examination : testspaperByUsername){
+                scoreCount += examination.getScore();
+            }
+            msg = "您的成绩为" + scoreCount + "分!";
+        } else {
+            msg = "请输入正确的账号和密码！";
+        }
+        mv.addObject("msg", msg);
+
         return mv;
     }
 }

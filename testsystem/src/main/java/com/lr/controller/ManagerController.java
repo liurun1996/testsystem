@@ -53,8 +53,8 @@ public class ManagerController{
 
     @RequestMapping ("/login.action")
     public String login(HttpSession session) {
-        String  username = (String)session.getAttribute("username");
-        String  password = (String)session.getAttribute("password");
+        String username = (String) session.getAttribute("username");
+        String password = (String) session.getAttribute("password");
         session.removeAttribute("username");
         session.removeAttribute("password");
         Admin admin = adminService.login(username, password);
@@ -242,7 +242,6 @@ public class ManagerController{
 
     @RequestMapping ("/toExamManage.action")
     public ModelAndView toExamManagePaperIdSelect(ModelAndView mv) {
-
         List<String> examinationAllTestPaper = examinationService.getExaminationTestpaperNum();
         mv.addObject("allPaperId", examinationAllTestPaper);
         mv.setViewName("ExamManage");
@@ -253,7 +252,6 @@ public class ManagerController{
     public void selectByPaperID(String paperId, HttpServletResponse response) {
         List<Examination> examinations = examinationService.selectByPaperId(paperId);
         JSONArray json = JSONArray.parseArray(JSON.toJSONString(examinations));
-
         try {
             response.getWriter().write(json.toString());
         } catch (IOException e) {
@@ -265,8 +263,15 @@ public class ManagerController{
     public @ResponseBody
     User userDetail(String username) {
         User userDetailById = userService.getUserDetailById(username);
-        System.out.println(userDetailById);
         return userDetailById;
     }
 
+    @GetMapping ("/toReadPaper.action")
+    public ModelAndView toReadPaper(ModelAndView mv) {
+        List<Examination> allTestPaperId = examinationService.getAllPaper();
+        System.out.println(allTestPaperId);
+        mv.addObject("allTestPaper", allTestPaperId);
+        mv.setViewName("ReadPaper");
+        return mv;
+    }
 }

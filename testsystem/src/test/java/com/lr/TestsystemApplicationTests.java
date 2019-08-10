@@ -25,10 +25,6 @@ public class TestsystemApplicationTests{
     @Test
     public void contextLoads() {
         List<Examination> testspaperByUsername = userMapper.getTestspaperByUsername("10001");
-        int i=0;
-        for (Examination examination : testspaperByUsername){
-            i+=examination.getScore();
-        }
-        System.out.println(i);
+ System.out.println(userMapper.getAllPaper());
     }
 }

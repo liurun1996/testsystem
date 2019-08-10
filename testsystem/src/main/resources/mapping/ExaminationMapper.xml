@@ -81,7 +81,7 @@ correct_error,
     </trim>
   </insert>
   <select id="selectBypaperId" parameterType="string" resultMap="Examination">
-select user_name,testpaper_id,subject_id,question_content,question_id,question_score, correct_answer,user_answer,SUM(score) score from examination where testpaper_id=#{paperId} GROUP BY examinee_id;
+select user_name,testpaper_id,subject_id,question_content,question_id,question_score, correct_answer,user_answer,SUM(score) score from examination where testpaper_id=#{paperId} GROUP BY user_name;
 
 </select>
   <select id="getExaminationTestpaperNum" resultType="string">
@@ -97,4 +97,7 @@ select user_name,testpaper_id,subject_id,question_content,question_id,question_s
     update examination set user_answer =#{userAnswer},score=#{score} where user_name=#{userName} and question_id=#{questionId}
 
   </update>
+  <select id="getAllPaper" resultMap="Examination">
+     select * from examination e GROUP BY e.testpaper_id
+  </select>
 </mapper>

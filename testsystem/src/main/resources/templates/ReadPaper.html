@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>
+	阅卷
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><style type="text/css">
+.font{font-size:13px;}
+body {
+    background-image: url("/static/Img/back.jpg");
+}
+</style>
+    <script src="/static/js/jquery-3.3.1.js"></script>
+<script>
+    function select() {
+        var paperId = $("#PaperId").val();
+
+    }
+
+</script>
+</head>
+<body>
+ <form name="form1" method="post" action="ReadPaper.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+   <div>
+     <table width="800" align="center">
+       <tr>
+         <td bgcolor="#FFFFFF"><img src="/static/Img/ting01.jpg" width="395" height="62" /></td>
+       </tr>
+       <tr>
+         <td bgcolor="#CCCCCC" style="height: 21px"><div align="right" class="font">
+             <a id="HyperLink1" href="toMain.action">返回</a>&nbsp;</div></td>
+       </tr>
+     </table>
+     <table width="800" height="450" border="1" align="center" bordercolor="#999999" bgcolor="#FFFFFF">
+       <tr>
+         <td valign="top" bordercolor="#FFFFFF"><table width="100%" border="0" align="center" bgcolor="#FFFFFF">
+           <tr>
+             <td style="height: 22px; width: 757px;"><table width="100%" border="0">
+                 <tr>
+                   <td class="font" style="width: 174px; height: 10px;">
+                    <span id="Label1">请选择待批阅的试卷</span>
+                    ：</td>
+                   <td class="font" style="width: 131px; height: 10px;">
+                    <select name="DropDownList1" id="PaperId" style="width:117px;">
+                      <option>-请选择-</option>
+	<option  th:each="Paper:${allTestPaper}" th:username="${Paper.userName}" th:value="${Paper.testpaperId}" th:text="${Paper.testpaperId}">XHG20080305</option>
+
+</select></td>
+                   <td class="font" style="height: 10px; width: 44px;"><span class="font" style="height: 10px; width: 44px;">
+                     <input type="button" name="Button1" value="查询" id="Button1" onclick="select()" />
+                   </span></td>
+                   <td class="font" style="height: 10px">&nbsp;
+                       
+                    </td>
+                   <td style="height: 10px">&nbsp;</td>
+                 </tr>
+             </table></td>
+           </tr>
+           <tr>
+             <td style="height: 101px; width: 757px;"><table width="100%" border="0">
+                 <tr>
+                   <td style="height: 96px">
+                       <div>
+	<table cellspacing="0" cellpadding="0" class="font" border="0" id="GridView1" style="color:#333333;width:100%;border-collapse:collapse;">
+		<tr style="color:White;background-color:#507CD1;font-weight:bold;">
+			<th align="center" scope="col">序号</th>
+            <th align="center" scope="col">考号</th>
+            <th align="center" scope="col">试卷号</th>
+            <th align="center" scope="col">是否批阅</th>
+            <th align="center" scope="col">批阅操作</th>
+		</tr><tr style="background-color:#EFF3FB;">
+			<td align="center">
+                       <span id="GridView1_ctl02_Label2">1</span>
+                     </td><td align="center">200831618152</td><td align="center">XHG20080305</td><td align="center">1</td><td align="center"><a href="ReadPaper.html" style="color:#333333;">批阅</a></td>
+		</tr>
+	</table>
+</div> </td>
+                 </tr>
+             </table></td>
+           </tr>
+           <tr>
+             <td class="font" style="height: 2px; width: 757px;"><span id="Label23">考号为:200831618152试卷号:XHG20080305</span>
+              <input type="hidden" name="HiddenField1" id="HiddenField1" value="200831618152" /> <input type="hidden" name="HiddenField2" id="HiddenField2" value="XHG20080305" /> </td>
+           </tr>
+           <tr>
+             <td class="font" style="width: 100%"><div>
+
+</div> </td>
+           </tr>
+           <tr>
+             <td class="font" style="width: 100%"><div>
+	<table cellspacing="0" cellpadding="4" border="0" id="GridView3" style="color:#333333;width:100%;border-collapse:collapse;">
+		<tr style="color:White;background-color:#5D7B9D;font-weight:bold;">
+			<th scope="col">
+                     <span id="GridView3_ctl01_Label13">简答题(每题</span>
+                     <span id="GridView3_ctl01_Label14">10</span>
+                     <span id="GridView3_ctl01_Label15">分)</span>
+                   </th>
+		</tr><tr style="color:#333333;background-color:#F7F6F3;">
+			<td>
+                     <table style="width: 100%">
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl02_Label16" style="color:Black;">1</span>
+                             <span id="GridView3_ctl02_Label17" style="color:Black;">、传输层与数据链路层的异同
+</span></td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl02_Label18" style="color:Red;">标答:</span>
+                             <span id="GridView3_ctl02_Label19" style="color:Black;">同：连接建立，差错控制，流量控制
+
+　　异：数据链路层是一条直接相连的物理信道，传输层是端到端，体现在
+
+　　建立连接过程复杂，需路由选择
+
+　　需处理存储转发引起的问题
+
+　　根据通信子网的变化有不同的管理方法
+
+　　必须给出信宿地址。
+</span></td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl02_Label20" style="display:inline-block;color:Red;width:72px;">考生解答:</span>
+                             <span id="GridView3_ctl02_Label21" style="color:Black;">1</span>
+                             </td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%; height: 38px;"><span id="GridView3_ctl02_Label22" style="color:Red;">得分:</span>
+                             <input name="GridView3$ctl02$TextBox2" type="text" id="GridView3_ctl02_TextBox2" style="width:34px;" />
+               &nbsp;
+                             <span id="GridView3_ctl02_RangeValidator1" style="color:Red;visibility:hidden;">请输入正确的分数</span>
+                             <span id="GridView3_ctl02_RequiredFieldValidator2" style="color:Red;visibility:hidden;">请输入正确的分数</span></td>
+                       </tr>
+                     </table>
+                   </td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>
+                     <table style="width: 100%">
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl03_Label16" style="color:Black;">2</span>
+                             <span id="GridView3_ctl03_Label17" style="color:Black;">、传输服务质量的描述、参数
+</span></td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl03_Label18" style="color:Red;">标答:</span>
+                             <span id="GridView3_ctl03_Label19" style="color:Black;">针对连接建立、数据传输、连接拆除，按速度、精确度/可靠性描述
+
+　　参数：吞吐量、传输延迟、残留差错率、运输失败率
+
+</span></td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl03_Label20" style="display:inline-block;color:Red;width:72px;">考生解答:</span>
+                             <span id="GridView3_ctl03_Label21" style="color:Black;">1</span>
+                             </td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%; height: 38px;"><span id="GridView3_ctl03_Label22" style="color:Red;">得分:</span>
+                             <input name="GridView3$ctl03$TextBox2" type="text" id="GridView3_ctl03_TextBox2" style="width:34px;" />
+               &nbsp;
+                             <span id="GridView3_ctl03_RangeValidator1" style="color:Red;visibility:hidden;">请输入正确的分数</span>
+                             <span id="GridView3_ctl03_RequiredFieldValidator2" style="color:Red;visibility:hidden;">请输入正确的分数</span></td>
+                       </tr>
+                     </table>
+                   </td>
+		</tr><tr style="color:#333333;background-color:#F7F6F3;">
+			<td>
+                     <table style="width: 100%">
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl04_Label16" style="color:Black;">3</span>
+                             <span id="GridView3_ctl04_Label17" style="color:Black;">、会话协议没有捎带，是否低效
+</span></td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl04_Label18" style="color:Red;">标答:</span>
+                             <span id="GridView3_ctl04_Label19" style="color:Black;">因为是半双工，若提供捎带，则增加管理难度，降低效率。
+</span></td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%"><span id="GridView3_ctl04_Label20" style="display:inline-block;color:Red;width:72px;">考生解答:</span>
+                             <span id="GridView3_ctl04_Label21" style="color:Black;">1</span>
+                             </td>
+                       </tr>
+                       <tr>
+                         <td style="width: 100%; height: 38px;"><span id="GridView3_ctl04_Label22" style="color:Red;">得分:</span>
+                             <input name="GridView3$ctl04$TextBox2" type="text" id="GridView3_ctl04_TextBox2" style="width:34px;" />
+               &nbsp;
+                             <span id="GridView3_ctl04_RangeValidator1" style="color:Red;visibility:hidden;">请输入正确的分数</span>
+                             <span id="GridView3_ctl04_RequiredFieldValidator2" style="color:Red;visibility:hidden;">请输入正确的分数</span></td>
+                       </tr>
+                     </table>
+                   </td>
+		</tr>
+	</table>
+</div> </td>
+           </tr>
+           <tr>
+             <td class="font" style="width: 100%"><div>
+
+</div> </td>
+           </tr>
+           <tr>
+             <td style="width: 757px"><input type="button" name="Button2" value="请确认批阅" onclick="javascript:window.location.href='ReadPaper4.html'" id="Button2" style="color:Blue;width:79px;" /></td>
+           </tr>
+           <tr>
+             <td style="width: 757px">&nbsp;</td>
+           </tr>
+         </table></td>
+       </tr>
+     </table>
+     </div>
+ 
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("GridView3_ctl02_RangeValidator1"), document.getElementById("GridView3_ctl02_RequiredFieldValidator2"), document.getElementById("GridView3_ctl03_RangeValidator1"), document.getElementById("GridView3_ctl03_RequiredFieldValidator2"), document.getElementById("GridView3_ctl04_RangeValidator1"), document.getElementById("GridView3_ctl04_RequiredFieldValidator2"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var GridView3_ctl02_RangeValidator1 = document.all ? document.all["GridView3_ctl02_RangeValidator1"] : document.getElementById("GridView3_ctl02_RangeValidator1");
+GridView3_ctl02_RangeValidator1.controltovalidate = "GridView3_ctl02_TextBox2";
+GridView3_ctl02_RangeValidator1.errormessage = "请输入正确的分数";
+GridView3_ctl02_RangeValidator1.type = "Integer";
+GridView3_ctl02_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
+GridView3_ctl02_RangeValidator1.maximumvalue = "10";
+GridView3_ctl02_RangeValidator1.minimumvalue = "0";
+var GridView3_ctl02_RequiredFieldValidator2 = document.all ? document.all["GridView3_ctl02_RequiredFieldValidator2"] : document.getElementById("GridView3_ctl02_RequiredFieldValidator2");
+GridView3_ctl02_RequiredFieldValidator2.controltovalidate = "GridView3_ctl02_TextBox2";
+GridView3_ctl02_RequiredFieldValidator2.errormessage = "请输入正确的分数";
+GridView3_ctl02_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+GridView3_ctl02_RequiredFieldValidator2.initialvalue = "";
+var GridView3_ctl03_RangeValidator1 = document.all ? document.all["GridView3_ctl03_RangeValidator1"] : document.getElementById("GridView3_ctl03_RangeValidator1");
+GridView3_ctl03_RangeValidator1.controltovalidate = "GridView3_ctl03_TextBox2";
+GridView3_ctl03_RangeValidator1.errormessage = "请输入正确的分数";
+GridView3_ctl03_RangeValidator1.type = "Integer";
+GridView3_ctl03_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
+GridView3_ctl03_RangeValidator1.maximumvalue = "10";
+GridView3_ctl03_RangeValidator1.minimumvalue = "0";
+var GridView3_ctl03_RequiredFieldValidator2 = document.all ? document.all["GridView3_ctl03_RequiredFieldValidator2"] : document.getElementById("GridView3_ctl03_RequiredFieldValidator2");
+GridView3_ctl03_RequiredFieldValidator2.controltovalidate = "GridView3_ctl03_TextBox2";
+GridView3_ctl03_RequiredFieldValidator2.errormessage = "请输入正确的分数";
+GridView3_ctl03_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+GridView3_ctl03_RequiredFieldValidator2.initialvalue = "";
+var GridView3_ctl04_RangeValidator1 = document.all ? document.all["GridView3_ctl04_RangeValidator1"] : document.getElementById("GridView3_ctl04_RangeValidator1");
+GridView3_ctl04_RangeValidator1.controltovalidate = "GridView3_ctl04_TextBox2";
+GridView3_ctl04_RangeValidator1.errormessage = "请输入正确的分数";
+GridView3_ctl04_RangeValidator1.type = "Integer";
+GridView3_ctl04_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
+GridView3_ctl04_RangeValidator1.maximumvalue = "10";
+GridView3_ctl04_RangeValidator1.minimumvalue = "0";
+var GridView3_ctl04_RequiredFieldValidator2 = document.all ? document.all["GridView3_ctl04_RequiredFieldValidator2"] : document.getElementById("GridView3_ctl04_RequiredFieldValidator2");
+GridView3_ctl04_RequiredFieldValidator2.controltovalidate = "GridView3_ctl04_TextBox2";
+GridView3_ctl04_RequiredFieldValidator2.errormessage = "请输入正确的分数";
+GridView3_ctl04_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+GridView3_ctl04_RequiredFieldValidator2.initialvalue = "";
+//]]>
+</script>
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCgL9qKTpAQK7+7XSCgKM54rGBgKD8OPxCwKQo8KrDQKQo/68BwLr/e/oAwLW++a7AQKZudH/CwK7q7GGCDOLpduL2To+KQezwo2228bn5FEI" />
+</div>
+
+<script type="text/javascript">
+<!--
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+// -->
+</script>
+        </form>
+</body>
+</html>

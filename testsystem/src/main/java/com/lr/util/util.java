@@ -33,14 +33,18 @@ public class util{
     public static HashMap<Integer, String> commitTestPaperSort(String[] arr) {
         HashMap<Integer, String> hm = new HashMap<>();
         Set<Integer> keys = hm.keySet();
+        String  sp1=null;
         for (String s : arr){
             String[] split = s.split("\\.");
             int i = Integer.parseInt(split[0]);
 
-            if (!keys.contains(i)) {
-                hm.put(i, split[1]);
+            if (split.length>1){
+                  sp1=split[1];
+            }
+            if (!keys.contains(i)&& sp1!=null&&!"".equals(sp1)) {
+                hm.put(i, sp1);
             } else {
-                hm.replace(i, hm.get(i) + split[1]);
+                hm.replace(i, hm.get(i) + sp1);
             }
 
         }

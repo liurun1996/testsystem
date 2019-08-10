@@ -4,56 +4,12 @@
     <meta charset="UTF-8"/>
     <title>考试查询</title>
     <script src="../static/js/jquery-3.3.1.js"></script>
-    <script>
-
-        var arr = [];
-
-        function selectBypaperId() {
-            var paperId = $("#paperId").val();
-
-            $.ajax({
-                type: "post",
-                url: "selectByPaperId.action",
-                data: {paperId: paperId},
-                dataType: 'JSON',
-                success: function (data) {
-                    $("#center").show();
-                    for (j = 0; j < arr.length; j++) {
-                        $("#t" + arr[j]).remove();
-                    }
-                    var i = 1;
-                    $(data).each(function (index, obj) {
-                        $("#GridView1").append(
-                            "<tr style='background-color:#E3EAEB;'id='t" + i + "'><td align='center'><input id='' type='checkbox'/></td>" +
-                            "<td align='center'><span>" + i + "</span></td>" +
-                            "<td align='center'>" + obj.examineeId + "</td>" +
-                            "<td align='center'>" + paperId + "</td>" +
-                            "<td align='center'>" + obj.score + "</td>" +
-                            "<td align='center'><input type='button' value='详情' onclick='detail("+obj.examineeId+")'></td>" +
-                            "</tr>"
-                        );
-                        arr.push(i);
-                        i++;
-                    });
-
-                },
-                error: function () {
-                }
-
-            });
-        }
-        function detail(id) {
-            alert(id);
-
-        }
-    </script>
-
     <script src="../static/js/ExamManage.js"></script>
-<style>
-    body{
-        background-image: url("/static/Img/back.jpg");
-    }
-</style>
+    <style>
+        body {
+            background-image: url("/static/Img/back.jpg");
+        }
+    </style>
 </head>
 <body>
 <div>
@@ -66,7 +22,7 @@
         <tr>
             <td bgcolor="#DBD7F9">
                 <div align="right"><span class="style2">&nbsp;
-        <a id="HyperLink1" href="Manage.html">返回</a>
+        <a id="HyperLink1" href="toMain.action">返回</a>
             </span></div>
             </td>
         </tr>
@@ -130,9 +86,9 @@
                                                                   value="删除"
                                                                   id="Button2"/></td>
                     </tr>
-                    <tr >
+                    <tr>
                         <td height="12" valign="top" class="style2">&nbsp;
-                            <span id="Label2"th:style="'display:none'">考生2008820212718详情如下:</span></td>
+                            <span id="Label2" th:style="'display:none'">考生2008820212718详情如下:</span></td>
                     </tr>
                     <tr>
                         <td height="12" valign="top" class="style2">&nbsp;<div>
