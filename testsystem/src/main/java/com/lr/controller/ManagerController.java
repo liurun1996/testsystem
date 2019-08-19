@@ -269,9 +269,17 @@ public class ManagerController{
     @GetMapping ("/toReadPaper.action")
     public ModelAndView toReadPaper(ModelAndView mv) {
         List<Examination> allTestPaperId = examinationService.getAllPaper();
-        System.out.println(allTestPaperId);
         mv.addObject("allTestPaper", allTestPaperId);
         mv.setViewName("ReadPaper");
         return mv;
+    }
+    @PostMapping("/selectPaper.action")
+    public void selectPaper(String paperId,HttpServletResponse response){
+        List<Examination> examinations = examinationService.selectByPaperId(paperId);
+        List<Examination> needRead=new ArrayList<>();
+        for (Examination e:examinations) {
+            if (subjectTypeService.selectSubjecttypeById(e.getSubjectId()).getReadtype()==1)
+        }
+
     }
 }
