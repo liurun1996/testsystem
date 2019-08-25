@@ -45,4 +45,7 @@ public class examinationService{
     public List<Examination> getAllPaper() {
         return examinationMapper.getAllPaper();
     }
+    public void readEnd(Examination e){
+        examinationMapper.readEnd(e);
+    }
 }

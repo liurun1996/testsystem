@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.lr.pojo.*;
 import com.lr.service.*;
+import com.lr.util.readEnd;
 import com.lr.util.subjectUtil;
 import com.lr.util.testPaperUtil;
 import com.lr.util.util;
@@ -22,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping ("/admin")
-public class ManagerController{
+@RequestMapping("/admin")
+public class ManagerController {
     @Autowired
     private userService userService;
     @Autowired
@@ -41,17 +42,17 @@ public class ManagerController{
     @Autowired
     private adminService adminService;
 
-    @RequestMapping ("/index.action")
+    @RequestMapping("/index.action")
     public String index() {
         return "login";
     }
 
-    @GetMapping ("/toMain.action")
+    @GetMapping("/toMain.action")
     public String toMain() {
         return "Manage";
     }
 
-    @RequestMapping ("/login.action")
+    @RequestMapping("/login.action")
     public String login(HttpSession session) {
         String username = (String) session.getAttribute("username");
         String password = (String) session.getAttribute("password");
@@ -62,14 +63,14 @@ public class ManagerController{
         return "Manage";
     }
 
-    @GetMapping ("/toThemeSortManage.action")
+    @GetMapping("/toThemeSortManage.action")
     public String toThemeSortManage(ModelAndView mv, HttpServletRequest request) {
         List<SubjectType> allsubjectType = subjectTypeService.getAllsubjectType("ThemeSortManage");
         request.setAttribute("allSubject", allsubjectType);
         return "ThemeSortManage";
     }
 
-    @RequestMapping ("/toThemeSortUpdate.action")
+    @RequestMapping("/toThemeSortUpdate.action")
     public String toThemeSortUpdate(Integer subjectid, HttpServletRequest request) {
         SubjectType subjectType = subjectTypeService.selectSubjecttypeById(subjectid);
         request.setAttribute("subjectType", subjectType);
@@ -77,26 +78,26 @@ public class ManagerController{
     }
 
 
-    @PostMapping ("/doThemeSortUpdate.action")
+    @PostMapping("/doThemeSortUpdate.action")
     public String doThemeSortUpdate(SubjectType subjectType) {
         subjectTypeService.UpdateSubjcetType(subjectType);
 
         return "redirect:/admin/toThemeSortManage.action";
     }
 
-    @GetMapping ("/toThemeSortInsert.action")
+    @GetMapping("/toThemeSortInsert.action")
     public String toThemeSortInsert() {
         return "ThemeSortInsert";
     }
 
-    @PostMapping ("/ThemeSortInsert.action")
+    @PostMapping("/ThemeSortInsert.action")
     public String ThemeSortInsert(SubjectType subjectType) {
         subjectTypeService.insertSelective(subjectType);
 
         return "redirect:/admin/toThemeSortManage.action";
     }
 
-    @RequestMapping ("/subjectDel.action")
+    @RequestMapping("/subjectDel.action")
     public void subjectDel(Integer[] arr, HttpServletResponse response) {
         subjectTypeService.deleteByPrimaryKeys(arr);
         try {
@@ -106,7 +107,7 @@ public class ManagerController{
         }
     }
 
-    @GetMapping ("/toThemesManage.action")
+    @GetMapping("/toThemesManage.action")
     public ModelAndView toThemesManage(ModelAndView mv, Integer subjectTypeId, Integer nowPage) {
         if (nowPage == null) {
             nowPage = 1;
@@ -128,7 +129,7 @@ public class ManagerController{
         return mv;
     }
 
-    @PostMapping ("/SubTypeChange.action")
+    @PostMapping("/SubTypeChange.action")
     public void SubTypeChange(Integer subjectTypeId, HttpServletResponse response, HttpServletRequest request) {
         Integer countQuestions = questionService.getCountQuestions(subjectTypeId);
 //        List<SubjectType> allsubjectType = util.sort(subjectTypeId, subjectTypeService.getAllsubjectType());
@@ -146,7 +147,7 @@ public class ManagerController{
         }
     }
 
-    @GetMapping ("/toThemeInsert.action")
+    @GetMapping("/toThemeInsert.action")
     public ModelAndView toThemeInsert(ModelAndView mv, Integer subjectid) {
         if (subjectid == null) {
             subjectid = 1;
@@ -160,7 +161,7 @@ public class ManagerController{
         return mv;
     }
 
-    @PostMapping ("/addQuestion.action")
+    @PostMapping("/addQuestion.action")
     public String addQuestion(Question question) {
         question.setId(0);
         question.setState(0);
@@ -168,7 +169,7 @@ public class ManagerController{
         return "redirect:/admin/toThemeInsert.action?subjectid=" + question.getSubjectid();
     }
 
-    @PostMapping ("/toInvalid.action")
+    @PostMapping("/toInvalid.action")
     public void toInvalid(Integer[] arr, HttpServletResponse response) {
         questionService.questionInvalid(arr);
         try {
@@ -178,7 +179,7 @@ public class ManagerController{
         }
     }
 
-    @GetMapping ("/toTestPaperManage.action")
+    @GetMapping("/toTestPaperManage.action")
     public String toTestPaperManage(String testPaperId/*试卷编号*/, HttpServletRequest request) {
         List<TestPaper> allTestPaper = testpaperService.getAllTestPaper();
         request.setAttribute("allTestPaper", allTestPaper);
@@ -192,7 +193,7 @@ public class ManagerController{
         return "TestPaperManage";
     }
 
-    @GetMapping ("/toTestPaperOrder.action")
+    @GetMapping("/toTestPaperOrder.action")
     public String toTestPaperOrder(HttpServletRequest request) {
         List<subjectUtil> allsubjectType = utilService.addTestPaper();
         request.setAttribute("allsubjectType", allsubjectType);
@@ -200,7 +201,7 @@ public class ManagerController{
         return "TestPaperOrder";
     }
 
-    @PostMapping ("/randomTestPaperId.action")
+    @PostMapping("/randomTestPaperId.action")
     public void randomTestPaperID(HttpServletResponse response) {
         PrintWriter pw = null;
         try {
@@ -220,10 +221,10 @@ public class ManagerController{
     }
 
 
-    @PostMapping ("addTestPaper.action")
+    @PostMapping("addTestPaper.action")
     public void addTestPaper(HttpServletResponse response, String[] typeAndNum, String paperId) {
         List<TestPaper> testPapers = new ArrayList<TestPaper>();
-        for (String str : typeAndNum){
+        for (String str : typeAndNum) {
             String[] split = str.split(":");
             if (!"".equals(split[0]) && !"".equals(split[1]) && !"a".equals(split[0]) && !"b".equals(split[1])) {
                 if (!"0".equals(split[1])) {
@@ -240,7 +241,7 @@ public class ManagerController{
         }
     }
 
-    @RequestMapping ("/toExamManage.action")
+    @RequestMapping("/toExamManage.action")
     public ModelAndView toExamManagePaperIdSelect(ModelAndView mv) {
         List<String> examinationAllTestPaper = examinationService.getExaminationTestpaperNum();
         mv.addObject("allPaperId", examinationAllTestPaper);
@@ -248,7 +249,8 @@ public class ManagerController{
         return mv;
     }
 
-    @PostMapping ("/selectByPaperId.action")
+
+    @PostMapping("/selectByPaperId.action")
     public void selectByPaperID(String paperId, HttpServletResponse response) {
         List<Examination> examinations = examinationService.selectByPaperId(paperId);
         JSONArray json = JSONArray.parseArray(JSON.toJSONString(examinations));
@@ -259,19 +261,50 @@ public class ManagerController{
         }
     }
 
-    @PostMapping ("/userDetail.action")
+    @PostMapping("/userDetail.action")
     public @ResponseBody
     User userDetail(String username) {
         User userDetailById = userService.getUserDetailById(username);
         return userDetailById;
     }
 
-    @GetMapping ("/toReadPaper.action")
+    @GetMapping("/toReadPaper.action")
     public ModelAndView toReadPaper(ModelAndView mv) {
-        List<Examination> allTestPaperId = examinationService.getAllPaper();
-        System.out.println(allTestPaperId);
-        mv.addObject("allTestPaper", allTestPaperId);
+        List<User> allUser = userService.getAllUser();
+        mv.addObject("allUser", allUser);
         mv.setViewName("ReadPaper");
         return mv;
+    }
+
+    @RequestMapping(value = "/selectPaper.action",method = RequestMethod.POST)
+    public void selectPaper(String username, HttpServletResponse response) {
+        List<Examination> examinations = examinationService.getTestspaperByUsername(username);
+        List<Examination> needRead = new ArrayList<>();
+        for (Examination e : examinations) {
+            if (subjectTypeService.selectSubjecttypeById(e.getSubjectId()).getReadtype() == 1) {
+                needRead.add(e);
+            }
+        }
+        String json = JSONArray.toJSONString(needRead);
+        try {
+            response.setCharacterEncoding("utf-8");
+            response.getWriter().write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @PostMapping("/readEnd.action")
+    public void readEnd(String json,HttpServletResponse response){
+        List<readEnd> readEnds = JSON.parseArray(json, readEnd.class);
+        List<Examination> examinations = util.readPaperCast(readEnds);
+        for (Examination e:examinations){
+            examinationService.readEnd(e);
+        }
+        response.setCharacterEncoding("utf-8");
+        try {
+            response.getWriter().println("1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

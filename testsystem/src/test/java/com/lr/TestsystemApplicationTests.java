@@ -11,20 +11,23 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 
-@RunWith (SpringRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestsystemApplicationTests{
+public class TestsystemApplicationTests {
     @Autowired
     examinationService userMapper;
-@Autowired
+    @Autowired
     QuestionMapper qq;
 
     @Test
     public void contextLoads() {
-        List<Examination> testspaperByUsername = userMapper.getTestspaperByUsername("10001");
- System.out.println(userMapper.getAllPaper());
+        JedisPool jp=new JedisPool("localhost",6379);
+        Jedis resource = jp.getResource();
+        resource.set("name", "lisi");
     }
 }

@@ -1,103 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lr.mapper.ExaminationMapper">
-  <resultMap id="Examination" type="com.lr.pojo.Examination">
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="testpaper_id" jdbcType="VARCHAR" property="testpaperId" />
-    <result column="subject_id" jdbcType="BIGINT" property="subjectId" />
-    <result column="question_content" jdbcType="VARCHAR" property="questionContent" />
-    <result column="question_id" jdbcType="BIGINT" property="questionId" />
-    <result column="question_score" jdbcType="INTEGER" property="questionScore" />
-    <result column="correct_answer" jdbcType="VARCHAR" property="correctAnswer" />
-    <result column="user_answer" jdbcType="VARCHAR" property="userAnswer" />
-    <result column="score" jdbcType="INTEGER" property="score" />
-  </resultMap>
-  <insert id="insert" parameterType="com.lr.pojo.Examination">
+    <resultMap id="Examination" type="com.lr.pojo.Examination">
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="testpaper_id" jdbcType="VARCHAR" property="testpaperId"/>
+        <result column="subject_id" jdbcType="BIGINT" property="subjectId"/>
+        <result column="question_content" jdbcType="VARCHAR" property="questionContent"/>
+        <result column="question_id" jdbcType="BIGINT" property="questionId"/>
+        <result column="question_score" jdbcType="INTEGER" property="questionScore"/>
+        <result column="correct_answer" jdbcType="VARCHAR" property="correctAnswer"/>
+        <result column="user_answer" jdbcType="VARCHAR" property="userAnswer"/>
+        <result column="score" jdbcType="INTEGER" property="score"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.lr.pojo.Examination">
     insert into examination values (#{userName},#{testpaperId},#{subjectId},#{questionContent},#{questionId},#{questionScore},#{correctAnswer},#{userAnswer},#{score})
   </insert>
-  <insert id="insertSelective" parameterType="com.lr.pojo.Examination">
-    insert into examination
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="username != null">
-        user_name,
-      </if>
-      <if test="testpaperId != null">
-        testpaper_id,
-      </if>
-      <if test="subjectId != null">
-        subject_id,
-      </if>
-      <if test="questionContent != null">
-        question_content,
-      </if>
-      <if test="questionId != null">
-        question_id,
-      </if>
-      <if test="questionScore != null">
-        question_score,
-      </if>
+    <insert id="insertSelective" parameterType="com.lr.pojo.Examination">
+        insert into examination
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="testpaperId != null">
+                testpaper_id,
+            </if>
+            <if test="subjectId != null">
+                subject_id,
+            </if>
+            <if test="questionContent != null">
+                question_content,
+            </if>
+            <if test="questionId != null">
+                question_id,
+            </if>
+            <if test="questionScore != null">
+                question_score,
+            </if>
 
-      <if test="userAnswer != null">
-        user_answer,
-      </if>
-      <if test="
-correctError != null">
-        
-correct_error,
-      </if>
-      <if test="score != null">
-        score,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="testpaperId != null">
-        #{testpaperId,jdbcType=VARCHAR},
-      </if>
-      <if test="subjectId != null">
-        #{subjectId,jdbcType=BIGINT},
-      </if>
-      <if test="questionContent != null">
-        #{questionContent,jdbcType=VARCHAR},
-      </if>
-      <if test="questionId != null">
-        #{questionId,jdbcType=BIGINT},
-      </if>
-      <if test="questionScore != null">
-        #{questionScore,jdbcType=INTEGER},
-      </if>
-      <if test="correctAnswer != null">
-        #{correctAnswer,jdbcType=VARCHAR},
-      </if>
-      <if test="userAnswer != null">
-        #{userAnswer,jdbcType=VARCHAR},
-      </if>
+            <if test="userAnswer != null">
+                user_answer,
+            </if>
+            <if test="
+correctAnswer != null">
 
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="selectBypaperId" parameterType="string" resultMap="Examination">
+                correct_error,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="testpaperId != null">
+                #{testpaperId,jdbcType=VARCHAR},
+            </if>
+            <if test="subjectId != null">
+                #{subjectId,jdbcType=BIGINT},
+            </if>
+            <if test="questionContent != null">
+                #{questionContent,jdbcType=VARCHAR},
+            </if>
+            <if test="questionId != null">
+                #{questionId,jdbcType=BIGINT},
+            </if>
+            <if test="questionScore != null">
+                #{questionScore,jdbcType=INTEGER},
+            </if>
+            <if test="correctAnswer != null">
+                #{correctAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="userAnswer != null">
+                #{userAnswer,jdbcType=VARCHAR},
+            </if>
+
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectBypaperId" parameterType="string" resultMap="Examination">
 select user_name,testpaper_id,subject_id,question_content,question_id,question_score, correct_answer,user_answer,SUM(score) score from examination where testpaper_id=#{paperId} GROUP BY user_name;
 
 </select>
-  <select id="getExaminationTestpaperNum" resultType="string">
+    <select id="getExaminationTestpaperNum" resultType="string">
     select e.testpaper_id from examination e GROUP BY e.testpaper_id
   </select>
-  <select id="getTestspaperByUsername"  parameterType="string" resultMap="Examination">
+    <select id="getTestspaperByUsername" parameterType="string" resultMap="Examination">
     select * from examination where user_name=#{userName}
   </select>
-  <select id="getExaByUsernameAndQuestionId" parameterType="string" resultMap="Examination">
+    <select id="getExaByUsernameAndQuestionId" parameterType="string" resultMap="Examination">
     select * from examination where user_name=#{username} and question_id=#{questionId}
   </select>
-  <update id="commitTestPaper" parameterType="com.lr.pojo.Examination">
+    <update id="commitTestPaper" parameterType="com.lr.pojo.Examination">
     update examination set user_answer =#{userAnswer},score=#{score} where user_name=#{userName} and question_id=#{questionId}
 
   </update>
-  <select id="getAllPaper" resultMap="Examination">
+    <select id="getAllPaper" resultMap="Examination">
      select * from examination e GROUP BY e.testpaper_id
   </select>
+    <update id="readEnd" parameterType="com.lr.pojo.Examination">
+        update examination set score=#{score} where user_name=#{userName} and question_id=#{questionId}
+    </update>
 </mapper>

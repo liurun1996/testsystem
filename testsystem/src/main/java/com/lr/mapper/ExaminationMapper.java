@@ -22,4 +22,5 @@ public interface ExaminationMapper{
     void commitTestPaper(Examination examination);
 
     List<Examination> getAllPaper();
+    void readEnd(Examination examination);
 }

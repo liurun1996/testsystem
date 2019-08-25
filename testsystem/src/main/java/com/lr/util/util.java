@@ -1,6 +1,7 @@
 
 package com.lr.util;
 
+import com.lr.pojo.Examination;
 import com.lr.pojo.SubjectType;
 
 import java.util.*;
@@ -49,6 +50,18 @@ public class util{
 
         }
         return hm;
+    }
+
+    public static List<Examination> readPaperCast(List<readEnd> list){
+        List<Examination> examinations=new ArrayList<>();
+        for (readEnd readEnd : list){
+            Examination e = new Examination();
+            e.setUserName(readEnd.getUsername());
+            e.setQuestionId(readEnd.getQuestionId());
+            e.setScore(readEnd.getScore());
+            examinations.add(e);
+        }
+        return examinations;
     }
 }
 
