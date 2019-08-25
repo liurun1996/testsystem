@@ -116,7 +116,7 @@ public class userController{
     }
 
     @PostMapping ("/commitTestPaper.action")
-//    @Transactional (propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional (propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void commitTestPaper(String[] answer, HttpServletResponse response, HttpSession session) {
         User user = (User) session.getAttribute("user");
         HashMap<Integer, String> answerMap = util.commitTestPaperSort(answer);
