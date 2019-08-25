@@ -8,6 +8,8 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @CacheConfig(cacheNames = "users")
 public class userService{
@@ -31,5 +33,8 @@ public class userService{
 
     public void updateByPrimaryKey(User user) {
         userMapper.updateByPrimaryKey(user);
+    }
+    public List<User> getAllUser(){
+        return  userMapper.getAllUser();
     }
 }

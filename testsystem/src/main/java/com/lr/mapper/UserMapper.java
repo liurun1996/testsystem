@@ -5,12 +5,16 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
 
 
-//    @Select("select * from user where username=#{username} and password=#{password}")
+    //    @Select("select * from user where username=#{username} and password=#{password}")
     User login(User user);
+
+    List<User> getAllUser();
 
     int updateByPrimaryKeySelective(User record);
 
