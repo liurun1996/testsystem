@@ -103,4 +103,7 @@ select user_name,testpaper_id,subject_id,question_content,question_id,question_s
     <update id="readEnd" parameterType="com.lr.pojo.Examination">
         update examination set score=#{score} where user_name=#{userName} and question_id=#{questionId}
     </update>
+    <delete id="delByUsername" parameterType="string">
+        delete from examination where user_name=#{username}
+    </delete>
 </mapper>

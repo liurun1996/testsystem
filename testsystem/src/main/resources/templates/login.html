@@ -9,16 +9,9 @@
         background-image: url("/static/Img/back.jpg");
     }
 </style>
-<script>
-   function msg() {
-       var msg = document.getElementById("msg").value;
-       if (msg != '') {
-           alert(msg);
-       }
-   }
-</script>
-<body onload="msg()">
-<input th:type="hidden" id="msg" th:value="${msg}">
+
+<body>
+
 <form name="form1" method="post" action="login.action" id="form1">
     <div>
         <table width="800" align="center">

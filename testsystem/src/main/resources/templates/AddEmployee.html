@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>
+	无标题页
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><style type="text/css">
+.font{font-size:13px;}
+<!--
+body {
+	background-color: #C4F4EE;
+}
+-->
+</style></head>
+<body>
+    <form name="form1" method="post" action="AddUser.action"  id="form1">
+
+    <div>
+      <table width="800"  border="0" align="center">
+        <tr>
+          <td bgcolor="#FFFFFF" style="width: 774px"><img src="/static/Img/22.jpg" width="395" height="62" /></td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCCCCC" style="width: 774px"><div align="right">
+              <a id="HyperLink1" class="font" href="toMain.action">返回</a>
+</div></td>
+        </tr>
+      </table>
+    
+      <table width="800" height="450"  border="1" align="center" bordercolor="#666666" bgcolor="#FFFFFF">
+        <tr>
+          <td valign="top" bordercolor="#FFFFFF"><table width="100%%"  border="0">
+            <tr bgcolor="#CCFFCC">
+              <td colspan="2"><div align="center">
+                  添加完整信息</div></td>
+            </tr>
+            <tr>
+              <td width="39%" style="height: 23px"><div align="right"></div></td>
+              <td width="61%" style="height: 23px">&nbsp;</td>
+            </tr>
+            <tr class="font">
+              <td><div align="right">
+                  帐 号：</div></td>
+              <td>&nbsp;<input name="username" type="text" id="username" />
+                  </td>
+            </tr>
+            <tr class="font">
+              <td><div align="right">
+                  密 码：</div></td>
+              <td>&nbsp;<input name="password" type="password" id="TextBox2" style="width:147px;" />
+                  <span id="RequiredFieldValidator2" style="color:Red;visibility:hidden;">请输入密码</span></td>
+            </tr>
+
+            <tr class="font">
+              <td><div align="right">
+                  权 限：</div></td>
+              <td>&nbsp;<select name="level" style="width:68px;">
+	<option value="0">0</option>
+	<option value="1">1</option>
+
+</select></td>
+            </tr>
+
+            <tr class="font">
+              <td><div align="right"></div></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr class="font">
+              <td><div align="right"></div></td>
+              <td>&nbsp;<input type="submit" name="Button1" value="确　认" onclick="javascript:window.location.href='Employee.html'" id="Button1" /></td>
+            </tr>
+            <tr>
+              <td><div align="right"></div></td>
+              <td>&nbsp;</td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+      </div>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("RequiredFieldValidator1"), document.getElementById("RequiredFieldValidator2"), document.getElementById("RequiredFieldValidator3"), document.getElementById("CompareValidator1"), document.getElementById("RegularExpressionValidator1"), document.getElementById("RegularExpressionValidator2"), document.getElementById("RequiredFieldValidator5"), document.getElementById("RequiredFieldValidator4"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var RequiredFieldValidator1 = document.all ? document.all["RequiredFieldValidator1"] : document.getElementById("RequiredFieldValidator1");
+RequiredFieldValidator1.controltovalidate = "TextBox1";
+RequiredFieldValidator1.errormessage = "请输入姓名";
+RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+RequiredFieldValidator1.initialvalue = "";
+var RequiredFieldValidator2 = document.all ? document.all["RequiredFieldValidator2"] : document.getElementById("RequiredFieldValidator2");
+RequiredFieldValidator2.controltovalidate = "TextBox2";
+RequiredFieldValidator2.errormessage = "请输入密码";
+RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+RequiredFieldValidator2.initialvalue = "";
+var RequiredFieldValidator3 = document.all ? document.all["RequiredFieldValidator3"] : document.getElementById("RequiredFieldValidator3");
+RequiredFieldValidator3.controltovalidate = "TextBox3";
+RequiredFieldValidator3.errormessage = "请输入密码";
+RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+RequiredFieldValidator3.initialvalue = "";
+var CompareValidator1 = document.all ? document.all["CompareValidator1"] : document.getElementById("CompareValidator1");
+CompareValidator1.controltovalidate = "TextBox3";
+CompareValidator1.errormessage = "两次输入的密码不一致";
+CompareValidator1.evaluationfunction = "CompareValidatorEvaluateIsValid";
+CompareValidator1.controltocompare = "TextBox2";
+CompareValidator1.controlhookup = "TextBox2";
+var RegularExpressionValidator1 = document.all ? document.all["RegularExpressionValidator1"] : document.getElementById("RegularExpressionValidator1");
+RegularExpressionValidator1.controltovalidate = "TextBox4";
+RegularExpressionValidator1.errormessage = "请输入正确的日期";
+RegularExpressionValidator1.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+RegularExpressionValidator1.validationexpression = "^((((1[6-9]|[2-9]\\d)\\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\\d|3[01]))|(((1[6-9]|[2-9]\\d)\\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\\d|30))|(((1[6-9]|[2-9]\\d)\\d{2})-0?2-(0?[1-9]|1\\d|2[0-8]))|(((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-))$";
+var RegularExpressionValidator2 = document.all ? document.all["RegularExpressionValidator2"] : document.getElementById("RegularExpressionValidator2");
+RegularExpressionValidator2.controltovalidate = "TextBox5";
+RegularExpressionValidator2.errormessage = "请输入正确的手机号";
+RegularExpressionValidator2.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+RegularExpressionValidator2.validationexpression = "^[1]+[3,5]+\\d{9}";
+var RequiredFieldValidator5 = document.all ? document.all["RequiredFieldValidator5"] : document.getElementById("RequiredFieldValidator5");
+RequiredFieldValidator5.controltovalidate = "TextBox5";
+RequiredFieldValidator5.errormessage = "请输入手机号";
+RequiredFieldValidator5.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+RequiredFieldValidator5.initialvalue = "";
+var RequiredFieldValidator4 = document.all ? document.all["RequiredFieldValidator4"] : document.getElementById("RequiredFieldValidator4");
+RequiredFieldValidator4.controltovalidate = "TextBox6";
+RequiredFieldValidator4.errormessage = "请输入地址";
+RequiredFieldValidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+RequiredFieldValidator4.initialvalue = "";
+//]]>
+</script>
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWFALB4Yj0CALs0bLrBgLs0fbZDALs0Yq1BQLQuaSLBgKU4aSLBgK/rsWtAwLVgtWjBAKNjpR2Ar+94twEAuzR7nwC7NGC2AkCj4uliwYCkIuliwYCkYuliwYCkouliwYCk4uliwYClIuliwYC7NHGxg8CjOeKxgZgGoxo1XJ1U2G/qVfgwYqWHyz2Ow==" />
+</div>
+
+<script type="text/javascript">
+<!--
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+// -->
+</script>
+        </form>
+</body>
+</html>

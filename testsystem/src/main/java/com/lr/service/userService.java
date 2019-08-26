@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@CacheConfig(cacheNames = "users")
+@CacheConfig (cacheNames = "users")
 public class userService{
     @Autowired
     private UserMapper userMapper;
 
 
-//    @Cacheable(value = "user",key = "#p0")
+    //    @Cacheable(value = "user",key = "#p0")
     public User login(String username, String password) {
         User u = new User();
         u.setUsername(username);
@@ -27,14 +27,27 @@ public class userService{
 
     }
 
-    public User getUserDetailById(String username) {
+    public User getUserDetailByUsername(String username) {
         return userMapper.getUserDetailByUsername(username);
     }
 
     public void updateByPrimaryKey(User user) {
         userMapper.updateByPrimaryKey(user);
     }
-    public List<User> getAllUser(){
-        return  userMapper.getAllUser();
+
+    public List<User> getAllUser() {
+
+        return userMapper.getAllUser();
+    }
+
+    public User getUserById(Integer userId) {
+        return userMapper.getUserById(userId);
+    }
+
+    public void deleteUserById(Integer[] arr) {
+        userMapper.deleteUserById(arr);
+    }
+    public  void addUser(User user){
+        userMapper.addUser(user);
     }
 }

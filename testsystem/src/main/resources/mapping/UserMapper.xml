@@ -90,4 +90,17 @@
     <select id="getAllUser" resultMap="user">
         select * from user
     </select>
+    <select id="getUserById" parameterType="integer" resultMap="user">
+        select * from user where id=#{userId}
+    </select>
+    <delete id="deleteUserById" parameterType="arraylist">
+        delete from user where id in
+        <foreach collection="array" item="arr" index="no" open="(" separator="," close=")" >
+            #{arr}
+        </foreach>
+    </delete>
+    <insert id="addUser" parameterType="com.lr.pojo.User">
+        insert into user(username, password, state, level) values (#{username},#{password},#{state},#{level})
+
+    </insert>
 </mapper>

@@ -23,4 +23,5 @@ public interface ExaminationMapper{
 
     List<Examination> getAllPaper();
     void readEnd(Examination examination);
+    void delByUsername(@Param("username") String username);
 }

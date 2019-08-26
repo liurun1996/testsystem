@@ -48,4 +48,7 @@ public class examinationService{
     public void readEnd(Examination e){
         examinationMapper.readEnd(e);
     }
+    public void delByUsername(String username){
+        examinationMapper.delByUsername(username);
+    }
 }

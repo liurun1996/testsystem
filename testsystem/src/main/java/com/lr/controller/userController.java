@@ -10,9 +10,7 @@ import com.lr.service.subjectTypeService;
 import com.lr.service.userService;
 import com.lr.util.RandomQuestionUtil;
 import com.lr.util.util;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +43,8 @@ public class userController{
     //返回登录也面
     @GetMapping ("/toLogin.action")
     public String toLogin() {
-        return "login";
+
+        return "redirect:/index.action";
     }
 
     //如果时第一次登录那么将随机分配一张以存在的试卷，且把状态改为1

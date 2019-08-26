@@ -22,4 +22,7 @@ public interface UserMapper {
 
     /*@Select("select * from user where username=#{username}")*/
     User getUserDetailByUsername(@Param("username") String username);
+    User getUserById(@Param("userId") Integer userId);
+    void deleteUserById(@Param("array") Integer[] array);
+    void addUser(User user);
 }

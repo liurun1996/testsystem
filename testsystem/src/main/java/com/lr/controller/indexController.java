@@ -26,8 +26,13 @@ public class indexController{
     private adminService adminService;
 
 
-    @RequestMapping (value = "/index.action")
+    @RequestMapping ("/index.action")
     public String index(HttpServletRequest request, String msg) {
+        try {
+            request.setCharacterEncoding("utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         request.setAttribute("msg", msg);
         return "login";
     }
@@ -36,6 +41,7 @@ public class indexController{
     public String login(String username, String password, HttpSession session) {
         User user = userService.login(username, password);
         Admin admin = adminService.login(username, password);
+
         if (admin != null) {
             session.setAttribute("username", username);
             session.setAttribute("password", password);
@@ -45,7 +51,8 @@ public class indexController{
             session.setAttribute("password", password);
             return "redirect:/user/login.action";
         } else {
-         return "redirect:/index.action?msg=账号或密码错误";
+
+            return "redirect:/index.action";
         }
     }
 

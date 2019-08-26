@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>
+	用户管理
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><style type="text/css">
+.font{font-size:13px;}
+<!--
+body {
+	background-image: url();
+	background-color: #C4F4EE;
+}
+-->
+</style>
+<script src="/static/js/jquery-3.3.1.js"></script>
+    <script>
+        function delet() {
+            var arr=[]
+            $('input[name="check"]:checked').each(function () {
+                arr.push($(this).val());
+            })
+            $.post("deletUser.action",{arr:arr.toString()},function (data) {
+                alert(data);
+            });
+        }
+
+    </script>
+</head>
+<body>
+<form name="form1" method="post" action="Employee.aspx" id="form1">
+
+  <div>
+  
+    <table width="800"  border="0" align="center">
+    <tr>
+      <td bgcolor="#FFFFFF"><div align="center"><img src="/static/Img/employee.jpg" width="481" height="73" /></div></td>
+    </tr>
+    <tr>
+      <td bgcolor="#CCCCCC">
+          <div align="right">
+              <a id="HyperLink1" class="font" href="toMain.action">返回</a>          </div></td></tr>
+  </table>
+  <table width="800" height="450"  border="1" align="center" bordercolor="#666666" bgcolor="#FFFFFF">
+      <tr bordercolor="#FFFFFF">
+        <td width="22%" align="center" valign="top" bgcolor="#CCCCCC"><table width="100%%"  border="0">
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+        <td valign="top" style="width: 78%"><table width="100%%"  border="0">
+          <tr>
+            <td bgcolor="#CCFFCC">员工信息浏览</td>
+          </tr>
+          <tr>
+            <td class="font">&nbsp;<div>
+	<table cellspacing="0" rules="cols" border="1" id="GridView1" style="color:#333333;width:100%;border-collapse:collapse;">
+		<tr style="color:White;background-color:#1C5E55;font-weight:bold;">
+			<th scope="col">&nbsp;</th>
+            <th align="center" scope="col">员工ID</th>
+            <th align="center" scope="col">姓名</th>
+            <th align="center" scope="col">密码</th>
+            <th align="center" scope="col">性别</th>
+            <th align="center" scope="col">毕业学校</th>
+            <th align="center" scope="col">专业</th>
+            <th align="center" scope="col">联系电话</th>
+            <th align="center" scope="col">状态</th>
+            <th align="center" scope="col">地址</th>
+            <th align="center" scope="col">&nbsp;</th>
+		</tr>
+        <tr style="background-color:#E3EAEB;" th:each="user:${users}">
+			<td>
+                <input name="check" type="checkbox" th:value="${user.id}" />
+                      </td>
+            <td align="center" th:text="${user.id}">1</td>
+            <td align="center" th:text="${user.name}">张三</td>
+            <td align="center" th:text="${user.password}">888</td>
+            <td align="center" th:text="${user.gender}">男</td>
+            <td align="center" th:text="${user.school}">武汉交通职业学院</td>
+            <td align="center" th:text="${user.speciality}">计算机应用</td>
+            <td align="center" th:text="${user.tel}">15927276718</td>
+            <td align="center" th:text="${user.state}">0</td>
+            <td align="center" th:text="${user.address}">湖北</td>
+            <td align="center">
+                <a th:href='@{updateUser.action(userId=${user.id})}' style="color:#333333;">编辑</a></td>
+		</tr>
+	</table>
+</div>
+      </td>
+          </tr>
+          <tr>
+            <td><table width="100%%"  border="0">
+              <tr>
+                <td style="width: 159px">&nbsp;<input type="button" name="Button1" value="删除" onclick="delet()" style="position: static" /></td>
+                <td>&nbsp;<input type="button" name="Button2" value="添加" id="Button2" onclick="javascript:window.location.href='toAddUser.action'" /></td>
+                <td>&nbsp;</td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+  </div>
+    
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWDALl5q2DDQKBis6jCAK69KpTAobsv5kCAvDeiOIPAomfro0CAobsu5kCAsP+wLIIAuzdu70BAobsh5kCAoznisYGArursYYIG+EoM31SZqwCASNTgeMuCda5VUo=" />
+</div></form>
+</body>
+</html>

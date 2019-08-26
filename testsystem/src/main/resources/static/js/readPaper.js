@@ -58,7 +58,8 @@ function commit() {
  var json = JSON.stringify(arr);
     $.post("readEnd.action",{json:json},function (data) {
        if (data==1){
-           alert("阅卷完成!")
+           alert("阅卷完成!");
+           window.location.href="/admin/toReadPaper.action";
        }
     },'JSON');
 }
