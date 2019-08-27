@@ -11,13 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@CacheConfig (cacheNames = "users")
 public class userService{
     @Autowired
     private UserMapper userMapper;
 
 
-    //    @Cacheable(value = "user",key = "#p0")
     public User login(String username, String password) {
         User u = new User();
         u.setUsername(username);

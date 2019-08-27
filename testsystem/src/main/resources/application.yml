@@ -2,23 +2,23 @@ server:
   port: 8081
 spring:
   cache:
-    type: redis
-#    redis:
-#      time-to-live: 20000
-
-  redis:
-
-#    cluster:
-#      nodes: 192.168.1.4:6379,127.0.0.1:6379
-    host: 127.0.0.1
-    port: 6379
-    timeout: 5000
-    jedis:
-#      shutdown-timeout: 5000
-      pool:
-        max-idle: 10
-        max-active: 10
-        max-wait: 10
+#    type: redis
+##    redis:
+##      time-to-live: 20000
+#
+#  redis:
+#
+##    cluster:
+##      nodes: 192.168.1.4:6379,127.0.0.1:6379
+#    host: 127.0.0.1
+#    port: 6379
+#    timeout: 5000
+#    jedis:
+##      shutdown-timeout: 5000
+#      pool:
+#        max-idle: 10
+#        max-active: 10
+#        max-wait: 10
 
 
 
@@ -66,8 +66,8 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.lr.pojo
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 ########## 分页插件 ##########
 pagehelper:

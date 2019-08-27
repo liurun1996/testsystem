@@ -59,11 +59,7 @@ public class ManagerController{
         String password = (String) session.getAttribute("password");
         session.removeAttribute("username");
         session.removeAttribute("password");
-        System.out.println(username);
-        System.out.println(password);
-
         Admin admin = adminService.login(username, password);
-        System.out.println(admin);
         if (admin != null) {
             session.setAttribute("admin", admin);
             return "Manage";
@@ -359,7 +355,7 @@ public class ManagerController{
 
         }
         examinationService.delByUsername(user1.getUsername());
-        return "redirect:/userManage.action";
+        return "redirect:/admin/userManage.action";
     }
 
     @PostMapping ("/deletUser.action")
@@ -384,7 +380,6 @@ public class ManagerController{
     public String AddUser(User user){
         user.setState(0);
         userService.addUser(user);
-        System.out.println(user);
-        return "redirect:/userManage.action";
+        return "redirect:/admin/userManage.action";
     }
 }

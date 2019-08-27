@@ -18,7 +18,7 @@ public class questionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    @Cacheable(value = "question")
+
     public List<Question> getQuestion(Integer subjectid, Integer nowPage) {
 
         PageHelper.startPage(nowPage, 5);
@@ -53,7 +53,7 @@ public class questionService {
         return questionMapper.getQuestion(testPaperId);
     }
 
-    @CachePut(value = "test", key = "#id")
+
     public List<Question> testgetALL(Integer id) {
         return questionMapper.testgetALL();
     }

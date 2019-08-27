@@ -9,13 +9,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
-@CacheConfig(cacheNames = "admins")
 public class adminService {
     @Autowired
     private adminMapper adminMapper;
 
 
-    @Cacheable(value = "admin",key = "#username+#password")
+
     public Admin login(String username, String password) {
         return adminMapper.login(new Admin(null, username, password));
     }

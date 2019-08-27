@@ -13,7 +13,6 @@ public class testpaperService{
     @Autowired
     private TestPaperMapper testPaperMapper;
 
-    @Cacheable (value = "AllTestPaper")
     public List<TestPaper> getAllTestPaper() {
         return testPaperMapper.getAllTestPaper();
     }

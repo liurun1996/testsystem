@@ -14,7 +14,7 @@ import java.util.Map;
 
 @SpringBootApplication (scanBasePackages = "com.lr")
 @MapperScan ("com.lr.mapper")
-@EnableCaching
+//@EnableCaching
 @EnableTransactionManagement
 public class app{
 /*"
